@@ -1,0 +1,66 @@
+{% extends 'jdm/base.html' %}
+{% block content %}
+{% load static %}
+
+<h2>Depuis votre dernier passage</h2>
+
+{% if deces|length > 0 %}
+<div class="candidats">
+{% for candidat in deces %}
+<div class="alignement">
+        <a href="/candidats/{{ candidat.id }}/">
+            {% if candidat.photo == '' %}
+            <img src="{% static 'jdm/candidat.png' %}" width="250" height="250" alt="{{ candidat.nom }}" class="image"/>
+            {% else %}
+            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" width="250" height="250" alt="{{ candidat.nom }}" class="image"/>
+            {% endif %}
+                <div class="overlay2">
+                    <div class="text">
+                        <p>{{ candidat.nom }}</p>
+                        <p>{{ candidat.calcul_age }} ans ({{ candidat.points }} point{{ candidat.points|pluralize }})</p>
+                        <p style="font-style: italic;">
+                                {% for pari in paris_amis %}
+                                    {% if candidat.wiki_id == pari.candidat_wiki_id %}
+                                        {{ pari.username }}
+                                    {% endif %}
+                                {% endfor %}
+                        </p>
+                    </div>
+                </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+
+{% if mes_deces|length > 0 %}
+<h2>Vous avez marqué des points !</h2>
+{% if deces|length > 0 %}
+<div class="candidats">
+{% for candidat in mes_deces %}
+<div class="alignement">
+        <a href="/candidats/{{ candidat.id }}/">
+            {% if candidat.photo == '' %}
+            <img src="{% static 'jdm/candidat.png' %}" width="250" height="250" alt="{{ candidat.nom }}" class="image"/>
+            {% else %}
+            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" width="250" height="250" alt="{{ candidat.nom }}" class="image"/>
+            {% endif %}
+                <div class="overlay2">
+                    <div class="text">
+                        <p>{{ candidat.nom }}</p>
+                        <p>{{ candidat.calcul_age }} ans ({{ candidat.points }} point{{ candidat.points|pluralize }})</p>
+                        <p style="font-style: italic;">
+                                {% for pari in paris_amis %}
+                                    {% if candidat.wiki_id == pari.candidat_wiki_id %}
+                                        {{ pari.username }}
+                                    {% endif %}
+                                {% endfor %}
+                        </p>
+                    </div>
+                </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}

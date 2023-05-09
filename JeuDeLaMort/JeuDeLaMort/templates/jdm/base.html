@@ -1,0 +1,67 @@
+{% load static %}
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Le Jeu de la Mort</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'jdm/style-jdm.css' %}">
+</head>
+
+    <div align="right" style="padding: 0 3 0.5 0" >
+        {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}">Déconnexion</a>
+        {% else %}
+        <div style="flex-direction: row; justify-content: right"><a href="{% url 'login' %}">Connexion</a><span style="padding=3rem">|</span>
+        <a href="{% url 'register_user' %}">Inscription</a></div>
+        {% endif %}</div>
+
+<header>
+    <div id="logo"><img src="{% static 'jdm/voyance.png' %}" width="100px"></div>
+    <div id="titre"><h1>Le Jeu de la Mort</h1></div>
+
+
+    <div id="menu"><button class="btn btn-dark btn-lg" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">≡</button></div>
+
+</header>
+
+<body>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="menu-texte"><div class="offcanvas-body">
+    <a href="{% url 'jdm-index' %}">Accueil</a>
+      {% if user.is_authenticated %}
+      <a href="{% url 'salle-attente' %}">Ma salle d'attente</a>
+      <a href="{% url 'mes-amis' %}">Mes amis</a>
+      {% endif %}
+    <a href="{% url 'favoris' %}">Les favoris</a>
+    <a href="{% url 'resume' %}">Ils nous ont quittés</a>
+      {% if user.is_superuser %}
+      <a href="{% url 'maj' %}">Mise à jour des données</a>
+      {% endif %}
+
+      </div>
+  </div>
+</div>
+
+<div class="message">
+    {% if messages %}
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    {% endif %}
+</div>
+
+    {% block content %}
+    {% endblock %}
+
+<div class="pied" style="padding: 2.5rem 0 0 0;font-size: 1rem"><p>Source des données: <a href="https://fr.wikipedia.org/wiki/Cynisme" target="_blank">Wikipedia</a></p>
+<p>©Victor Crézé - 2023</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% extends 'jdm/base.html' %}
+{% block content %}
+{% load static %}
+
+<h2>Mes amis</h2>
+
+{% if liste|length > 0 %}
+<div class="amis">
+    {% for ami, score_user_x, score_max_x, moyenne_x, joker_x in liste %}
+        <a href="{% url 'salle-user' ami.id %}">
+            <div class="bloc">
+                <p style="font-size: 1.5rem">{{ ami.username }}</p>
+                <div style="font-size: 3rem; color: #dbb80b">{{ score_user_x }}</div>
+                <p style="color: #dbb80b">points</p>
+            </div></a>
+    {% endfor %}
+
+    </div>
+{% else %}
+<div>Suivez ici vos amis. Il ne faut pas rester seul.e.</div>
+{% endif %}
+
+<h2><a href="{% url 'recherche-amis' %}">Ajouter un ami</a></h2>
+
+{% endblock %}

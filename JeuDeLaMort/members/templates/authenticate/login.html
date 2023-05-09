@@ -1,0 +1,27 @@
+{% extends 'jdm/base.html' %}
+
+{% block content %}
+
+<div class="connexion">
+
+<form action="" method="post">
+    {% csrf_token %}
+
+  <div>
+    <label class="form-label">Nom d'utilisateur</label>
+    <input type="text" class="form-control" name="username" aria-describedby="emailHelp">
+  </div>
+    <div>
+    <label class="form-label">Mot de passe</label>
+    <input type="password" class="form-control" name="password">
+  </div>
+    <div style="padding: 3rem 8rem 2rem 8rem">
+      <input type="submit" value="Connexion" class="btn btn-secondary">
+    </div>
+
+</form>
+
+</div>
+
+<p>Pas de compte ? <a href="{% url 'register_user' %}">Inscrivez-vous !!</a></p>
+{% endblock %}

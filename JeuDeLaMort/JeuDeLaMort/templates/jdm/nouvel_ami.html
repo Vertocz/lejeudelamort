@@ -1,0 +1,13 @@
+{% extends 'jdm/base.html' %}
+
+{% block content %}
+{% load static %}
+
+
+<h2>{{ ami.username }} a élargi votre cercle !</h2>
+
+<a href="{% url 'salle-user' ami.id %}"><div>Voir sa salle d'attente</div></a>
+
+<a href="{% url 'mes-amis' %}">Retour</a>
+
+{% endblock %}

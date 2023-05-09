@@ -1,0 +1,37 @@
+{% extends 'jdm/base.html' %}
+
+{% block content %}
+{% load static %}
+
+<h2>Qui a rapporté des points cette année ?</h2>
+
+{% if candidats_decedes|length == 0 %}
+<div>Aucun.e candidat.e n'a à ce jour été élu.e</div>
+
+{% else %}
+<div class="candidats">
+{% for x, y in candidats_decedes %}
+<div class="alignement">
+        <a href="/candidats/{{ x.id }}/">
+            {% if x.photo == '' %}
+            <img src="{% static 'jdm/candidat.png' %}" width="200" height="200" alt="{{ x.nom }}" class="image"/>
+            {% else %}
+            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ x.photo }}&width=300" width="200" height="200" alt="{{ x.nom }}" class="image"/>
+            {% endif %}
+                <div class="overlay">
+                    <div class="text">
+                        <p>{{ x.nom }}</p>
+                        <p>{{ x.calcul_age }} ans</p>
+                        <p>{{ x.points }} point{{ x.points|pluralize }}</p>
+                        <p>{{ y|length }} nomination{{ y|length|pluralize }}</p>
+                    </div>
+                </div>
+        </a>
+    </div>
+    {% endfor %}
+
+</div>
+{% endif %}
+
+
+{% endblock %}

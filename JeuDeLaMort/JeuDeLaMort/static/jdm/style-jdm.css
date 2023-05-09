@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Chau+Philomene+One&display=swap');
+
+
+html, body {
+    font-family: 'Chau Philomene One', sans-serif;
+}
+
+div{
+    display: flex;
+    flex-direction: column;
+}
+
+
+h1 {
+    font-size: 2.2em;
+}
+
+#joueur {
+    padding: 1rem 1rem 0rem 1rem;
+    color: #fcb3f0;
+}
+
+#titre {
+    color: silver:
+}
+
+h2 {
+    color: #fcb3f0; /* orange */
+    font-size: 1.7rem;
+    padding: 3rem 1rem 1rem 1rem;
+}
+
+h3 {
+    color: #fcb3f0;
+    font-size: 1.4rem;
+    padding: 1rem 1rem 0.5rem 1rem;
+}
+
+.bloc {
+    padding: 1rem 0.3rem 1rem 0.3rem;
+    background-color : #005145; /* #cbdde2 bleu clair ? */
+    border-radius: 1rem;
+    margin: 0.1rem;
+    width: 12rem;
+    justify-content: space-between;
+}
+
+header {
+    justify-content: space-evenly;
+    background-color : #005145; /* #7096a0 bleu foncé */
+    text-shadow: 0.1rem 0.1rem 0.1rem black;
+    color: white;
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
+    display: flex;
+    align-items: center;
+    padding: 1rem 1rem 1rem 1rem; /* haut | droit | bas | gauche */
+}
+
+
+
+body {
+    background-color: white;
+    color: #14504a; /* #7096a0 bleu foncé */
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 2rem 3rem 1rem 3rem; /* haut | droit | bas | gauche */
+    grid-column: 1 / 4;
+    grid-row: 2 / 6;
+}
+
+.amis {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 70rem;
+}
+
+.resume {
+    display: flex;
+    flex-direction: row;
+    grid-column: 1 / 4;
+    grid-row: 3 / 4;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem 1rem 1rem 1rem;
+    color: #dbb80b;
+}
+
+.candidats {
+    display: inline-flex;
+    flex-direction: row;
+    grid-column: 1 / 4;
+    grid-row: 4 / 5;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    padding: 1rem 1rem 1rem 1rem;
+    max-width: 60rem;
+}
+
+.offcanvas-body{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+a:link {
+    color: #fcb3f0;
+    text-decoration: none;
+    padding: 0.1em 0.1em 0.1em 0.1em;
+}
+
+a:visited {
+    color: #fcb3f0; /* 924200 marron foncé */
+    text-decoration: none;
+    padding: 0.1em 0.1em 0.1em 0.1em;
+}
+
+a:hover {
+    color: #dbb80b; /* or */
+    text-decoration: none;
+    padding: 0.1em 0.1em 0.1em 0.1em;
+}
+
+.image {
+  width: 250 px;
+  height: 250 px;
+  object-fit: cover;
+}
+
+.overlay {
+  position: relative;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background-color : Gainsboro;
+  opacity: 0.9;
+  overflow: hidden;
+  width: auto;
+  height: 0;
+  transition: .5s ease;
+}
+
+.overlay2 {
+  position: relative;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background-color : black;
+  color: white;
+  opacity: 0.7;
+  overflow: hidden;
+  width: auto;
+  height: 0;
+  transition: .5s ease;
+}
+
+
+.alignement {
+  display: inline-flex;
+}
+
+
+.alignement:hover .overlay {
+  bottom: 100%;
+  height: 100%;
+}
+
+.alignement:hover .overlay2 {
+  bottom: 100%;
+  height: 100%;
+}
+
+.text {
+  text-align: center;
+  font-size: 1rem;
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.message {
+    color: #fd7e14;
+    padding: 1rem;
+}
+
+.connexion {
+    width: 30rem;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.inscription {
+    width: 60rem;
+    display: inline-flex;
+    justify-content: center;
+}

@@ -1,0 +1,21 @@
+{% extends 'jdm/base.html' %}
+
+{% block content %}
+
+
+<h2>Ajouter un candidat</h2>
+
+{% if reponse %}
+<p>{{ reponse }}</p>
+{% endif %}
+
+
+<form action="" method="post" novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Rechercher">
+</form>
+
+<p>Si vous n'obtenez aucun résultat, vérifiez l'orthographe de votre recherche ou les annonces légales.</p>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'jdm/base.html' %}
+
+{% block content %}
+{% load static %}
+
+
+<h2>{{ candidat.nom }} a bien été ajouté.e à votre liste</h2>
+
+<div class="candidats">
+    <div class="alignement">
+        <a href="/candidats/{{ candidat.id }}/">
+            {% if candidat.photo == '' %}
+            <img src="{% static 'jdm/candidat.png' %}" width="170" height="170" alt="{{ candidat.nom }}" class="image"/>
+            {% else %}
+            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" width="170" height="170" alt="{{ candidat.nom }}" class="image"/>
+            {% endif %}
+                <div class="overlay">
+                    <div class="text">
+                        <p>{{ candidat.nom }}</p>
+                        <p>{{ candidat.calcul_age }} ans</p>
+                        <p>{{ candidat.points }} point{{ candidat.points|pluralize }}</p>
+                    </div>
+                </div>
+        </a>
+    </div>
+</div>
+
+<div><a href="{% url 'candidat-create' %}">Nouveau candidat</a></div>
+
+
+{% endblock %}

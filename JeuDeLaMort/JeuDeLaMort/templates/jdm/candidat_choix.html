@@ -1,0 +1,49 @@
+{% extends 'jdm/base.html' %}
+
+{% block content %}
+{% load static %}
+
+
+<h2>De qui parlons-nous ?</h2>
+
+
+{% if recherche|length > 0 %}
+<div class="candidats">
+{% for candidat in recherche %}
+<div class="alignement">
+        <a href="/joueurs/add/{{ candidat.wiki_id }}/">
+            {% if candidat.photo == '' %}
+            <img src="{% static 'jdm/candidat.png' %}" width="250" height="250" alt="{{ candidat.nom }}" class="image"/>
+            {% else %}
+            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" width="250" height="250" alt="{{ candidat.nom }}" class="image"/>
+            {% endif %}
+                <div class="overlay">
+                    <div class="text">
+                        <p>{{ candidat.description|capfirst }}</p>
+                        <p>{{ candidat.calcul_age }} ans</p>
+                        <p>{{ candidat.points }} point{{ candidat.points|pluralize }}</p>
+                    </div>
+                </div>
+        </a>
+    <div>{{ candidat.nom }}</div>
+    <p></p>
+    <div>{% if paris_amis|length > 0 %}
+        {% for x, y in paris_amis %}
+        {% if candidat is x %}
+        <div>Sélectionné.e par {{ y }}</div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+    </div>
+    </div>
+
+{% endfor %}
+</div>
+{% endif %}
+
+
+
+
+<div><a href="{% url 'candidat-create' %}">Annuler</a></div>
+
+{% endblock %}

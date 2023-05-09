@@ -1,0 +1,26 @@
+{% extends 'jdm/base.html' %}
+
+{% block content %}
+
+<h2>Qui a le plus été désigné volontaire ?</h2>
+{% if favoris|length < 1 %}
+<p>Aucun favori ne semble se détacher pour le moment...</p>
+{% else %}
+<div class="candidats">
+{% for candidat, nb_votes, z in favoris %}
+<div class="alignement">
+        <a href="/candidats/{{ candidat.id }}/"><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" width="180" height="180" alt="{{ candidat.nom }}" class="image"/>
+                <div class="overlay">
+                    <div class="text">
+                        <p>{{ candidat.nom }}</p>
+                        <p>{{ nb_votes }} votes</p>
+                    </div>
+                </div>
+        </a>
+    </div>
+
+{% endfor %}
+    </div>
+{% endif %}
+
+{% endblock %}

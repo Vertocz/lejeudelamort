@@ -1,0 +1,101 @@
+{% extends 'jdm/base.html' %}
+{% block content %}
+{% load static %}
+
+<h1 id="joueur">{{ joueur.username }}</h1>
+
+{% if rap > 0 %}
+<div>{{ joueur.username }} peut encore nommer {{ rap }} candidat{{ rap|pluralize }}.</div>
+{% endif %}
+
+<div class="resume">
+    <div class="bloc"><h3>Score</h3>
+        <div style="font-size: 3rem">{{ score }}</div>
+        <div>point{{ score|pluralize }}</div>
+    </div>
+
+    {% if paris|length > 0 %}
+    <div class="bloc">
+        <h3>Points à gagner</h3>
+        <div style="font-size: 3rem">{{ score_max }}</div>
+        <div>point{{ score_max|pluralize }}</div>
+    </div>
+    {% endif %}
+    {% if paris|length > 0 %}
+
+    <div class="bloc">
+        <h3>Le coup de poker</h3>
+        <div style="font-weight: bold;">{{ poker.nom }}</div>
+        <div>{{ poker.calcul_age }} ans</div>
+    </div>
+
+    <div class="bloc">
+        <h3>Âge moyen</h3>
+        <div style="font-size: 3rem">{{ moyenne }}</div>
+        <div>ans</div>
+    </div>
+
+    {% endif %}
+    </div>
+
+{% if paris|length > 0 %}
+<div class="candidats">
+{% for pari in paris %}
+        {% for candidat in candidats_joueur %}
+            {% if candidat.wiki_id == pari.candidat_wiki_id and candidat.DDD is null %}
+<div class="alignement">
+        <a href="/candidats/{{ candidat.id }}/">
+            {% if candidat.photo == '' %}
+            <img src="{% static 'jdm/candidat.png' %}" width="170" height="170" alt="{{ candidat.nom }}" class="image"/>
+            {% else %}
+            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" width="170" height="170" alt="{{ candidat.nom }}" class="image"/>
+            {% endif %}
+                <div class="overlay">
+                    <div class="text">
+                        <p>{{ candidat.nom }}</p>
+                        <p>{{ candidat.calcul_age }} ans</p>
+                        <p>{{ candidat.points }} point{{ candidat.points|pluralize }}</p>
+                    </div>
+                </div>
+        </a>
+    </div>
+                {% endif %}
+            {% endfor %}
+    {% endfor %}
+    </div>
+{% endif %}
+
+{% if deces|length > 0 %}
+<h2>Dans nos cœurs</h2>
+<div class="candidats">
+{% for pari in paris %}
+    {% if pari.user_id == joueur.id %}
+        {% for candidat in candidats_joueur %}
+
+            {% if candidat.wiki_id == pari.candidat_wiki_id and candidat.DDD %}
+    <div class="alignement">
+        <a href="/candidats/{{ candidat.id }}/">
+            {% if candidat.photo == '' %}
+            <img src="{% static 'jdm/candidat.png' %}" width="170" height="170" alt="{{ candidat.nom }}" class="image"/>
+            {% else %}
+            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" width="200" height="200" alt="{{ candidat.nom }}" class="image"/>
+            {% endif %}
+                <div class="overlay2">
+                    <div class="text">
+                        <p>{{ candidat.nom }}</p>
+                        <p>{{ candidat.points }} point{{ candidat.points|pluralize }}</p>
+                        <p>{{ candidat.calcul_age }} ans</p>
+                    </div>
+                </div>
+        </a>
+    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+    </div>
+{% endif %}
+
+<a href="{% url 'retirer-ami' joueur.id %}"><h3>Retirer {{ joueur.username }} de mon cercle d'amis</h3></a>
+
+{% endblock %}
