@@ -15,7 +15,7 @@
 
 
 {% if candidat.DDD %}
-<div style="padding: 0.5rem; color: #fd7e14;">{{ candidat.DDN }} - {{ candidat.DDD }}</div>
+<div style="padding: 0.5rem; color: #fcb3f0;">{{ candidat.DDN }} - {{ candidat.DDD }}</div>
 <div style="font-style: italic; padding: 0.5rem">{{ candidat.description|capfirst }}</div>
 
     {% if paris|length > 0 %}
@@ -28,7 +28,7 @@
     {% endif %}
 
 {% else %}
-<div style="font-style: italic; padding: 0.5rem; color: #fd7e14;">{{ candidat.description|capfirst }}</div>
+<div style="font-style: italic; padding: 0.5rem; color: #fcb3f0;">{{ candidat.description|capfirst }}</div>
 <div>Date de naissance : {{ candidat.DDN }} ({{ candidat.calcul_age }} ans)</div>
 <div>Ce candidat peut rapporter {{ candidat.points }} point{{ candidat.points|pluralize }}.</div>
     {% if paris|length > 0 %}

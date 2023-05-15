@@ -47,3 +47,19 @@ class Cercle(models.Model):
     ami_id = models.IntegerField()
 
 
+class Ligue(models.Model):
+    nom = models.CharField(max_length=20, null=False)
+    description = models.CharField(max_length=20, null=True)
+    candidats_uniques = models.BooleanField(default=False)
+
+
+class Ligue_user(models.Model):
+    ligue = models.ForeignKey(Ligue, on_delete=models.CASCADE, null=False)
+    user_id = models.IntegerField()
+
+
+class Pari_unique(models.Model):
+    ligue = models.ForeignKey(Ligue, on_delete=models.CASCADE, null=False)
+    wiki_id = models.CharField(max_length=20, null=True)
+    user_id = models.IntegerField()
+    mort = models.BooleanField(default=False)

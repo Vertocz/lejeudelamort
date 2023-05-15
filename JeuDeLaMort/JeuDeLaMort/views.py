@@ -28,15 +28,12 @@ def index(request):
         if candidat.DDD is not None:
             try:
                 if datetime.date(request.user.last_login) <= candidat.DDD:
-                    print(request.user.username, datetime.date(request.user.last_login), "<=", candidat.DDD, candidat.nom)
                     for pari in paris_amis:
                         if candidat.wiki_id == pari.candidat_wiki_id:
-                            print(candidat.nom, "a rapporté des points à un ami")
                             if candidat not in morts_recentes:
                                 morts_recentes.append(candidat)
                     for pari in mes_paris:
                         if candidat.wiki_id == pari.candidat_wiki_id:
-                            print(candidat.nom, "m'a rapporté des points")
                             morts_recentes_perso.append(candidat)
             except AttributeError:
                 pass
@@ -168,7 +165,6 @@ def salle_user(request, id):
     if len(Cercle.objects.filter(user_id=request.user.id, ami_id=id)) > 0:
         paris_user = Pari.objects.filter(user_id=id)
         paris_decedes = Pari.objects.filter(user_id=id, mort=True)
-        print(paris_decedes)
         candidats_joueur = []
         for pari in paris_user:
             candidat = candidats.get(wiki_id=pari.candidat_wiki_id)
@@ -316,10 +312,8 @@ def maj(request):
         PARAMS_recherche = {"action": "wbgetclaims", "entity": wiki_id, "format": "json"}
         jsonresponse_recherche = requests.get(URL, PARAMS_recherche).json()
         if candidat.DDD:
-            print(candidat.nom, ": Déjà Mort")
             pass
         elif "P570" in jsonresponse_recherche["claims"] and not candidat.DDD:
-            print(candidat.nom, ': DEAD')
             DDD = datetime.strptime(
                 jsonresponse_recherche["claims"]["P570"][0]["mainsnak"]["datavalue"]["value"]["time"],
                 '+%Y-%m-%dT%H:%M:%SZ').date()
@@ -330,7 +324,5 @@ def maj(request):
                 if pari.candidat_wiki_id == candidat.wiki_id:
                     pari.mort = True
                     pari.save()
-        else:
-            print(candidats.get(wiki_id=wiki_id), ': Pas Mort')
     return redirect('resume')
 

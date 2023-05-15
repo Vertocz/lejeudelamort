@@ -10,7 +10,7 @@
 <p>Lors du décès d'un candidat, le joueur l'ayant désigné peut sélectionner en remplacement une nouvelle personne.</p>
 
 {% if user.is_authenticated is False %}
-<h2>Rejoignez la communauté et faites votre liste !</h2>
+<a href="{% url 'login' %}"><h2>Rejoignez la communauté et faites votre liste !</h2></a>
 {% endif %}
 
 {% endblock %}
