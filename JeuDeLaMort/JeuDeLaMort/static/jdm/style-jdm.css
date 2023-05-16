@@ -5,6 +5,7 @@ html, body {
     font-family: 'Chau Philomene One', sans-serif;
 }
 
+
 div{
     display: flex;
     flex-direction: column;
@@ -31,7 +32,7 @@ h2 {
 }
 
 h3 {
-    color: #fcb3f0;
+    color: #dbb80b;
     font-size: 1.4rem;
     padding: 1rem 1rem 0.5rem 1rem;
 }
@@ -46,9 +47,9 @@ h3 {
 }
 
 header {
-    background-color : #005145; /* #7096a0 bleu foncé */
+    background: linear-gradient(90deg, #005145, 90%, #dbb80b); /* #7096a0 bleu foncé */
     color: white;
-    padding: 0rem 1rem 0rem 1rem; /* haut | droit | bas | gauche */
+    padding: 1rem 2rem 0.5rem 2rem; /* haut | droit | bas | gauche */
 }
 
 
@@ -103,19 +104,16 @@ body {
 a:link {
     color: #fcb3f0;
     text-decoration: none;
-    padding: 0.1em 0.1em 0.1em 0.1em;
 }
 
 a:visited {
     color: #fcb3f0; /* 924200 marron foncé */
     text-decoration: none;
-    padding: 0.1em 0.1em 0.1em 0.1em;
 }
 
 a:hover {
     color: #dbb80b; /* or */
     text-decoration: none;
-    padding: 0.1em 0.1em 0.1em 0.1em;
 }
 
 .image {
@@ -154,6 +152,7 @@ a:hover {
 
 .alignement {
   display: inline-flex;
+  margin: 0.1rem;
 }
 
 

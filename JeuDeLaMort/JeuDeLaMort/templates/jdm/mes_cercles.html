@@ -1,0 +1,51 @@
+{% extends 'jdm/base.html' %}
+{% block content %}
+{% load static %}
+
+
+
+{% if cercles|length == 0 %}
+        <div>Dans un cercle de jeu, chaque joueur est amené à créer une nouvelle liste.</div>
+        <div>Un candidat ne peut être sélectionné que par un seul joueur.</div>
+        <div>Les nominations se font à tour de rôle.</div>
+        <div>Le jeu se termine à la fin de l'année civile. Le joueur avec le plus de points l'emporte.</div>
+<div style="padding: 1rem">Vous n'êtes actuellement inscrit.e à aucun cercle de jeu.</div>
+
+{% else %}
+<h2>Mes cercles de jeu</h2>
+        <div>Dans un cercle de jeu, chaque joueur est amené à créer une nouvelle liste.</div>
+        <div>Un candidat ne peut être sélectionné que par un seul joueur.</div>
+        <div>Les nominations se font à tour de rôle.</div>
+        <div>Le jeu se termine à la fin de l'année civile. Le joueur avec le plus de points l'emporte.</div>
+<div style="flex-direction: row; justify-content: center; ">
+{% for ligue in cercles %}
+    <div style="padding: 1rem; background-color: rgba(252, 179, 240, 0.5); border-radius: 15px; margin: 1rem; width: 23rem;">
+        <a href="{% url 'cercle' ligue.id %}"><h3 style="padding: 0.5rem;">{{ ligue.nom }}</h3></a>
+        <div>{{ ligue.description }}</div>
+    </div>
+{% endfor %}
+</div>
+{% endif %}
+
+<div style="flex-direction: row; justify-content: center;">
+    <div style="padding: 0.5rem 1rem 0.5rem 1rem ; margin: 2rem; color: #dbb80b; background-color: #005145; border-radius: 15px;">
+        <h2 style="padding: 1rem">Créer un nouveau cercle de jeu</h2>
+        <form action="" method="post" novalidate>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Créer">
+        </form>
+    </div>
+
+    <div style="padding: 0.5rem 1rem 0.5rem 1rem ; margin: 2rem; color: #dbb80b; background-color: #005145; border-radius: 15px;">
+        <h2 style="padding: 1rem">Rejoindre un cercle de jeu</h2>
+        <div>Entrer l'identifiant du cercle que vous souhaitez rejoindre.</div>
+                <form style="padding:1rem;" action="" method="post" novalidate>
+            {% csrf_token %}
+            {{ rejoindre.as_p }}
+            <input type="submit" value="Rejoindre">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

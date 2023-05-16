@@ -48,14 +48,18 @@ class Cercle(models.Model):
 
 
 class Ligue(models.Model):
-    nom = models.CharField(max_length=20, null=False)
-    description = models.CharField(max_length=20, null=True)
-    candidats_uniques = models.BooleanField(default=False)
+    nom = models.CharField(max_length=60, null=False)
+    description = models.CharField(max_length=250, null=True)
+    lancee = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.nom}'
 
 
 class Ligue_user(models.Model):
     ligue = models.ForeignKey(Ligue, on_delete=models.CASCADE, null=False)
     user_id = models.IntegerField()
+    identifiant = models.IntegerField(verbose_name='', null=True)
 
 
 class Pari_unique(models.Model):

@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from datetime import datetime, date
-from .models import Candidat, Pari, Cercle
+from .models import Candidat, Pari, Cercle, Pari_unique, Ligue, Ligue_user
 from django.contrib.auth.models import User
-from .forms import RechercheCandidatForm, CercleForm
+from .forms import RechercheCandidatForm, CercleForm, LigueForm, Ligue_userForm
 from django.contrib import messages
 import requests
 
@@ -159,6 +159,55 @@ def retirer_ami(request, id):
     Cercle.objects.get(ami_id=id, user_id=request.user.id).delete()
     messages.success(request, (str(User.objects.get(id=id).username)+" a été retiré.e de votre cercle"))
     return redirect('mes-amis')
+
+
+def ligues(request):
+    liste_ligues = []
+    creer_form = LigueForm(request.POST)
+    if creer_form.is_valid():
+        new_ligue = Ligue.objects.create(nom=creer_form.cleaned_data['nom'], description=creer_form.cleaned_data['description'])
+        new_ligue.save()
+        Ligue_user.objects.create(ligue=new_ligue, user_id=request.user.id)
+        creer_form = LigueForm()
+        messages.success(request, "Le nouveau cercle de jeu a bien été créé")
+        users_ligue = []
+        for user in Ligue_user.objects.filter(ligue=new_ligue.id):
+            users_ligue.append(User.objects.get(id=user.user_id))
+        return render(request, 'jdm/cercle.html', {'users': users_ligue, 'ligue': new_ligue})
+    else:
+        creer_form = LigueForm()
+
+    rejoindre_form = Ligue_userForm(request.POST)
+    if rejoindre_form.is_valid():
+        if len(Ligue.objects.filter(id=rejoindre_form.cleaned_data['identifiant'])) != 0:
+            ligue = Ligue.objects.get(id=rejoindre_form.cleaned_data['identifiant'])
+            if ligue.lancee is False:
+                if len(Ligue_user.objects.filter(ligue=ligue, user_id=request.user.id)) == 0:
+                    ligue_new_user = Ligue_user.objects.create(ligue=ligue, user_id=request.user.id, identifiant=ligue.id)
+                    ligue_new_user.save()
+                    rejoindre_form = Ligue_userForm()
+                    messages.success(request, "Vous avez bien rejoint le cercle de jeu "+ligue.nom)
+                else:
+                    messages.success(request, "Vous avez déjà rejoint le cercle de jeu " + ligue.nom)
+            else:
+                messages.success(request, ligue.nom+" est un cercle fermé. Vous ne pouvez plus le rejoindre.")
+        else:
+            messages.success(request, "Aucune ligue ne correspond à cet identifiant.")
+    else:
+        rejoindre_form = Ligue_userForm()
+
+    mes_cercles = Ligue_user.objects.filter(user_id=request.user.id)
+    for cercle in mes_cercles:
+        liste_ligues.append(cercle.ligue)
+    return render(request, 'jdm/mes_cercles.html', {'cercles': liste_ligues, 'form': creer_form, 'rejoindre': rejoindre_form})
+
+
+def ligue(request, id):
+    users_ligue = []
+    ligue_en_cours = Ligue.objects.get(id=id)
+    for user in Ligue_user.objects.filter(ligue=id):
+        users_ligue.append(User.objects.get(id=user.user_id))
+    return render(request, 'jdm/cercle.html', {'users': users_ligue, 'ligue': ligue_en_cours})
 
 
 def salle_user(request, id):

@@ -1,0 +1,22 @@
+{% extends 'jdm/base.html' %}
+{% block content %}
+{% load static %}
+
+<h2>{{ ligue.nom }}</h2>
+<h3>{{ ligue.description }}</h3>
+{% if not ligue.lancee %}
+    <div>(identifiant du cercle de jeu : {{ ligue.id }})</div>
+    <div style="padding: 2rem 0 0 0;">Les inscrits :</div>
+    {% for user in users %}
+    {% if user.id == request.user.id %}
+    <a href="{% url 'salle-attente' %}"><div>{{ user.username }}</div></a>
+    {% else %}
+    <a href="{% url 'salle-user' user.id %}"><div>{{ user.username }}</div></a>
+    {% endif %}
+    {% endfor %}
+{% endif %}
+
+<a href=""><h4 style="padding: 1rem 0 0 0">Lancer le jeu</h4></a>
+<div>(attention, une fois le jeu lancé, aucun nouveau joueur ne pourra intégrer le cercle de jeu)</div>
+
+{% endblock %}
