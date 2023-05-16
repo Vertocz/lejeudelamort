@@ -178,17 +178,20 @@ a:hover {
 }
 
 .message {
-    color: #fd7e14;
-    padding: 1rem;
+    color: #005145;
+    padding: 0.5rem;
+    background-color: #dbb80b;
 }
 
 .connexion {
+    margin: 3rem;
     width: 30rem;
     display: inline-flex;
     justify-content: center;
 }
 
 .inscription {
+    margin: 3rem;
     width: 60rem;
     display: inline-flex;
     justify-content: center;

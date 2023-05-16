@@ -168,7 +168,6 @@ def ligues(request):
         new_ligue = Ligue.objects.create(nom=creer_form.cleaned_data['nom'], description=creer_form.cleaned_data['description'])
         new_ligue.save()
         Ligue_user.objects.create(ligue=new_ligue, user_id=request.user.id)
-        creer_form = LigueForm()
         messages.success(request, "Le nouveau cercle de jeu a bien été créé")
         users_ligue = []
         for user in Ligue_user.objects.filter(ligue=new_ligue.id):
@@ -205,9 +204,42 @@ def ligues(request):
 def ligue(request, id):
     users_ligue = []
     ligue_en_cours = Ligue.objects.get(id=id)
+    paris_ligue_actifs = Pari_unique.objects.filter(ligue=id, mort=False)
+    compteur_max = 0
+    #récupérer les infos users_ligue (joueurs, compteurs, paris)
     for user in Ligue_user.objects.filter(ligue=id):
-        users_ligue.append(User.objects.get(id=user.user_id))
-    return render(request, 'jdm/cercle.html', {'users': users_ligue, 'ligue': ligue_en_cours})
+        compteur = 0
+        joueur = User.objects.get(id=user.user_id)
+        paris_user = []
+        for pari in paris_ligue_actifs:
+            if pari.user_id == user.user_id:
+                paris_user.append(pari)
+                compteur += 1
+        if joueur.id != request.user.id and compteur > compteur_max:
+            compteur_max = compteur
+        if joueur.id == request.user.id:
+            joueur_connecte = [joueur, compteur, paris_user]
+        users_ligue.append([joueur, compteur, paris_user, Pari_unique.objects.filter(ligue=id, user_id=joueur.id, mort=True)])
+    #l'utilisateur peut-il ajouter un candidat ?
+    if joueur_connecte[1] <= compteur_max and joueur_connecte[1] < 10:
+        tour = True
+    else:
+        tour = False
+
+    return render(request, 'jdm/cercle.html', {'users': users_ligue, 'ligue': ligue_en_cours, 'tour': tour})
+
+
+def lancer_ligue(id):
+    ligue_a_lancer = Ligue.objects.get(id=id)
+    ligue_a_lancer.lancee = True
+    ligue_a_lancer.save()
+    return redirect('cercle', id)
+
+
+def quitter_ligue(request, id):
+    Ligue_user.objects.get(ligue=id, user_id=request.user.id).delete()
+    messages.success(request, "Vous avez quitté le cercle de jeu")
+    return redirect('mes-cercles')
 
 
 def salle_user(request, id):
