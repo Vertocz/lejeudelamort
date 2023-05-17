@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Chau+Philomene+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap');
 
 
 html, body {
-    font-family: 'Chau Philomene One', sans-serif;
+    font-family: 'Tilt Warp', sans-serif;
 }
 
 
@@ -11,52 +11,68 @@ div{
     flex-direction: column;
 }
 
+.titre_bloc {
+    color: #f9fbe3;
+    font-size: 1.4rem;
+    padding: 1rem 1rem 0.5rem 1rem;
+}
 
 h1 {
+    color: #add9ce;
     font-size: 2.2em;
+    text-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 #joueur {
-    padding: 1rem 1rem 0rem 1rem;
-    color: #fcb3f0;
+    padding: 3rem 1rem 2rem 1rem;
+    color: #f9fbe3;
+    text-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 #titre {
-    color: silver:
+    padding: 1rem;
+    font-size: 2.2em;
+    color: #255067;
+    text-shadow: rgba(250, 250, 250, 0.35) 0px 0px 15px;
 }
 
 h2 {
-    color: #fcb3f0;
+    color: #f9fbe3;
     font-size: 1.7rem;
     padding: 3rem 1rem 1rem 1rem;
 }
 
 h3 {
-    color: #dbb80b;
+    color: #f9fbe3;
     font-size: 1.4rem;
     padding: 1rem 1rem 0.5rem 1rem;
 }
 
 .bloc {
     padding: 1rem 0.3rem 1rem 0.3rem;
-    background-color : #005145; /* #cbdde2 bleu clair ? */
+    background-color : #add9ce;
     border-radius: 1rem;
-    margin: 0.1rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    text-shadow: rgba(0, 0, 0, 0.15) 1px 1px 1px;
+    margin: 0.8rem;
     width: 12rem;
     justify-content: space-between;
 }
 
 header {
-    background: linear-gradient(90deg, #005145, 90%, #dbb80b); /* #7096a0 bleu foncé */
-    color: white;
+    background-color: #add9ce;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 15px -3px, rgba(0, 0, 0, 0.35) 0px 4px 6px -2px;
     padding: 1rem 2rem 0.5rem 2rem; /* haut | droit | bas | gauche */
 }
 
 
 
 body {
-    background-color: white;
-    color: #14504a; /* #7096a0 bleu foncé */
+    background: #255067 url("/static/jdm/fond.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #f9fbe3;
+    text-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
     font-size: 1.2rem;
     text-align: center;
     padding: 2rem 3rem 1rem 3rem; /* haut | droit | bas | gauche */
@@ -72,6 +88,11 @@ body {
     max-width: 70rem;
 }
 
+.score_user {
+    font-size: 3rem;
+    color: #f89403;
+}
+
 .resume {
     display: flex;
     flex-direction: row;
@@ -80,7 +101,7 @@ body {
     justify-content: center;
     text-align: center;
     padding: 1rem 1rem 1rem 1rem;
-    color: #dbb80b;
+    color: #f89403;
 }
 
 .candidats {
@@ -89,6 +110,7 @@ body {
     grid-column: 1 / 4;
     grid-row: 4 / 5;
     justify-content: center;
+    align-content: center;
     text-align: center;
     flex-wrap: wrap;
     padding: 1rem 1rem 1rem 1rem;
@@ -102,17 +124,18 @@ body {
 }
 
 a:link {
-    color: #fcb3f0;
+    color: #f9fbe3;
     text-decoration: none;
+    text-shadow: rgba(0, 0, 0, 0.35) 1px 5px 15px;
 }
 
 a:visited {
-    color: #fcb3f0; /* 924200 marron foncé */
+    color: #f9fbe3;
     text-decoration: none;
 }
 
 a:hover {
-    color: #dbb80b; /* or */
+    color: #fb5622;
     text-decoration: none;
 }
 
@@ -178,9 +201,10 @@ a:hover {
 }
 
 .message {
-    color: #005145;
+    color: #255067;
     padding: 0.5rem;
-    background-color: #dbb80b;
+    background-color: #f9fbe3;
+    text-shadow: rgba(0, 0, 0, 0.15) 1px 1px 1px;
 }
 
 .connexion {

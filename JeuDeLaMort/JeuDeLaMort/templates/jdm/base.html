@@ -24,7 +24,7 @@
             <a href="{% url 'jdm-index' %}"><img src="{% static 'jdm/voyance.png' %}" width="100px"></a>
         </li>
         <li>
-            <a href="{% url 'jdm-index' %}"><h1 style="color: white; text-shadow: 0.1rem 0.1rem 0.1rem black; padding: 0rem 3rem 0rem 0rem;">Le Jeu de la Mort</h1></a>
+            <a href="{% url 'jdm-index' %}"><div id="titre">Le Jeu de la Mort</div></a>
         </li>
         {% if user.is_authenticated %}
         <li style="padding: 1rem;">
@@ -66,7 +66,7 @@
     {% block content %}
     {% endblock %}
 
-<div class="pied" style="padding: 2.5rem 0 0 0;font-size: 1rem"><p>Source des données: <a href="https://fr.wikipedia.org/wiki/Cynisme" target="_blank">Wikipedia</a></p>
+<div class="pied" style="padding: 2.5rem 0 0 0;font-size: 1rem"><p>Source des données: <a href="https://fr.wikipedia.org/wiki/Cynisme" target="_blank"><span style="color: #add9ce">Wikipedia</span></a></p>
 <p>©Victor Crézé - 2023</p>
 </div>
 

@@ -33,7 +33,7 @@ class Candidat(models.Model):
 
 
 class Pari(models.Model):
-    candidat_wiki_id = models.CharField(max_length=20, null=True)
+    wiki_id = models.CharField(max_length=20, null=True)
     user_id = models.IntegerField()
     candidat_nom = models.CharField(max_length=250, null=True)
     username = models.CharField(max_length=250, null=True)
@@ -67,3 +67,6 @@ class Pari_unique(models.Model):
     wiki_id = models.CharField(max_length=20, null=True)
     user_id = models.IntegerField()
     mort = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.wiki_id}'
