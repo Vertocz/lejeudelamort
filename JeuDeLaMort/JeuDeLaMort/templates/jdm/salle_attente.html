@@ -4,30 +4,31 @@
 
 <h1 id="joueur">{{ joueur.username }}</h1>
 <div class="resume">
-    <div class="bloc"><h3>Score</h3>
+    <div class="bloc">
+        <div class="titre_bloc">Score</div>
         <div style="font-size: 3rem">{{ score_user }}</div>
-        <div>point{{ score_user|pluralize }}</div>
+        <div style="font-size: 1.1rem">point{{ score_user|pluralize }}</div>
     </div>
 
     {% if paris|length > 0 %}
     <div class="bloc">
-        <h3>Points à gagner</h3>
+        <div class="titre_bloc">Points à gagner</div>
         <div style="font-size: 3rem">{{ score_max }}</div>
-        <div>point{{ score_max|pluralize }}</div>
+        <div style="font-size: 1.1rem">point{{ score_max|pluralize }}</div>
     </div>
     {% endif %}
     {% if paris|length > 0 %}
 
     <div class="bloc">
-        <h3>Le coup de poker</h3>
+        <div class="titre_bloc">Le coup de poker</div>
         <div style="font-weight: bold;">{{ poker.nom }}</div>
-        <div>{{ poker.calcul_age }} ans</div>
+        <div style="font-size: 1.1rem">{{ poker.calcul_age }} ans</div>
     </div>
 
     <div class="bloc">
-        <h3>Âge moyen</h3>
+        <div class="titre_bloc">Âge moyen</div>
         <div style="font-size: 3rem">{{ moyenne }}</div>
-        <div>ans</div>
+        <div style="font-size: 1.1rem">ans</div>
     </div>
 
     {% endif %}
@@ -44,7 +45,7 @@
     {% if pari.user_id == joueur.id %}
         {% for candidat in candidats %}
 
-            {% if candidat.wiki_id == pari.candidat_wiki_id and candidat.DDD is null %}
+            {% if candidat.wiki_id == pari.wiki_id and candidat.DDD is null %}
     <div class="alignement">
         <a href="/candidats/{{ candidat.id }}/">
             {% if candidat.photo == '' %}
@@ -66,10 +67,11 @@
         {% endif %}
     {% endfor %}
     </div>
+
 {% endif %}
 
 {% if rap > 0 %}
-        <div style="padding: 1rem 0 2rem 0; "><a href="{% url 'candidat-create' %}">Ajouter un candidat</a></div>
+        <h2 style="padding: 1rem 0 2rem 0; "><a href="{% url 'candidat-create' %}">Ajouter un candidat</a></h2>
 {% endif %}
 
 {% if deces|length > 0 %}
@@ -79,7 +81,7 @@
     {% if pari.user_id == joueur.id %}
         {% for candidat in candidats %}
 
-            {% if candidat.wiki_id == pari.candidat_wiki_id and candidat.DDD %}
+            {% if candidat.wiki_id == pari.wiki_id and candidat.DDD %}
     <div class="alignement">
         <a href="/candidats/{{ candidat.id }}/">
             {% if candidat.photo == '' %}

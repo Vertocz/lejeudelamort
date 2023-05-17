@@ -2,16 +2,16 @@
 {% block content %}
 {% load static %}
 
-<h2>Mes amis</h2>
+<h1 id="joueur">Mes amis</h1>
 
 {% if liste|length > 0 %}
 <div class="amis">
     {% for ami, score_user_x, score_max_x, moyenne_x, joker_x in liste %}
         <a href="{% url 'salle-user' ami.id %}">
             <div class="bloc">
-                <p style="font-size: 1.5rem">{{ ami.username }}</p>
-                <div style="font-size: 3rem; color: #dbb80b">{{ score_user_x }}</div>
-                <p style="color: #dbb80b">points</p>
+                <div class="titre_bloc">{{ ami.username }}</div>
+                <div class="score_user">{{ score_user_x }}</div>
+                <div style="color: #f89403">points</div>
             </div></a>
     {% endfor %}
 

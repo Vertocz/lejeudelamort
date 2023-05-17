@@ -33,7 +33,7 @@ class Candidat(models.Model):
 
 
 class Pari(models.Model):
-    candidat_wiki_id = models.CharField(max_length=20, null=True)
+    wiki_id = models.CharField(max_length=20, null=True)
     user_id = models.IntegerField()
     candidat_nom = models.CharField(max_length=250, null=True)
     username = models.CharField(max_length=250, null=True)
@@ -47,3 +47,26 @@ class Cercle(models.Model):
     ami_id = models.IntegerField()
 
 
+class Ligue(models.Model):
+    nom = models.CharField(max_length=60, null=False)
+    description = models.CharField(max_length=250, null=True)
+    lancee = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.nom}'
+
+
+class Ligue_user(models.Model):
+    ligue = models.ForeignKey(Ligue, on_delete=models.CASCADE, null=False)
+    user_id = models.IntegerField()
+    identifiant = models.IntegerField(verbose_name='', null=True)
+
+
+class Pari_unique(models.Model):
+    ligue = models.ForeignKey(Ligue, on_delete=models.CASCADE, null=False)
+    wiki_id = models.CharField(max_length=20, null=True)
+    user_id = models.IntegerField()
+    mort = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.wiki_id}'

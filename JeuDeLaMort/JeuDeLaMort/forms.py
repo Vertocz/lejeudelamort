@@ -1,5 +1,5 @@
 from django import forms
-from .models import Candidat, Cercle
+from .models import Candidat, Cercle, Ligue, Ligue_user
 
 
 class ContactUsForm(forms.Form):
@@ -24,3 +24,15 @@ class CercleForm(forms.ModelForm):
     class Meta:
         model = Cercle
         fields = ['ami_name']
+
+
+class LigueForm(forms.ModelForm):
+    class Meta:
+        model = Ligue
+        fields = ['nom', 'description']
+
+
+class Ligue_userForm(forms.ModelForm):
+    class Meta:
+        model = Ligue_user
+        fields = ['identifiant']

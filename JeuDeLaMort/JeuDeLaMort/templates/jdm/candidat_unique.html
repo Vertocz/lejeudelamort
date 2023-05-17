@@ -11,7 +11,7 @@
 <div class="candidats">
 {% for candidat in recherche %}
 <div class="alignement">
-        <a href="/joueurs/add/{{ candidat.wiki_id }}/">
+        <a href="/mes_cercles/{{ ligue.id }}/{{ candidat.wiki_id }}/">
             {% if candidat.photo == '' %}
             <img src="{% static 'jdm/candidat.png' %}" width="250" height="250" alt="{{ candidat.nom }}" class="image"/>
             {% else %}
@@ -25,21 +25,13 @@
                     </div>
                 </div>
         </a>
-    <div>{{ candidat.nom }}</div>
-    <p></p>
-    <div>{% if paris_amis|length > 0 %}
-        {% for x, y in paris_amis %}
-        {% if candidat is x %}
-        <div>Sélectionné.e par {{ y }}</div>
-        {% endif %}
-        {% endfor %}
-        {% endif %}
-    </div>
-    </div>
+        <div>{{ candidat.nom }}</div>
+</div>
 
 {% endfor %}
 </div>
 {% endif %}
+
 
 
 {% endblock %}
