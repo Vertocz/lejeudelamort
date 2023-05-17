@@ -208,13 +208,13 @@ def ligue(request, id):
     compteur_max = 0
     on_continue = False
     #récupérer les infos users_ligue (joueurs, compteurs, paris)
-    for user in Ligue_user.objects.filter(ligue=id):
+    for ligue_user in Ligue_user.objects.filter(ligue=id):
         compteur = 0
-        joueur = User.objects.get(id=user.user_id)
+        joueur = User.objects.get(id=ligue_user.user_id)
         paris_user = []
         for pari in paris_ligue:
             candidat = Candidat.objects.get(wiki_id=pari.wiki_id)
-            if pari.user_id == user.user_id:
+            if pari.user_id == joueur.id:
                 paris_user.append(candidat)
                 if pari.mort is False:
                     compteur += 1
@@ -235,7 +235,7 @@ def ligue(request, id):
     if form.is_valid():
         recherche = recherche_candidat(form.cleaned_data['nom'])
         if len(recherche) > 0:
-            return render(request, 'jdm/candidat_unique.html', {"recherche": recherche, "on_continue": on_continue, "joueur": joueur_connecte, "ligue": ligue_en_cours, "candidats": candidats})
+            return render(request, 'jdm/candidat_unique.html', {"recherche": recherche, "on_continue": on_continue, "joueur_connecte": joueur_connecte, "ligue": ligue_en_cours, "candidats": candidats})
         else:
             form = RechercheCandidatForm()
     else:
@@ -287,7 +287,10 @@ def recherche_candidat(nom):
 def save_pari_unique(request, id, candidat):
     neocandidat = Candidat.objects.get(wiki_id=candidat)
     if len(Pari_unique.objects.filter(ligue=Ligue.objects.get(id=id), wiki_id=candidat)) > 0:
-        messages.success(request, neocandidat.nom + " est déjà dans la liste de " + str(User.objects.get(id=Pari_unique.objects.get(ligue=Ligue.objects.get(id=id), wiki_id=candidat).user_id)))
+        if Pari_unique.objects.get(ligue=Ligue.objects.get(id=id), wiki_id=candidat).user_id != request.user.id:
+            messages.success(request, neocandidat.nom + " est déjà dans la liste de " + str(User.objects.get(id=Pari_unique.objects.get(ligue=Ligue.objects.get(id=id), wiki_id=candidat).user_id)))
+        elif Pari_unique.objects.get(ligue=Ligue.objects.get(id=id), wiki_id=candidat).user_id == request.user.id:
+            messages.success(request, neocandidat.nom + " est déjà dans votre liste")
     else:
         nouveau_pari = Pari_unique.objects.create(ligue=Ligue.objects.get(id=id), wiki_id=candidat, user_id=request.user.id)
         nouveau_pari.save()

@@ -32,6 +32,7 @@ h1 {
 #titre {
     padding: 1rem;
     font-size: 2.2em;
+    font-weight: bold;
     color: #255067;
     text-shadow: rgba(250, 250, 250, 0.35) 0px 0px 15px;
 }
@@ -107,14 +108,10 @@ body {
 .candidats {
     display: inline-flex;
     flex-direction: row;
-    grid-column: 1 / 4;
-    grid-row: 4 / 5;
     justify-content: center;
     align-content: center;
-    text-align: center;
-    flex-wrap: wrap;
     padding: 1rem 1rem 1rem 1rem;
-    max-width: 60rem;
+    flex-wrap: wrap;
 }
 
 .offcanvas-body{
