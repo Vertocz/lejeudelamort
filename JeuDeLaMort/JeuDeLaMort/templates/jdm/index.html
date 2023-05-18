@@ -1,14 +1,14 @@
 {% extends 'jdm/base.html' %}
 
 {% block content %}
-<h1 id="joueur">Règles du jeu</h1>
-<div style="background-color: rgba(0,0,0,0.5); padding: 1rem; margin: 1rem 20rem 1rem 20rem; border-radius: 15px;">
-<p>Le Jeu de la Mort a pour fonction d'expier les sentiments douloureux par le mauvais goût.
-<p>Le principe est simple : nommer des personnalités qui passeront l'arme à gauche dans l'année.</p>
-<p>Plus la personne est jeune, plus son décès rapporte de points.</p>
-<p>Chaque joueur désigne 10 candidats à la mort pour l'année civile à venir.</p>
-<p>Le nombre de points que rapporte le décès d'un candidat est indexé sur son âge au moment de son décès.</p>
-<p>Lors du décès d'un candidat, le joueur l'ayant désigné peut sélectionner en remplacement une nouvelle personne.</p>
+<h1>Règles du jeu</h1>
+<div class="fond">
+    <p>Le Jeu de la Mort a pour fonction d'expier les sentiments douloureux par le mauvais goût.</p>
+    <p>Le principe est simple : nommer des personnalités qui passeront l'arme à gauche dans l'année.</p>
+    <p>Plus la personne est jeune, plus son décès rapporte de points.</p>
+    <p>Chaque joueur désigne 10 candidats à la mort pour l'année civile à venir.</p>
+    <p>Le nombre de points que rapporte le décès d'un candidat est indexé sur son âge au moment de son décès.</p>
+    <p>Lors du décès d'un candidat, le joueur l'ayant désigné peut sélectionner en remplacement une nouvelle personne.</p>
 </div>
 
 {% if user.is_authenticated is False %}

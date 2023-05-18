@@ -2,11 +2,11 @@
 {% block content %}
 {% load static %}
 
-<h1 id="joueur">{{ ligue.nom }}</h1>
-<h3 style="color: #add9ce">{{ ligue.description }}</h3>
+<h1>{{ ligue.nom }}</h1>
+<h2>{{ ligue.description }}</h2>
 {% if not ligue.lancee %}
     <div>(identifiant du cercle de jeu : {{ ligue.id }})</div>
-    <div style="padding: 2rem 0 0 0; color: #add9ce">Les inscrits :</div>
+    <h2>Les inscrits :</h2>
     {% for user, compteur, paris_actifs, paris_finis in users %}
     {% if user.id == request.user.id %}
     <a href="{% url 'salle-attente' %}"><div>{{ user.username }}</div></a>
@@ -19,12 +19,12 @@
 
 {% if ligue.lancee %}
     {% for user, compteur, paris, score in users %}
-<div style="background-color: rgba(0,0,0,0.5); padding: 1rem; border-radius:15px; margin: 1rem 15rem 1rem 15rem;">
+<div class="fond">
 
          {% if user.id == request.user.id %}
-         <a href="{% url 'salle-attente' %}"><div>{{ user.username }} - {{ score }} point{{ score|pluralize }}</div></a>
+         <a href="{% url 'salle-attente' %}"><h3>{{ user.username }} | {{ score }} point{{ score|pluralize }}</h3></a>
          {% else %}
-         <a href="{% url 'salle-user' user.id %}"><div>{{ user.username }} - {{ score }} point{{ score|pluralize }}</div></a>
+         <a href="{% url 'salle-user' user.id %}"><h3>{{ user.username }} | {{ score }} point{{ score|pluralize }}</h3></a>
          {% endif %}
 
 
@@ -35,12 +35,12 @@
                     <div class="alignement">
                     <a href="/candidats/{{ candidat.id }}/">
                     {% if candidat.photo == '' %}
-                    <img src="{% static 'jdm/candidat.png' %}" width="100" height="100" alt="{{ candidat.nom }}" class="image"/>
+                    <img src="{% static 'jdm/candidat.png' %}" width="140" height="140" alt="{{ candidat.nom }}" class="image"/>
                     {% else %}
-                    <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" width="100" height="100" alt="{{ candidat.nom }}" class="image"/>
+                    <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" width="140" height="140" alt="{{ candidat.nom }}" class="image"/>
                     {% endif %}
                         <div class="overlay">
-                            <div class="text" style="font-size: 0.7rem;">
+                            <div class="text">
                                 <p>{{ candidat.nom }}</p>
                                 <p>{{ candidat.points }} point{{ candidat.points|pluralize }}</p>
                             </div>
@@ -73,18 +73,13 @@
 {% endif %}
 
 
-<div style="flex-direction: row; justify-content: center;">
-{% if ligue.lancee is False and users|length > 1 %}
-    <div style="color: #add9ce; margin: 2rem; background-color: #f89403; border-radius: 15px; width: 15rem; padding: 0.5rem 0.5rem 0.5rem 0.5rem;">
-        <a href="{% url 'lancer-ligue' ligue.id %}"><h4 style="padding: 1.5rem 0 0 0">Lancer le jeu</h4></a>
-    </div>
-{% endif %}
 
 {% if ligue.lancee is False %}
-    <div style="color: #add9ce; margin: 2rem; background-color: #f89403; border-radius: 15px; width: 15rem; padding: 0.5rem 0.5rem 0.5rem 0.5rem;">
-        <a href="{% url 'quitter-ligue' ligue.id %}"><h4 style="padding: 1.5rem">Quitter le cercle</h4></a>
-    </div>
+<div style="flex-direction: row; justify-content: center;">
+    {% if users|length > 1 %}
+    <a href="{% url 'lancer-ligue' ligue.id %}"><div class="bouton">Lancer le jeu</div></a>
     {% endif %}
+    <a href="{% url 'quitter-ligue' ligue.id %}"><div class="bouton">Quitter le cercle</div></a>
 </div>
-
+{% endif %}
 {% endblock %}

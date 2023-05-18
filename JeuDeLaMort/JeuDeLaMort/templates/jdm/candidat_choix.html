@@ -4,7 +4,7 @@
 {% load static %}
 
 
-<h2>De qui parlons-nous ?</h2>
+<h1>De qui parlons-nous ?</h1>
 
 
 {% if recherche|length > 0 %}
@@ -25,8 +25,7 @@
                     </div>
                 </div>
         </a>
-    <div>{{ candidat.nom }}</div>
-    <p></p>
+    <div style="color: #add9ce">{{ candidat.nom }}</div>
     <div>{% if paris_amis|length > 0 %}
         {% for x, y in paris_amis %}
         {% if candidat is x %}
@@ -36,7 +35,6 @@
         {% endif %}
     </div>
     </div>
-
 {% endfor %}
 </div>
 {% endif %}

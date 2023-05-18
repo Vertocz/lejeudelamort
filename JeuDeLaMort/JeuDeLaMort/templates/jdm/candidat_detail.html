@@ -15,11 +15,11 @@
 
 
 {% if candidat.DDD %}
-<div style="padding: 0.5rem; color: #fcb3f0;">{{ candidat.DDN }} - {{ candidat.DDD }}</div>
-<div style="font-style: italic; padding: 0.5rem">{{ candidat.description|capfirst }}</div>
+<h1>{{ candidat.DDN }} - {{ candidat.DDD }}</h1>
+<div class="description">{{ candidat.description|capfirst }}</div>
 
     {% if paris|length > 0 %}
-<h3>Qui avait désigné ce candidat ?</h3>
+<h2>Qui avait désigné ce candidat ?</h2>
 <div>
         {% for pari in paris %}
     <a href="{% url 'salle-user' pari.id %}">{{ pari.username }}</a>
@@ -28,11 +28,11 @@
     {% endif %}
 
 {% else %}
-<div style="font-style: italic; padding: 0.5rem; color: #add9ce;">{{ candidat.description|capfirst }}</div>
+<div class="description">{{ candidat.description|capfirst }}</div>
 <div>Date de naissance : {{ candidat.DDN }} ({{ candidat.calcul_age }} ans)</div>
 <div style="display: inline">Ce candidat peut rapporter <span style="color: #f89403">{{ candidat.points }} point{{ candidat.points|pluralize }}</span>.</div>
     {% if paris|length > 0 %}
-<h3 style="color: #add9ce">Qui a désigné ce candidat ?</h3>
+<h2>Qui a désigné ce candidat ?</h2>
 <div>
         {% for pari in paris %}
     <a href="{% url 'salle-user' pari.id %}">{{ pari.username }}</a>

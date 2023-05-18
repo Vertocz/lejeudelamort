@@ -2,9 +2,9 @@
 
 {% block content %}
 
-<h1 id="joueur">Qui a le plus été désigné volontaire ?</h1>
+<h1>Qui a le plus été désigné volontaire ?</h1>
 {% if favoris|length < 1 %}
-<p>Aucun favori ne semble se détacher pour le moment...</p>
+<div>Aucun favori ne semble se détacher pour le moment...</div>
 {% else %}
 <div class="candidats">
 {% for candidat, nb_votes, z in favoris %}

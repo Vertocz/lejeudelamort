@@ -449,7 +449,7 @@ def resume(request):
     return render(request, "jdm/resume.html", {'candidats_decedes': liste})
 
 
-def maj():
+def maj(request):
     for candidat in candidats:
         wiki_id = candidat.wiki_id
 

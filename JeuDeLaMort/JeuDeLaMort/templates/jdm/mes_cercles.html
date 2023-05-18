@@ -5,7 +5,7 @@
 
 
 {% if cercles|length == 0 %}
-<div style="background-color: rgba(0,0,0,0.5); padding: 1rem; margin: 1rem 20rem 1rem 20rem; border-radius: 15px;">
+<div class="fond">
 <div style="display: inline">Ceci est la <span style="color:#dbb80b">version originale</span> du Jeu de la Mort</div>
 <div>Dans un cercle de jeu, chaque joueur est amené à créer une nouvelle liste.</div>
 <div>Un candidat ne peut être sélectionné que par un seul joueur.</div>
@@ -17,19 +17,19 @@
 
 
 {% else %}
-<h1 id="joueur">Mes cercles de jeu</h1>
+<h1>Mes cercles de jeu</h1>
 
 
 <div style="flex-direction: row; justify-content: center; ">
 {% for ligue in cercles %}
-    <div class="bloc" style="width: 18rem; margin: 5rem 1rem 5rem 1rem">
-        <a href="{% url 'cercle' ligue.id %}"><h3 style="padding: 0.5rem; color: #f89403;text-shadow: rgba(0, 0, 0, 0.15) 1px 1px 1px;">{{ ligue.nom }}</h3></a>
+    <div class="cercle">
+        <a href="{% url 'cercle' ligue.id %}"><h3>{{ ligue.nom }}</h3></a>
         <div>{{ ligue.description }}</div>
     </div>
 {% endfor %}
 </div>
 
-<div style="background-color: rgba(0,0,0,0.5); padding: 1rem; margin: 1rem 20rem 1rem 20rem; border-radius: 15px;">
+<div class="fond">
 <div style="display: inline">Ceci est la <span style="color:#add9ce">version originale</span> du Jeu de la Mort</div>
 <div>Dans un cercle de jeu, chaque joueur est amené à créer une nouvelle liste.</div>
 <div>Un candidat ne peut être sélectionné que par un seul joueur.</div>
@@ -39,8 +39,8 @@
 {% endif %}
 
 <div style="flex-direction: row; justify-content: center;">
-    <div style="padding: 0.5rem 1rem 0.5rem 1rem ; margin: 2rem; color: #f9fbe3; background-color: #f89403; border-radius: 15px;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
-        <h2 style="padding: 1rem">Créer un nouveau cercle de jeu</h2>
+    <div class="cercle_action">
+        <h2>Créer un nouveau cercle de jeu</h2>
         <form action="" method="post" novalidate>
             {% csrf_token %}
             {{ form.as_p }}
@@ -48,8 +48,8 @@
         </form>
     </div>
 
-    <div style="padding: 0.5rem 1rem 0.5rem 1rem ; margin: 2rem; color: #f9fbe3; background-color: #f89403; border-radius: 15px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
-        <h2 style="padding: 1rem">Rejoindre un cercle de jeu</h2>
+    <div class="cercle_action">
+        <h2>Rejoindre un cercle de jeu</h2>
         <div>Entrer l'identifiant du cercle que vous souhaitez rejoindre.</div>
                 <form style="padding:1rem;" action="" method="post" novalidate>
             {% csrf_token %}
