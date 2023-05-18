@@ -18,13 +18,12 @@
 
 <header>
     <nav>
-    <ul style="list-style-type: none; display: flex; align-items: center;">
-        <li>
-            <a href="{% url 'jdm-index' %}"><img src="{% static 'jdm/voyance.png' %}" width="100px"></a>
-        </li>
-        <li>
-            <a href="{% url 'jdm-index' %}"><span id="titre">Le Jeu de la Mort</span></a>
-        </li>
+        <div style="align-items: center">
+        <a href="{% url 'jdm-index' %}"><img src="{% static 'jdm/voyance.png' %}" width="100px"></a>
+        <a href="{% url 'jdm-index' %}"><span id="titre">Le Jeu de la Mort</span></a>
+        </div>
+    <ul style="list-style-type: none; display: flex; align-items: center; justify-content:center">
+
         {% if user.is_authenticated %}
         <li>
             <a href="{% url 'salle-attente' %}">Ma salle d'attente</a>
