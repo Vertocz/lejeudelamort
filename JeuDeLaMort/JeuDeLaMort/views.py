@@ -169,10 +169,8 @@ def ligues(request):
         new_ligue.save()
         Ligue_user.objects.create(ligue=new_ligue, user_id=request.user.id)
         messages.success(request, "Le nouveau cercle de jeu a bien été créé")
-        users_ligue = []
-        for user in Ligue_user.objects.filter(ligue=new_ligue.id):
-            users_ligue.append(User.objects.get(id=user.user_id))
-        return render(request, 'jdm/cercle.html', {'users': users_ligue, 'ligue': new_ligue})
+        infos = recuperer_infos_joueurs_ligue(request, new_ligue.id)
+        return render(request, 'jdm/cercle.html', {'users': infos[0], 'ligue': new_ligue})
     else:
         creer_form = LigueForm()
 
@@ -201,18 +199,15 @@ def ligues(request):
     return render(request, 'jdm/mes_cercles.html', {'cercles': liste_ligues, 'form': creer_form, 'rejoindre': rejoindre_form})
 
 
-def ligue(request, id):
-    users_ligue = []
-    ligue_en_cours = Ligue.objects.get(id=id)
-    paris_ligue = Pari_unique.objects.filter(ligue=id)
-    compteur_max = 0
+def recuperer_infos_joueurs_ligue(request, id):
     on_continue = False
-    #récupérer les infos users_ligue (joueurs, compteurs, paris)
+    compteur_max = 0
+    users_ligue = []
     for ligue_user in Ligue_user.objects.filter(ligue=id):
         compteur = 0
         joueur = User.objects.get(id=ligue_user.user_id)
         paris_user = []
-        for pari in paris_ligue:
+        for pari in Pari_unique.objects.filter(ligue=id):
             candidat = Candidat.objects.get(wiki_id=pari.wiki_id)
             if pari.user_id == joueur.id:
                 paris_user.append(candidat)
@@ -221,26 +216,33 @@ def ligue(request, id):
         if joueur.id != request.user.id and compteur > compteur_max:
             compteur_max = compteur
         if joueur.id == request.user.id:
-            joueur_connecte = [joueur, compteur, paris_user]
+            compteur_user = compteur
             if compteur < 10:
                 on_continue = True
         score = score_user(paris_user)
         users_ligue.append([joueur, compteur, paris_user, score])
-    #l'utilisateur peut-il ajouter un candidat ?
-    if joueur_connecte[1] <= compteur_max and joueur_connecte[1] < 10:
+    if compteur_user <= compteur_max and compteur_user < 10:
         tour = True
     else:
         tour = False
+    return users_ligue, tour, on_continue
+
+def ligue(request, id):
+    ligue_en_cours = Ligue.objects.get(id=id)
+
+    #récupérer les infos users_ligue (joueurs, compteurs, paris)
+    infos = recuperer_infos_joueurs_ligue(request, id)
+
     form = RechercheCandidatForm(request.POST)
     if form.is_valid():
         recherche = recherche_candidat(form.cleaned_data['nom'])
         if len(recherche) > 0:
-            return render(request, 'jdm/candidat_unique.html', {"recherche": recherche, "on_continue": on_continue, "joueur_connecte": joueur_connecte, "ligue": ligue_en_cours, "candidats": candidats})
+            return render(request, 'jdm/candidat_unique.html', {"recherche": recherche, "on_continue": infos[2], "ligue": ligue_en_cours, "candidats": candidats})
         else:
             form = RechercheCandidatForm()
     else:
         form = RechercheCandidatForm()
-    return render(request, 'jdm/cercle.html', {'users': users_ligue, 'ligue': ligue_en_cours, 'tour': tour, 'form': form, 'on_continue': on_continue, "candidats": candidats})
+    return render(request, 'jdm/cercle.html', {'users': infos[0], 'ligue': ligue_en_cours, 'tour': infos[1], 'form': form, 'on_continue': infos[2], "candidats": candidats})
 
 
 def recherche_candidat(nom):
