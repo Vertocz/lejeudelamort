@@ -300,10 +300,11 @@ def save_pari_unique(request, id, candidat):
     return redirect('cercle', id)
 
 
-def lancer_ligue(id):
+def lancer_ligue(request, id):
     ligue_a_lancer = Ligue.objects.get(id=id)
     ligue_a_lancer.lancee = True
     ligue_a_lancer.save()
+    messages.success(request, "La ligue a bien été lancée")
     return redirect('cercle', id)
 
 
