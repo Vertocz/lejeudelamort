@@ -29,7 +29,7 @@ class CercleForm(forms.ModelForm):
 class LigueForm(forms.ModelForm):
     class Meta:
         model = Ligue
-        fields = ['nom', 'description']
+        fields = ['nom', 'description', 'public']
 
 
 class Ligue_userForm(forms.ModelForm):

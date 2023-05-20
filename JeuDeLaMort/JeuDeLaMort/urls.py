@@ -1,6 +1,6 @@
 from django.urls import path, include
 from django.contrib import auth, admin
-from .views import index, resume, salle_attente, candidat_create, candidat_detail, candidat_valide, salle_user, amis, ligues, ligue, save_pari_unique, lancer_ligue, quitter_ligue, favoris, nouvel_ami, recherche_amis, retirer_ami, maj
+from .views import index, resume, salle_attente, candidat_create, candidat_detail, candidat_valide, salle_user, amis, ligues, ligue, rejoindre, save_pari_unique, lancer_ligue, quitter_ligue, favoris, nouvel_ami, recherche_amis, retirer_ami, maj
 
 urlpatterns = [
     path('', index, name="jdm-index"),
@@ -18,6 +18,7 @@ urlpatterns = [
     path('mes_cercles/<str:id>', ligue, name='cercle'),
     path('mes_cercles/quitter/<str:id>', quitter_ligue, name='quitter-ligue'),
     path('mes_cercles/lancer/<str:id>', lancer_ligue, name='lancer-ligue'),
+    path('mes_cercles/rejoindre/<int:id>', rejoindre, name='rejoindre'),
     path('mes_cercles/<str:id>/<str:candidat>/', save_pari_unique, name='candidat-valide'),
     path('recherche/', recherche_amis, name='recherche-amis'),
     path('nouvel_ami/<int:id>', nouvel_ami, name='nouvel-ami'),

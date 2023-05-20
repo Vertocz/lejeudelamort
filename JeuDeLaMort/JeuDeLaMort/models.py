@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 import math
 from datetime import datetime
@@ -51,6 +52,8 @@ class Ligue(models.Model):
     nom = models.CharField(max_length=60, null=False)
     description = models.CharField(max_length=250, null=True)
     lancee = models.BooleanField(default=False)
+    public = models.BooleanField(verbose_name='Ce cercle est public', default=False)
+    createur = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f'{self.nom}'

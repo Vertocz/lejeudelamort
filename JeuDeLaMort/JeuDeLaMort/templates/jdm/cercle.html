@@ -76,7 +76,7 @@
 
 {% if ligue.lancee is False %}
 <div style="flex-direction: row; justify-content: center;">
-    {% if users|length > 1 %}
+    {% if users|length > 1 and request.user == ligue.createur %}
     <a href="{% url 'lancer-ligue' ligue.id %}"><div class="bouton">Lancer le jeu</div></a>
     {% endif %}
     <a href="{% url 'quitter-ligue' ligue.id %}"><div class="bouton">Quitter le cercle</div></a>

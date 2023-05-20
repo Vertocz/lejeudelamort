@@ -6,11 +6,11 @@
 
 {% if cercles|length == 0 %}
 <div class="fond">
-<div style="display: inline">Ceci est la <span style="color:#dbb80b">version originale</span> du Jeu de la Mort</div>
-<div>Dans un cercle de jeu, chaque joueur est amené à créer une nouvelle liste.</div>
-<div>Un candidat ne peut être sélectionné que par un seul joueur.</div>
-<div>Les nominations se font à tour de rôle.</div>
-<div>Le jeu se termine à la fin de l'année civile. Le joueur avec le plus de points l'emporte.</div>
+<p style="display: inline">Ceci est la <span style="color:#dbb80b">version originale</span> du Jeu de la Mort</p>
+<p>Dans un cercle de jeu, chaque joueur est amené à créer une nouvelle liste.</p>
+<p>Un candidat ne peut être sélectionné que par un seul joueur.</p>
+<p>Les nominations se font à tour de rôle.</p>
+<p>Le jeu se termine à la fin de l'année civile. Le joueur avec le plus de points l'emporte.</p>
 </div>
 
 <div style="padding: 1rem">Vous n'êtes actuellement inscrit.e à aucun cercle de jeu.</div>
@@ -49,14 +49,21 @@
     </div>
 
     <div class="cercle_action">
-        <h2>Rejoindre un cercle de jeu</h2>
+        <h2>Rejoindre un cercle privé</h2>
         <div>Entrer l'identifiant du cercle que vous souhaitez rejoindre.</div>
                 <form style="padding:1rem;" action="" method="post" novalidate>
             {% csrf_token %}
             {{ rejoindre.as_p }}
             <input type="submit" value="Rejoindre">
         </form>
-    </div>
+        </div>
+    <div class="cercle_action">
+        <h2>Rejoindre un cercle public :</h2>
+        {% for cercle in cercles_publics %}
+        <a href="{% url 'rejoindre' cercle.id %}"><div>{{ cercle.nom }}</div></a>
+        {% endfor %}
+        </div>
+
 </div>
 
 {% endblock %}
