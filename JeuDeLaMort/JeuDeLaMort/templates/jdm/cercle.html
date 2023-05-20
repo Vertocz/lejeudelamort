@@ -5,7 +5,9 @@
 <h1>{{ ligue.nom }}</h1>
 <h2>{{ ligue.description }}</h2>
 {% if not ligue.lancee %}
+{% if ligue.public is False %}
     <div>(identifiant du cercle de jeu : {{ ligue.id }})</div>
+{% endif %}
     <h2>Les inscrits :</h2>
     {% for user, compteur, paris_actifs, paris_finis in users %}
     {% if user.id == request.user.id %}
