@@ -17,8 +17,8 @@ def index(request):
     morts_recentes = []
     morts_recentes_perso = []
     paris_amis = []
-    if len(liste_amis(request.user.id)) > 0:
-        for x in liste_amis(request.user.id):
+    for x in liste_amis(request.user.id)[0]:
+        if len(Pari.objects.filter(user_id=x[0].id)) > 0:
             for pari in Pari.objects.filter(user_id=x[0].id):
                 paris_amis.append(pari)
 
@@ -123,12 +123,12 @@ def recherche_amis(request):
 
 def amis(request):
     liste = liste_amis(request.user.id)
-    return render(request, 'jdm/mes_amis.html', {'liste': liste})
+    return render(request, 'jdm/mes_amis.html', {'liste': liste[0], 'en_devenir': liste[1]})
 
 
 def liste_amis(id):
     amis = Cercle.objects.filter(user_id=id)
-    liste_amis = []
+    liste= []
     for x in amis:
         ami = User.objects.get(id=x.ami_id)
         score_max_x = score_max(ami.id)
@@ -136,15 +136,22 @@ def liste_amis(id):
         score_user_x = score_user(paris_user)
         moyenne_x = moyenne_age(ami.id)
         joker_x = joker(ami.id)
-        liste_amis.append((ami, score_user_x, score_max_x, moyenne_x, joker_x))
-    liste_amis.sort(key=lambda x: x[2], reverse=True)
-    liste_amis.sort(key=lambda x: x[1], reverse=True)
-    return liste_amis
+        liste.append((ami, score_user_x, score_max_x, moyenne_x, joker_x))
+    liste.sort(key=lambda x: x[2], reverse=True)
+    liste.sort(key=lambda x: x[1], reverse=True)
+
+    pas_encore_amis = Cercle.objects.filter(ami_id=id)
+    amis_en_devenir = []
+    for ami in pas_encore_amis:
+        if len(Cercle.objects.filter(user_id=id, ami_id=ami.user_id)) < 1:
+            amis_en_devenir.append(User.objects.get(id=ami.user_id))
+
+    return liste, amis_en_devenir
 
 
 def nouvel_ami(request, id):
     ami = User.objects.get(id=id)
-    liste = liste_amis(request.user.id)
+    liste = liste_amis(request.user.id)[0]
     if Cercle.objects.filter(ami_name=ami.username, ami_id=ami.id, username=request.user.username,
                              user_id=request.user.id):
         return render(request, 'jdm/mes_amis.html', {'liste': liste})
@@ -188,41 +195,27 @@ def ligues(request):
 
     mes_cercles = Ligue_user.objects.filter(user_id=request.user.id)
     for cercle in mes_cercles:
-        liste_ligues.append(cercle.ligue)
+        liste_ligues.append(cercle)
     return render(request, 'jdm/mes_cercles.html', {'cercles': liste_ligues, 'form': creer_form, 'rejoindre': rejoindre_form, 'cercles_publics': cercles_publics})
 
 
 def recuperer_infos_joueurs_ligue(request, id):
-    on_continue = False
-    compteur_max = 0
     users_ligue = []
     for ligue_user in Ligue_user.objects.filter(ligue=id):
-        compteur = 0
         joueur = User.objects.get(id=ligue_user.user_id)
         paris_user = []
         for pari in Pari_unique.objects.filter(ligue=id):
             candidat = Candidat.objects.get(wiki_id=pari.wiki_id)
             if pari.user_id == joueur.id:
                 paris_user.append(candidat)
-                if pari.mort is False:
-                    compteur += 1
-        if joueur.id != request.user.id and compteur > compteur_max:
-            compteur_max = compteur
-        if joueur.id == request.user.id:
-            compteur_user = compteur
-            if compteur < 10:
-                on_continue = True
         score = score_user(paris_user)
-        users_ligue.append([joueur, compteur, paris_user, score])
-    if compteur_user <= compteur_max and compteur_user < 10:
-        tour = True
-    else:
-        tour = False
-    return users_ligue, tour, on_continue
+        users_ligue.append([joueur, paris_user, score])
+    return users_ligue
+
 
 def ligue(request, id):
     ligue_en_cours = Ligue.objects.get(id=id)
-
+    joueur_en_cours = Ligue_user.objects.get(ligue=ligue_en_cours, user_id=request.user.id)
     #récupérer les infos users_ligue (joueurs, compteurs, paris)
     infos = recuperer_infos_joueurs_ligue(request, id)
 
@@ -230,12 +223,12 @@ def ligue(request, id):
     if form.is_valid():
         recherche = recherche_candidat(form.cleaned_data['nom'])
         if len(recherche) > 0:
-            return render(request, 'jdm/candidat_unique.html', {"recherche": recherche, "on_continue": infos[2], "ligue": ligue_en_cours, "candidats": candidats})
+            return render(request, 'jdm/candidat_unique.html', {"recherche": recherche, "ligue": ligue_en_cours, "candidats": candidats})
         else:
             form = RechercheCandidatForm()
     else:
         form = RechercheCandidatForm()
-    return render(request, 'jdm/cercle.html', {'users': infos[0], 'ligue': ligue_en_cours, 'tour': infos[1], 'form': form, 'on_continue': infos[2], "candidats": candidats})
+    return render(request, 'jdm/cercle.html', {'users': infos, 'ligue': ligue_en_cours, 'tour': joueur_en_cours.tour(), 'form': form, 'on_continue': joueur_en_cours.continuer(), "candidats": candidats})
 
 
 def rejoindre(request, id):

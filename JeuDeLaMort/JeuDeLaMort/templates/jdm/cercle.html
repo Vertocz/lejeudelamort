@@ -9,7 +9,7 @@
     <div>(identifiant du cercle de jeu : {{ ligue.id }})</div>
 {% endif %}
     <h2>Les inscrits :</h2>
-    {% for user, compteur, paris_actifs, paris_finis in users %}
+    {% for user, paris_actifs, paris_finis in users %}
     {% if user.id == request.user.id %}
     <a href="{% url 'salle-attente' %}"><div>{{ user.username }}</div></a>
 
@@ -20,7 +20,7 @@
 {% endif %}
 
 {% if ligue.lancee %}
-    {% for user, compteur, paris, score in users %}
+    {% for user, paris, score in users %}
 <div class="fond">
 
          {% if user.id == request.user.id %}

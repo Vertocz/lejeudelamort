@@ -21,11 +21,24 @@
 
 
 <div style="flex-direction: row; justify-content: center; ">
-{% for ligue in cercles %}
+{% for cercle in cercles %}
+<a href="{% url 'cercle' cercle.ligue.id %}">
+    {% if cercle.continuer is False %}
+    <div class="cercle" id="en_cours">
+    {% elif cercle.ligue.lancee is True %}
     <div class="cercle">
-        <a href="{% url 'cercle' ligue.id %}"><h3>{{ ligue.nom }}</h3></a>
-        <div>{{ ligue.description }}</div>
-    </div>
+        {% if cercle.tour is True %}
+        <div>&#128233; </div>
+        {% else %}
+        <div>&#10004</div>
+        {% endif %}
+    {% else %}
+    <div class="cercle" id="pas_lance">
+        <div>&#x23F3</div>
+    {% endif %}
+        <h3>{{ cercle.ligue.nom }}</h3>
+        <div>{{ cercle.ligue.description }}</div>
+    </div></a>
 {% endfor %}
 </div>
 

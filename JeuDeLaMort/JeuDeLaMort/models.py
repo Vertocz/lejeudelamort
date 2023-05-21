@@ -64,6 +64,31 @@ class Ligue_user(models.Model):
     user_id = models.IntegerField()
     identifiant = models.IntegerField(verbose_name='', null=True)
 
+    def compteur(self):
+        compteur = 0
+        for pari in Pari_unique.objects.filter(ligue=self.ligue, user_id=self.user_id):
+            if pari.mort is False:
+                compteur += 1
+        return compteur
+
+    def continuer(self):
+        continuer = False
+        if len(Pari_unique.objects.filter(ligue=self.ligue, user_id=self.user_id)) < 10:
+            continuer = True
+        return continuer
+
+    def tour(self):
+        tour = False
+        if self.continuer():
+            compteur_max = 0
+            for ligue_user in Ligue_user.objects.filter(ligue=self.ligue):
+                compteur_user = ligue_user.compteur()
+                if compteur_user > compteur_max and ligue_user.user_id != self.user_id :
+                    compteur_max = compteur_user
+            if self.compteur() <= compteur_max:
+                tour = True
+        return tour
+
 
 class Pari_unique(models.Model):
     ligue = models.ForeignKey(Ligue, on_delete=models.CASCADE, null=False)

@@ -3,6 +3,11 @@
 {% load static %}
 
 <h1 id="joueur">{{ joueur.username }}</h1>
+<h2>Ma salle d'attente</h2>
+
+{% if rap > 0 %}
+<div>Encore {{ rap }} candidat{{ rap|pluralize }} à nommer</div>
+{% endif %}
 <div class="resume">
     <div class="bloc">
         <div class="titre_bloc">Score</div>
@@ -33,11 +38,7 @@
 
     {% endif %}
     </div>
-<h2>Ma salle d'attente</h2>
 
-{% if rap > 0 %}
-<div>Encore {{ rap }} candidat{{ rap|pluralize }} à nommer</div>
-{% endif %}
 
 {% if paris|length > 0 %}
 <div class="candidats">

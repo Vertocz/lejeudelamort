@@ -40,6 +40,14 @@ h2 {
     padding: 3rem 1rem 1rem 1rem;
 }
 
+#lien {
+    color: #add9ce;
+}
+
+#lien:hover {
+    color: #fb5622;
+}
+
 h3 {
     color: #f89403;
     font-size: 1.4rem;
@@ -145,6 +153,21 @@ body {
     justify-content: center;
     width: 18rem;
     margin: 2rem 1rem 5rem 1rem;
+    color: #f9fbe3;
+}
+
+.cercle:hover {
+    box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
+}
+
+#en_cours {
+    background-color: #fb5622;
+    color: #f9fbe3;
+}
+
+#pas_lance {
+    color: #add9ce;
+    background-color: #f9fbe3;
 }
 
 .cercle_action {
