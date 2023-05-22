@@ -21,7 +21,7 @@
 
 {% if ligue.lancee %}
     {% for user, paris, score in users %}
-<div class="fond">
+<div class="fond" id="fond_cercle">
 
          {% if user.id == request.user.id %}
          <a href="{% url 'salle-attente' %}"><h3>{{ user.username }} | {{ score }} point{{ score|pluralize }}</h3></a>
@@ -30,7 +30,7 @@
          {% endif %}
 
 
-<div class="candidats">
+<div class="candidats" id="candidats_cercle">
          {% for pari in paris %}
             {% for candidat in candidats %}
             {% if candidat.wiki_id == pari.wiki_id %}
