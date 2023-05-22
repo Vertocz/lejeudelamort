@@ -169,7 +169,7 @@ def retirer_ami(request, id):
 
 
 def ligues(request):
-    liste_ligues = []
+    liste_ligues = Ligue_user.objects.filter(user_id=request.user.id)
     creer_form = LigueForm(request.POST)
     if creer_form.is_valid():
         new_ligue = Ligue.objects.create(nom=creer_form.cleaned_data['nom'], description=creer_form.cleaned_data['description'], public=creer_form.cleaned_data['public'], createur=request.user)
@@ -177,7 +177,7 @@ def ligues(request):
         Ligue_user.objects.create(ligue=new_ligue, user_id=request.user.id, identifiant=new_ligue.id)
         messages.success(request, "Le nouveau cercle de jeu a bien été créé")
         infos = recuperer_infos_joueurs_ligue(request, new_ligue.id)
-        return render(request, 'jdm/cercle.html', {'users': infos[0], 'ligue': new_ligue})
+        return render(request, 'jdm/cercle.html', {'users': infos, 'ligue': new_ligue})
     else:
         creer_form = LigueForm()
 
@@ -191,12 +191,12 @@ def ligues(request):
     else:
         rejoindre_form = Ligue_userForm()
 
-    cercles_publics = Ligue.objects.filter(public=True)
+    ligues_publiques = []
+    for ligue_publique in Ligue.objects.filter(public=True):
+        if len(Ligue_user.objects.filter(user_id=request.user.id, ligue=ligue_publique)) == 0:
+            ligues_publiques.append(ligue_publique)
 
-    mes_cercles = Ligue_user.objects.filter(user_id=request.user.id)
-    for cercle in mes_cercles:
-        liste_ligues.append(cercle)
-    return render(request, 'jdm/mes_cercles.html', {'cercles': liste_ligues, 'form': creer_form, 'rejoindre': rejoindre_form, 'cercles_publics': cercles_publics})
+    return render(request, 'jdm/mes_cercles.html', {'cercles': liste_ligues, 'form': creer_form, 'rejoindre': rejoindre_form, 'cercles_publics': ligues_publiques})
 
 
 def recuperer_infos_joueurs_ligue(request, id):

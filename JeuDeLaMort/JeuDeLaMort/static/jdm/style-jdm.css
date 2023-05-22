@@ -144,6 +144,12 @@ body {
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;
 }
 
+.mes_cercles {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .cercle {
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;
     background-color : #add9ce;
@@ -152,12 +158,13 @@ body {
     text-shadow: rgba(0, 0, 0, 0.15) 1px 1px 5px;
     justify-content: center;
     width: 18rem;
-    margin: 2rem 1rem 5rem 1rem;
+    margin: 2rem 1rem 2rem 1rem;
     color: #f9fbe3;
 }
 
 .cercle:hover {
     box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
+    transition: 0.5s ease;
 }
 
 #en_cours {
@@ -199,6 +206,7 @@ a:visited {
 a:hover {
     color: #fb5622;
     text-decoration: none;
+    transition: 0.5s ease;
 }
 
 .image {

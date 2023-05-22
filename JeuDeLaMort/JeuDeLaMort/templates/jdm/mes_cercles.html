@@ -20,7 +20,7 @@
 <h1>Mes cercles de jeu</h1>
 
 
-<div style="flex-direction: row; justify-content: center; ">
+<div class="mes_cercles">
 {% for cercle in cercles %}
 <a href="{% url 'cercle' cercle.ligue.id %}">
     {% if cercle.continuer is False %}
@@ -51,7 +51,7 @@
     </div>
 {% endif %}
 
-<div style="flex-direction: row; justify-content: center;">
+<div class="mes_cercles">
     <div class="cercle_action">
         <h2>Créer un nouveau cercle de jeu</h2>
         <form action="" method="post" novalidate>
@@ -70,12 +70,14 @@
             <input type="submit" value="Rejoindre">
         </form>
         </div>
+    {% if cercles_publics|length > 0 %}
     <div class="cercle_action">
         <h2>Rejoindre un cercle public :</h2>
         {% for cercle in cercles_publics %}
         <a href="{% url 'rejoindre' cercle.id %}"><div>{{ cercle.nom }}</div></a>
         {% endfor %}
         </div>
+    {% endif %}
 
 </div>
 
