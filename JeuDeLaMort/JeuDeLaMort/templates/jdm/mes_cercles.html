@@ -56,7 +56,7 @@
         <h2>Créer un nouveau cercle de jeu</h2>
         <form action="" method="post" novalidate>
             {% csrf_token %}
-            {{ form.as_p }}
+            <div style="text-align: right">{{ form.as_p }}</div>
             <input type="submit" value="Créer">
         </form>
     </div>
@@ -64,7 +64,7 @@
     <div class="cercle_action">
         <h2>Rejoindre un cercle privé</h2>
         <div>Entrer l'identifiant du cercle que vous souhaitez rejoindre.</div>
-                <form style="padding:1rem;" action="" method="post" novalidate>
+                <form action="" method="post" novalidate>
             {% csrf_token %}
             {{ rejoindre.as_p }}
             <input type="submit" value="Rejoindre">

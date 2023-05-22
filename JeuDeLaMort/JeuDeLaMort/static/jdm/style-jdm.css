@@ -19,7 +19,7 @@ div{
 
 h1 {
     color: #f9fbe3;
-    padding: 3rem 1rem 2rem 1rem;
+    padding: 2rem 1rem 1.5rem 1rem;
     font-size: 2.2em;
     text-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
@@ -37,7 +37,7 @@ h1 {
 h2 {
     color: #add9ce;
     font-size: 1.7rem;
-    padding: 3rem 1rem 1rem 1rem;
+    padding: 2rem 1rem 1rem 1rem;
 }
 
 #lien {
@@ -68,6 +68,13 @@ li {
     margin: 0.8rem;
     width: 12rem;
     justify-content: space-between;
+}
+
+
+#ami:hover {
+    background-color : #255067;
+    box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
+    transition: 0.5s ease;
 }
 
 .fond {
@@ -103,7 +110,10 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     max-width: 70rem;
+    box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
+    padding: 1rem;
 }
+
 
 .score_user {
     font-size: 3rem;
@@ -111,14 +121,13 @@ body {
 }
 
 .resume {
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
-    grid-column: 1 / 4;
-    grid-row: 3 / 4;
     justify-content: center;
-    text-align: center;
     padding: 1rem 1rem 1rem 1rem;
+    margin: 1rem 0 2rem 0;
     color: #f89403;
+    box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
 }
 
 .candidats {
@@ -128,6 +137,8 @@ body {
     align-content: center;
     padding: 1rem 1rem 1rem 1rem;
     flex-wrap: wrap;
+    margin: 4rem 0 2rem 0;
+    box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
 }
 
 .description{
@@ -145,10 +156,15 @@ body {
 }
 
 .mes_cercles {
+    flex: inline-flex;
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
+    box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
+    margin: 2rem;
+    padding: 1rem 1rem 1rem 1rem;
 }
+
 
 .cercle {
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;
@@ -163,6 +179,7 @@ body {
 }
 
 .cercle:hover {
+    background-color : #255067;
     box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
     transition: 0.5s ease;
 }
@@ -172,9 +189,17 @@ body {
     color: #f9fbe3;
 }
 
+#en_cours:hover {
+    background-color : #255067;
+}
+
 #pas_lance {
     color: #add9ce;
     background-color: #f9fbe3;
+}
+
+#pas_lance:hover {
+    background-color : #255067;
 }
 
 .cercle_action {
@@ -184,6 +209,9 @@ body {
     background-color: #f89403;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    align-content: center;
+    padding: 1rem;
+    margin: 2rem;
 }
 
 .offcanvas-body{

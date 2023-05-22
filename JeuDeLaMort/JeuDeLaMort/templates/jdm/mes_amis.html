@@ -8,7 +8,7 @@
 <div class="amis">
     {% for ami, score_user_x, score_max_x, moyenne_x, joker_x in liste %}
         <a href="{% url 'salle-user' ami.id %}">
-            <div class="bloc">
+            <div class="bloc" id="ami">
                 <div class="titre_bloc">{{ ami.username }}</div>
                 <div class="score_user">{{ score_user_x }}</div>
                 <div style="color: #f89403">points</div>
