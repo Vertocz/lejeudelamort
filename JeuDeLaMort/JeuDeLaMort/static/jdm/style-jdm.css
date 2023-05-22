@@ -13,8 +13,8 @@ div{
 
 .titre_bloc {
     color: #f9fbe3;
-    font-size: 1.4rem;
-    padding: 1rem 1rem 0.5rem 1rem;
+    font-size: 1.3rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
 }
 
 h1 {
@@ -68,6 +68,7 @@ li {
     text-shadow: rgba(0, 0, 0, 0.15) 1px 1px 1px;
     margin: 0.8rem;
     width: 12rem;
+    height: 13rem;
     justify-content: space-between;
 }
 
@@ -188,6 +189,7 @@ body {
     width: 18rem;
     margin: 2rem 1rem 2rem 1rem;
     color: #f9fbe3;
+    height: 15rem;
 }
 
 .cercle:hover {
