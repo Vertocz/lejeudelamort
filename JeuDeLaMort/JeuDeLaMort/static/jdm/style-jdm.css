@@ -184,7 +184,7 @@ body {
     background-color : #add9ce;
     border-radius: 1rem;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    text-shadow: rgba(0, 0, 0, 0.15) 1px 1px 5px;
+    text-shadow: rgba(0, 0, 0, 0.5) 1px 1px 1px;
     justify-content: center;
     width: 18rem;
     margin: 2rem 1rem 2rem 1rem;
@@ -196,6 +196,7 @@ body {
     background-color : #255067;
     box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
     transition: 0.5s ease;
+    text-shadow: rgba(0, 0, 0, 0) 0px 0px 0px;
 }
 
 #en_cours {

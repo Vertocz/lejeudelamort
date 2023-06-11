@@ -461,7 +461,7 @@ def maj(request):
         wiki_id = candidat.wiki_id
 
         # Suppression des fiches candidats inutilisées
-        if len(Pari.objects.filter(wiki_id=wiki_id)) == 0 and Pari_unique.objects.filter(wiki_id=wiki_id) == 0:
+        if len(Pari.objects.filter(wiki_id=wiki_id)) == 0 and len(Pari_unique.objects.filter(wiki_id=wiki_id)) == 0:
             try:
                 candidat.delete()
             except ValueError:

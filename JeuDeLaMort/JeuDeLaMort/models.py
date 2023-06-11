@@ -13,14 +13,14 @@ class Candidat(models.Model):
     photo = models.CharField(max_length=500, null=True, blank=True)
 
     def calcul_age(self):
-        if self.DDD :
+        if self.DDD:
             age = math.floor((self.DDD - self.DDN).days / 365)
         else:
             age = math.floor((datetime.today().date() - self.DDN).days / 365)
         return age
 
     def points(self):
-        scores = ((0, 55, 10), (55, 65, 9), (65, 75, 8), (75, 80, 7), (80, 85, 5), (85, 90, 3), (90, 200, 1))
+        scores = ((0, 55, 10), (55, 65, 9), (65, 75, 8), (75, 80, 7), (80, 85, 5), (85, 90, 3), (90, 2000, 1))
         for x in scores:
             if x[0] < self.calcul_age() <= x[1]:
                 points = x[2]
