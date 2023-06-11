@@ -94,7 +94,7 @@ li {
 }
 
 header {
-    background-color: rgba(173, 217, 206, 0.9);
+    background-color: rgba(173, 217, 206);
     box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 15px -3px, rgba(0, 0, 0, 0.35) 0px 4px 6px -2px;
     padding: 1rem 1rem 0.5rem 1rem; /* haut | droit | bas | gauche */
 }
@@ -102,8 +102,7 @@ header {
 
 body {
     background: #255067 url("/static/jdm/fond.png");
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-attachment: scroll;
     color: #f9fbe3;
     text-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
     font-size: 1.2rem;
