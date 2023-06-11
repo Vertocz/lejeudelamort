@@ -26,7 +26,6 @@ h1 {
 
 
 #titre {
-    padding: 1rem;
     font-size: 2.4em;
     font-weight: bold;
     white-space: nowrap;
@@ -93,12 +92,6 @@ li {
     box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
 }
 
-header {
-    background-color: rgba(173, 217, 206);
-    box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 15px -3px, rgba(0, 0, 0, 0.35) 0px 4px 6px -2px;
-    padding: 1rem 1rem 0.5rem 1rem; /* haut | droit | bas | gauche */
-}
-
 
 body {
     background: #255067 url("/static/jdm/fond.png");
@@ -107,9 +100,20 @@ body {
     text-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
     font-size: 1.2rem;
     text-align: center;
-    padding: 2rem 3rem 1rem 3rem; /* haut | droit | bas | gauche */
-    grid-column: 1 / 4;
-    grid-row: 2 / 6;
+}
+
+
+header {
+    background-color: rgba(173, 217, 206);
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 15px -3px, rgba(0, 0, 0, 0.35) 0px 4px 6px -2px;
+    width: 100%;
+    padding: 0;
+}
+
+.connect {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
 }
 
 .amis {
@@ -173,8 +177,7 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
-    margin: 2rem;
-    padding: 1rem 1rem 1rem 1rem;
+    margin: 1rem;
 }
 
 
