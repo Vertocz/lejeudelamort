@@ -29,7 +29,7 @@ h1 {
     font-size: 2.4em;
     font-weight: bold;
     white-space: nowrap;
-    color: #255067;
+    color: #f9fbe3;
     text-shadow: rgba(0, 0, 0, 0.15) 0px 5px 5px;
     text-decoration-line: underline overline;
 }
@@ -104,16 +104,26 @@ body {
 
 
 header {
-    background-color: rgba(173, 217, 206);
-    box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 15px -3px, rgba(0, 0, 0, 0.35) 0px 4px 6px -2px;
-    width: 100%;
-    padding: 0;
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 15px -3px, rgba(0, 0, 0, 0.35) 0px 0px 6px -2px;
+    margin: 4rem 3rem 0 3rem;
+}
+
+.menu {
+    margin : 0.8rem;
+}
+
+.menu:hover {
+    background-color : #add9ce;
+    transition: 0.5s ease;
+    border-radius: 1rem;
+    text-shadow: rgba(0, 0, 0, 1) 5px 0px 0px;
 }
 
 .connect {
     position: absolute;
     top: 1rem;
-    right: 1rem;
+    right: 3rem;
 }
 
 .amis {
@@ -148,13 +158,14 @@ header {
     justify-content: center;
     align-content: center;
     padding: 1rem 1rem 1rem 1rem;
-    flex-wrap: wrap;
+    flex-wrap: no-wrap;
     margin: 4rem 0 2rem 0;
     box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
 }
 
 #candidats_cercle {
-    margin: 2rem 0 2rem 0;
+    margin: 1rem 0 1rem 0;
+    box-shadow: rgba(0, 0, 0, 0) 0px 5px 15px;
 }
 
 .description{
@@ -177,13 +188,13 @@ header {
     justify-content: center;
     flex-wrap: wrap;
     box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
-    margin: 1rem;
+    margin: 3rem;
 }
 
 
 .cercle {
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;
-    background-color : #add9ce;
+    background-color : #fb5622;
     border-radius: 1rem;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     text-shadow: rgba(0, 0, 0, 0.5) 1px 1px 1px;
@@ -202,7 +213,7 @@ header {
 }
 
 #en_cours {
-    background-color: #fb5622;
+    background-color: #add9ce;
     color: #f9fbe3;
 }
 

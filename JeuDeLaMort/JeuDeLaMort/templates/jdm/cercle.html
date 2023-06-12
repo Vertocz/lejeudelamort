@@ -8,6 +8,8 @@
 {% if ligue.public is False %}
     <div>(identifiant du cercle de jeu : {{ ligue.id }})</div>
 {% endif %}
+
+
     <h2>Les inscrits :</h2>
     {% for user, paris, score in users %}
     {% if user.id == request.user.id %}
@@ -20,6 +22,13 @@
 {% endif %}
 
 {% if ligue.lancee %}
+
+{% if on_continue %}
+{% if tour is False %}
+<div style="padding: 3rem; background-color: #fb5622">En attente des nominations de vos camarades</div>
+{% endif %}
+{% endif %}
+
     {% for user, paris, score in users %}
 <div class="fond" id="fond_cercle">
 
@@ -59,15 +68,14 @@
 
 
     {% if on_continue %}
-        <h2>Ajouter un candidat</h2>
+
         {% if tour %}
+<h2>Ajouter un candidat</h2>
             <form action="" method="post" novalidate>
                 {% csrf_token %}
                 {{ form.as_p }}
                 <input type="submit" value="Rechercher">
             </form>
-        {% else %}
-            <div>En attente des nominations de vos camarades</div>
         {% endif %}
     {% endif %}
 
