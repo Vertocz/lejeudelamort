@@ -1,3 +1,6 @@
+import time
+
+import schedule as schedule
 from django.shortcuts import render, redirect
 from datetime import datetime, date
 from .models import Candidat, Pari, Cercle, Pari_unique, Ligue, Ligue_user
@@ -456,7 +459,7 @@ def resume(request):
     return render(request, "jdm/resume.html", {'candidats_decedes': liste})
 
 
-def maj(request):
+def maj():
     for candidat in candidats:
         wiki_id = candidat.wiki_id
 
@@ -483,5 +486,11 @@ def maj(request):
                 if pari.wiki_id == candidat.wiki_id:
                     pari.mort = True
                     pari.save()
-    return redirect('resume')
+
+
+schedule.every().day.at('10:00').do(maj)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
 
