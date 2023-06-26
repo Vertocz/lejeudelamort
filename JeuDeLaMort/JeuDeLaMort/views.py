@@ -133,7 +133,6 @@ def liste_amis(id):
         ami = User.objects.get(id=x.ami_id)
         score_max_x = score_max(ami.id)
         paris_user = Pari.objects.filter(user_id=ami.id)
-        print(ami.id, paris_user)
         score_user_x = score_user(paris_user)
         moyenne_x = moyenne_age(ami.id)
         joker_x = joker(ami.id)
