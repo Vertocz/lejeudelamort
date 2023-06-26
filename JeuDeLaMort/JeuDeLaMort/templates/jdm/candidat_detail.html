@@ -4,7 +4,7 @@
 {% load static %}
 
 
-<h2>{{ candidat.nom }}</h2>
+<h1>{{ candidat.nom }}</h1>
 
 
 {% if candidat.photo == '' %}
@@ -15,7 +15,7 @@
 
 
 {% if candidat.DDD %}
-<h1>{{ candidat.DDN }} - {{ candidat.DDD }}</h1>
+<h3 style="color: #f9fbe3">{{ candidat.DDN }} - {{ candidat.DDD }}</h3>
 <div class="description">{{ candidat.description|capfirst }}</div>
 
     {% if paris|length > 0 %}
