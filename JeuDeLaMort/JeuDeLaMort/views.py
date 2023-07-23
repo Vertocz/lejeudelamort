@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 from datetime import datetime, date
 from .models import Candidat, Pari, Cercle, Pari_unique, Ligue, Ligue_user
@@ -48,19 +49,25 @@ def score_max(id):
     paris = Pari.objects.filter(user_id=id)
     score = 0
     for pari in paris:
-        candidat = Candidat.objects.get(wiki_id=pari.wiki_id)
-        points = candidat.points()
-        score += points
+        try:
+            candidat = Candidat.objects.get(wiki_id=pari.wiki_id)
+            points = candidat.points()
+            score += points
+        except ObjectDoesNotExist:
+            pass
     return score
 
 
 def score_user(paris_user):
     score = 0
     for pari in paris_user:
-        candidat = Candidat.objects.get(wiki_id=pari.wiki_id)
-        if candidat.DDD:
-            points = candidat.points()
-            score += points
+        try:
+            candidat = Candidat.objects.get(wiki_id=pari.wiki_id)
+            if candidat.DDD:
+                points = candidat.points()
+                score += points
+        except ObjectDoesNotExist:
+            pass
     return score
 
 
@@ -70,10 +77,13 @@ def joker(id):
     if len(paris_joueur) > 0:
         recordman = paris_joueur[0]
         for pari in paris_joueur:
-            candidat = Candidat.objects.get(wiki_id=pari.wiki_id)
-            if candidat.DDN > record:
-                record = candidat.DDN
-                recordman = candidat
+            try:
+                candidat = Candidat.objects.get(wiki_id=pari.wiki_id)
+                if candidat.DDN > record:
+                    record = candidat.DDN
+                    recordman = candidat
+            except ObjectDoesNotExist:
+                pass
         return recordman
     else:
         pass
@@ -84,9 +94,12 @@ def moyenne_age(id):
     total_age = 0
     if len(paris_user) > 0:
         for pari in paris_user:
-            x = Candidat.objects.get(wiki_id=pari.wiki_id)
-            age = x.calcul_age()
-            total_age += age
+            try:
+                x = Candidat.objects.get(wiki_id=pari.wiki_id)
+                age = x.calcul_age()
+                total_age += age
+            except ObjectDoesNotExist:
+                pass
         moyenne = round(total_age / len(paris_user))
         return moyenne
     else:

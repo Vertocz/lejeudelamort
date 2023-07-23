@@ -62,11 +62,11 @@
 
 <main>
 {% if messages %}
-<div class="message">
     {% for message in messages %}
+    <div class="message">
         {{ message }}
+    </div>
     {% endfor %}
-</div>
 {% endif %}
 
     {% block content %}
