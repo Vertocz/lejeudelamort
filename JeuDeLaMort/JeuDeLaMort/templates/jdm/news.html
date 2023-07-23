@@ -6,9 +6,8 @@
 
 {% if deces|length > 0 %}
 <div class="candidats">
-{% for candidat in deces %}
-<div class="alignement">
-        <a href="/candidats/{{ candidat.id }}/">
+    {% for candidat in deces %}
+    <div class="alignement"><a href="/candidats/{{ candidat.id }}/">
             {% if candidat.photo == '' %}
             <img src="{% static 'jdm/candidat.png' %}" width="250" height="250" alt="{{ candidat.nom }}" class="image"/>
             {% else %}
@@ -27,18 +26,17 @@
                         </p>
                     </div>
                 </div>
-        </a>
-    </div>
+        </a></div>
     {% endfor %}
 </div>
 
 {% if mes_deces|length > 0 %}
 <h2>Vous avez marqué des points !</h2>
+
 {% if deces|length > 0 %}
 <div class="candidats">
-{% for candidat in mes_deces %}
-<div class="alignement">
-        <a href="/candidats/{{ candidat.id }}/">
+    {% for candidat in mes_deces %}
+    <div class="alignement"><a href="/candidats/{{ candidat.id }}/">
             {% if candidat.photo == '' %}
             <img src="{% static 'jdm/candidat.png' %}" width="250" height="250" alt="{{ candidat.nom }}" class="image"/>
             {% else %}
@@ -57,8 +55,7 @@
                         </p>
                     </div>
                 </div>
-        </a>
-    </div>
+        </a></div>
     {% endfor %}
 </div>
 {% endif %}
