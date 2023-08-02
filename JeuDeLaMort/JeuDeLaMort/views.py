@@ -1,3 +1,5 @@
+import time
+
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 from datetime import datetime, date
@@ -16,31 +18,23 @@ URL = "https://www.wikidata.org/w/api.php"
 
 def index(request):
     morts_recentes = []
-    morts_recentes_perso = []
-    paris_amis = []
-    for x in liste_amis(request.user.id)[0]:
-        if len(Pari.objects.filter(user_id=x[0].id)) > 0:
-            for pari in Pari.objects.filter(user_id=x[0].id):
-                paris_amis.append(pari)
-
-    mes_paris = Pari.objects.filter(user_id=request.user.id)
-
+    amis = []
+    for cercle in Cercle.objects.filter(user_id=request.user.id):
+        amis.append(User.objects.get(id=cercle.ami_id))
     for candidat in candidats:
         if candidat.DDD is not None:
             try:
-                if datetime.date(request.user.last_login) <= candidat.DDD:
-                    for pari in paris_amis:
-                        if candidat.wiki_id == pari.wiki_id:
-                            if candidat not in morts_recentes:
-                                morts_recentes.append(candidat)
-                    for pari in mes_paris:
-                        if candidat.wiki_id == pari.wiki_id:
-                            morts_recentes_perso.append(candidat)
+                if datetime.timestamp(request.user.last_login) <= time.mktime(candidat.DDD.timetuple()):
+                    votants_candidat = []
+                    for pari in Pari.objects.filter(wiki_id=candidat.wiki_id):
+                        if User.objects.get(id=pari.user_id) in amis:
+                            votants_candidat.append(User.objects.get(id=pari.user_id).username)
+                        morts_recentes.append((candidat, votants_candidat))
             except AttributeError:
                 pass
 
-    if len(morts_recentes) > 0 or len(morts_recentes_perso) > 0:
-        return render(request, "jdm/news.html", {"deces": morts_recentes, 'paris_amis': paris_amis, "mes_deces": morts_recentes_perso})
+    if len(morts_recentes) > 0:
+        return render(request, "jdm/news.html", {"deces": morts_recentes})
     else:
         return render(request, "jdm/index.html", context={"date": datetime.today(), "candidats": candidats})
 

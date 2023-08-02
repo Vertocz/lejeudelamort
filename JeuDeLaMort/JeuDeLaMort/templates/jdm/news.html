@@ -2,26 +2,23 @@
 {% block content %}
 {% load static %}
 
-<h2>Depuis votre dernier passage</h2>
+<h1>Dans nos coeurs</h1>
 
-{% if deces|length > 0 %}
 <div class="candidats">
     {% for candidat in deces %}
-    <div class="alignement"><a href="/candidats/{{ candidat.id }}/">
-            {% if candidat.photo == '' %}
-            <img src="{% static 'jdm/candidat.png' %}" width="250" height="250" alt="{{ candidat.nom }}" class="image"/>
+    <div class="alignement"><a href="/candidats/{{ candidat.0.id }}/">
+            {% if candidat.0.photo == '' %}
+            <img src="{% static 'jdm/candidat.png' %}" width="250" height="250" alt="{{ candidat.0.nom }}" class="image"/>
             {% else %}
-            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" width="250" height="250" alt="{{ candidat.nom }}" class="image"/>
+            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.0.photo }}&width=300" width="250" height="250" alt="{{ candidat.0.nom }}" class="image"/>
             {% endif %}
-                <div class="overlay2">
+                <div class="overlay3">
                     <div class="text">
-                        <p>{{ candidat.nom }}</p>
-                        <p>{{ candidat.calcul_age }} ans ({{ candidat.points }} point{{ candidat.points|pluralize }})</p>
+                        <p>{{ candidat.0.nom }}</p>
+                        <p>{{ candidat.0.points }} point{{ candidat.0.points|pluralize }}</p>
                         <p style="font-style: italic;">
-                                {% for pari in paris_amis %}
-                                    {% if candidat.wiki_id == pari.candidat_wiki_id %}
-                                        {{ pari.username }}
-                                    {% endif %}
+                                {% for ami in candidat.1 %}
+                                    {{ ami }}
                                 {% endfor %}
                         </p>
                     </div>
@@ -29,35 +26,5 @@
         </a></div>
     {% endfor %}
 </div>
-
-{% if mes_deces|length > 0 %}
-<h2>Vous avez marqué des points !</h2>
-
-{% if deces|length > 0 %}
-<div class="candidats">
-    {% for candidat in mes_deces %}
-    <div class="alignement"><a href="/candidats/{{ candidat.id }}/">
-            {% if candidat.photo == '' %}
-            <img src="{% static 'jdm/candidat.png' %}" width="250" height="250" alt="{{ candidat.nom }}" class="image"/>
-            {% else %}
-            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" width="250" height="250" alt="{{ candidat.nom }}" class="image"/>
-            {% endif %}
-                <div class="overlay2">
-                    <div class="text">
-                        <p>{{ candidat.nom }}</p>
-                        <p>{{ candidat.calcul_age }} ans ({{ candidat.points }} point{{ candidat.points|pluralize }})</p>
-                        <p style="font-style: italic;">
-                                {% for pari in paris_amis %}
-                                    {% if candidat.wiki_id == pari.candidat_wiki_id %}
-                                        {{ pari.username }}
-                                    {% endif %}
-                                {% endfor %}
-                        </p>
-                    </div>
-                </div>
-        </a></div>
-    {% endfor %}
-</div>
-{% endif %}
 
 {% endblock %}

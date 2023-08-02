@@ -296,6 +296,18 @@ a:hover {
   transition: .5s ease;
 }
 
+.overlay3 {
+  position: relative;
+  bottom: 100;
+  left: 0;
+  right: 0;
+  opacity: 1;
+  color: white;
+  width: auto;
+  height: 0;
+  text-shadow: rgba(0, 0, 0, 0.5) 2px 0px 2px;
+}
+
 
 .alignement {
   display: inline-flex;
