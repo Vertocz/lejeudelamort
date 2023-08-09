@@ -379,8 +379,7 @@ def candidat_create(request):
                         description = jsonresponse["search"][i]["description"]
                     except KeyError:
                         description = ''
-                    if Candidat.objects.filter(nom=candidat, DDN=DDN, wiki_id=wiki_id, description=description,
-                                               photo=photo):
+                    if Candidat.objects.filter(wiki_id=wiki_id):
                         new_candidat = Candidat.objects.get(wiki_id=wiki_id)
                     else:
                         new_candidat = Candidat(nom=candidat, DDN=DDN, wiki_id=wiki_id, description=description,

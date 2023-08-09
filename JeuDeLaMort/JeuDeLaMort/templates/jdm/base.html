@@ -10,14 +10,8 @@
 </head>
 
 <body>
-<header>
 
-        <div>
-
-        <div style="align-items: center">
-        <a href="{% url 'jdm-index' %}"><img src="{% static 'jdm/voyance.png' %}" width="100px"></a>
-        <a href="{% url 'jdm-index' %}"><span id="titre">LE JEU DE LA MORT</span></a>
-        </div>
+<div>
 
         <div class="connect">
         {% if user.is_authenticated %}
@@ -29,35 +23,34 @@
 
         </div>
 
+<header>
     <nav>
-
     <ul style="list-style-type: none; display: flex; align-items: center; justify-content:space-evenly">
-
+        <a href="{% url 'jdm-index' %}"><img src="{% static 'jdm/vautour.png' %}" style="margin: 1rem" height="170"></a>
         {% if user.is_authenticated %}
-        <li class="menu">
-            <a href="{% url 'salle-attente' %}">Ma salle d'attente</a>
-        </li>
-        <li class="menu">
-            <a href="{% url 'mes-amis' %}">Mes amis</a>
-        </li>
-        <li class="menu">
-            <a href="{% url 'mes-cercles'%}">Mes cercles de jeu</a>
-        </li>
+
+            <a href="{% url 'salle-attente' %}"><li class="menu">Ma salle d'attente</li></a>
+
+
+            <a href="{% url 'mes-amis' %}"><li class="menu">Mes amis</li></a>
+
+
+            <!-- <a href="{% url 'mes-cercles'%}"><li class="menu">Mes cercles de jeu</li></a> --!>
+
         {% endif %}
-        <li class="menu">
-            <a href="{% url 'favoris' %}">Les favoris</a>
-        </li>
-        <li class="menu">
-            <a href="{% url 'resume' %}">Ils nous ont quittés</a>
-        </li>
+
+            <a href="{% url 'favoris' %}"><li class="menu">Les favoris</li></a>
+
+
+            <a href="{% url 'resume' %}"><li class="menu">Ils nous ont quittés</li></a>
+
         {% if user.is_superuser %}
-        <li class="menu">
-            <a href="{% url 'maj' %}">Mise à jour des données</a>
-        </li>
+
+            <a href="{% url 'maj' %}"><li class="menu">Mise à jour des données</li></a>
+
         {% endif %}
     </ul>
 </nav>
-
 </header>
 
 <main>
@@ -74,7 +67,7 @@
 
 </main>
 <footer>
-<div class="pied">Source des données :&nbsp;<a href="https://fr.wikipedia.org/wiki/Cynisme" target="_blank"><div style="color: #add9ce">Wikipedia</div></a></div>
+<div class="pied">Source des données :&nbsp;<a href="https://fr.wikipedia.org/wiki/Cynisme" target="_blank"><div style="color: rgb(248,191,3)">Wikipedia</div></a></div>
 <div>©Victor Crézé - 2023</div>
 </footer>
 

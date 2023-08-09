@@ -13,7 +13,7 @@
 {% for x, y in candidats_decedes %}
 <div class="alignement">
         <a href="/candidats/{{ x.id }}/">
-            {% if x.photo == '' %}
+            {% if x.photo is None %}
             <img src="{% static 'jdm/candidat.png' %}" width="200" height="200" alt="{{ x.nom }}" class="image"/>
             {% else %}
             <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ x.photo }}&width=300" width="200" height="200" alt="{{ x.nom }}" class="image"/>

@@ -1,9 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap');
+{% load static %}
 
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
 html, body {
-    font-family: 'Tilt Warp', sans-serif;
+    font-family: 'Permanent Marker', cursive;
 }
+
+
+/*
+rgb(248,148,3) orange
+rgb(40,40,40) gris foncé
+rgb(217,217,217) gris clair
+rgb(248,191,3) jaune
+rgb(244,179,211) rose
+*/
 
 
 div{
@@ -11,45 +21,31 @@ div{
     flex-direction: column;
 }
 
-.titre_bloc {
-    color: #f9fbe3;
-    font-size: 1.3rem;
-    padding: 0.5rem 1rem 0.5rem 1rem;
-}
 
 h1 {
-    color: #f9fbe3;
+    color: rgb(248,191,3);
     padding: 2rem 1rem 1.5rem 1rem;
     font-size: 2.2em;
     text-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 
-#titre {
-    font-size: 2.4em;
-    font-weight: bold;
-    white-space: nowrap;
-    color: #f9fbe3;
-    text-shadow: rgba(0, 0, 0, 0.15) 0px 5px 5px;
-    text-decoration-line: underline overline;
-}
-
 h2 {
-    color: #add9ce;
+    color: rgb(248,148,3);
     font-size: 1.7rem;
     padding: 2rem 1rem 1rem 1rem;
 }
 
 #lien {
-    color: #add9ce;
+    color: rgb(217,217,217);
 }
 
 #lien:hover {
-    color: #fb5622;
+    color: rgb(248,191,3);
 }
 
 h3 {
-    color: #f89403;
+    color: rgb(248,191,3);
     font-size: 1.4rem;
     padding: 1rem 1rem 0.5rem 1rem;
     text-shadow: rgba(0, 0, 0, 0.15) 1px 1px 3px;
@@ -61,19 +57,24 @@ li {
 
 .bloc {
     padding: 1rem 0.3rem 1rem 0.3rem;
-    background-color : #add9ce;
+    background-color : rgb(217,217,217);
     border-radius: 1rem;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    text-shadow: rgba(0, 0, 0, 0.15) 1px 1px 1px;
+    text-shadow: rgba(0, 0, 0, 0.5) 1px 1px 1px;
     margin: 0.8rem;
     width: 12rem;
     height: 13rem;
     justify-content: space-between;
 }
 
+.titre_bloc {
+    color: rgb(248,148,3);
+    font-size: 1.3rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+}
 
 #ami:hover {
-    background-color : #255067;
+    background-color : rgb(248,191,3);
     box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
     transition: 0.5s ease;
 }
@@ -94,8 +95,8 @@ li {
 
 
 body {
-    background: #255067 url("/static/jdm/fond.png");
-    background-attachment: scroll;
+    background-image: url("/static/jdm/fond.png");
+    background-attachment: fixed;
     color: #f9fbe3;
     text-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
     font-size: 1.2rem;
@@ -104,20 +105,24 @@ body {
 
 
 header {
-    background-color: rgba(0, 0, 0, 0);
-    box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 15px -3px, rgba(0, 0, 0, 0.35) 0px 0px 6px -2px;
+    background: url("/static/jdm/texture.jpg") no-repeat content-box;  /* -color: #ae6b13;*/
+    background-size: cover;
+    background-color: #8E6A40;
     margin: 4rem 3rem 0 3rem;
+    height: 200px;
+    border: 2px solid rgb(248,191,3);
 }
 
 .menu {
-    margin : 0.8rem;
+    color: rgb(217,217,217);
+    align-content: center;
+    font-size: 1.5rem;
+    text-shadow: rgba(0, 0, 0, 1) 3px 1px 3px;
 }
 
 .menu:hover {
-    background-color : #add9ce;
+    color: red;
     transition: 0.5s ease;
-    border-radius: 1rem;
-    text-shadow: rgba(0, 0, 0, 1) 5px 0px 0px;
 }
 
 .connect {
@@ -139,7 +144,7 @@ header {
 
 .score_user {
     font-size: 3rem;
-    color: #f89403;
+    color: rgb(40,40,40);
 }
 
 .resume {
@@ -148,8 +153,8 @@ header {
     justify-content: center;
     padding: 1rem 1rem 1rem 1rem;
     margin: 1rem 0 2rem 0;
-    color: #f89403;
-    box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
+    color: rgb(40,40,40);
+    box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
 }
 
 .candidats {
@@ -194,7 +199,7 @@ header {
 
 .cercle {
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;
-    background-color : #fb5622;
+    background-color : #FFC100;
     border-radius: 1rem;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     text-shadow: rgba(0, 0, 0, 0.5) 1px 1px 1px;
@@ -247,18 +252,18 @@ header {
 }
 
 a:link {
-    color: #f9fbe3;
+    color: rgb(248,191,3);
     text-decoration: none;
     text-shadow: rgba(0, 0, 0, 0.35) 1px 5px 15px;
 }
 
 a:visited {
-    color: #f9fbe3;
+    color: rgb(248,191,3);
     text-decoration: none;
 }
 
 a:hover {
-    color: #fb5622;
+    color: rgb(240,240,240);
     text-decoration: none;
     transition: 0.5s ease;
 }
@@ -275,6 +280,7 @@ a:hover {
   left: 0;
   right: 0;
   background-color : Gainsboro;
+  color: rgb(248,148,3);
   opacity: 0.9;
   overflow: hidden;
   width: auto;
