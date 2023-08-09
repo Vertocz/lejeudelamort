@@ -343,9 +343,10 @@ a:hover {
 }
 
 .message {
-    color: #255067;
+    color: rgb(217,217,217);
+    margin: 0.5rem 3rem 0 3rem;
     padding: 0.5rem;
-    background-color: #f9fbe3;
+    background-color: red;
     text-shadow: rgba(0, 0, 0, 0.15) 1px 1px 1px;
 }
 
