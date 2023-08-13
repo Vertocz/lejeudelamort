@@ -19,22 +19,24 @@ URL = "https://www.wikidata.org/w/api.php"
 def index(request):
     morts_recentes = []
     amis = []
-    for cercle in Cercle.objects.filter(joueur=request.user):
-        amis.append(User.objects.get(id=cercle.ami.id))
-    for candidat in candidats:
-        if candidat.DDD is not None:
-            try:
-                if datetime.timestamp(request.user.last_login) <= time.mktime(candidat.DDD.timetuple()):
-                    votants_candidat = []
-                    for pari in Pari.objects.filter(candidat=candidat):
-                        if User.objects.get(id=pari.joueur.id) in amis:
-                            votants_candidat.append(User.objects.get(id=pari.joueur.id).username)
-                        morts_recentes.append((candidat, votants_candidat))
-            except AttributeError:
-                pass
+    joueur = request.user
+    if joueur.is_authenticated:
+        for cercle in Cercle.objects.filter(joueur=joueur):
+            amis.append(User.objects.get(id=cercle.ami.id))
+        for candidat in candidats:
+            if candidat.DDD is not None:
+                try:
+                    if datetime.timestamp(joueur.last_login) <= time.mktime(candidat.DDD.timetuple()):
+                        votants_candidat = []
+                        for pari in Pari.objects.filter(candidat=candidat):
+                            if User.objects.get(id=pari.joueur.id) in amis:
+                                votants_candidat.append(User.objects.get(id=pari.joueur.id).username)
+                            morts_recentes.append((candidat, votants_candidat))
+                except AttributeError:
+                    pass
 
-    if len(morts_recentes) > 0:
-        return render(request, "jdm/news.html", {"deces": morts_recentes})
+        if len(morts_recentes) > 0:
+            return render(request, "jdm/news.html", {"deces": morts_recentes})
     else:
         return render(request, "jdm/index.html", context={"date": datetime.today(), "candidats": candidats})
 
