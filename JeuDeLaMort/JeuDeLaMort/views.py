@@ -37,6 +37,8 @@ def index(request):
 
         if len(morts_recentes) > 0:
             return render(request, "jdm/news.html", {"deces": morts_recentes})
+        else:
+            return render(request, "jdm/index.html", context={"date": datetime.today(), "candidats": candidats})
     else:
         return render(request, "jdm/index.html", context={"date": datetime.today(), "candidats": candidats})
 
