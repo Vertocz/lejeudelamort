@@ -1,5 +1,6 @@
 from django import forms
-from .models import Candidat, Cercle, Ligue, Ligue_user
+from .models import Candidat, Cercle
+from django.contrib.auth.models import User
 
 
 class ContactUsForm(forms.Form):
@@ -22,17 +23,7 @@ class SavePersonneForm(forms.ModelForm):
 
 class CercleForm(forms.ModelForm):
     class Meta:
-        model = Cercle
-        fields = ['ami_name']
+        model = User
+        fields = ['username']
 
 
-class LigueForm(forms.ModelForm):
-    class Meta:
-        model = Ligue
-        fields = ['nom', 'description', 'public']
-
-
-class Ligue_userForm(forms.ModelForm):
-    class Meta:
-        model = Ligue_user
-        fields = ['identifiant']

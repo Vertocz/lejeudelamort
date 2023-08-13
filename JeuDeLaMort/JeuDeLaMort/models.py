@@ -34,67 +34,11 @@ class Candidat(models.Model):
 
 
 class Pari(models.Model):
-    wiki_id = models.CharField(max_length=20, null=True)
-    user_id = models.IntegerField()
-    candidat_nom = models.CharField(max_length=250, null=True)
-    username = models.CharField(max_length=250, null=True)
+    candidat = models.ForeignKey(Candidat, on_delete=models.CASCADE, null=True)
+    joueur = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     mort = models.BooleanField(default=False)
 
 
 class Cercle(models.Model):
-    username = models.CharField(max_length=250, null=True)
-    ami_name = models.CharField(verbose_name='', max_length=250, null=True)
-    user_id = models.IntegerField()
-    ami_id = models.IntegerField()
-
-
-class Ligue(models.Model):
-    nom = models.CharField(max_length=60, null=False)
-    description = models.CharField(max_length=250, null=True)
-    lancee = models.BooleanField(default=False)
-    public = models.BooleanField(verbose_name='Ce cercle est public', default=False)
-    createur = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-
-    def __str__(self):
-        return f'{self.nom}'
-
-
-class Ligue_user(models.Model):
-    ligue = models.ForeignKey(Ligue, on_delete=models.CASCADE, null=False)
-    user_id = models.IntegerField()
-    identifiant = models.IntegerField(verbose_name='', null=True)
-
-    def compteur(self):
-        compteur = 0
-        for pari in Pari_unique.objects.filter(ligue=self.ligue, user_id=self.user_id):
-            if pari.mort is False:
-                compteur += 1
-        return compteur
-
-    def continuer(self):
-        continuer = False
-        if len(Pari_unique.objects.filter(ligue=self.ligue, user_id=self.user_id)) < 10:
-            continuer = True
-        return continuer
-
-    def tour(self):
-        tour = False
-        if self.continuer():
-            compteur_max = 0
-            for ligue_user in Ligue_user.objects.filter(ligue=self.ligue):
-                compteur_user = ligue_user.compteur()
-                if compteur_user > compteur_max and ligue_user.user_id != self.user_id :
-                    compteur_max = compteur_user
-            if self.compteur() <= compteur_max:
-                tour = True
-        return tour
-
-
-class Pari_unique(models.Model):
-    ligue = models.ForeignKey(Ligue, on_delete=models.CASCADE, null=False)
-    wiki_id = models.CharField(max_length=20, null=True)
-    user_id = models.IntegerField()
-    mort = models.BooleanField(default=False)
-
-    def __str__(self):
-        return f'{self.wiki_id}'
+    joueur = models.ForeignKey(User, on_delete=models.CASCADE, related_name='joueur', null=True)
+    ami = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ami', null=True)

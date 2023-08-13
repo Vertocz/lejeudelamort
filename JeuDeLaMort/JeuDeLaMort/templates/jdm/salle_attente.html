@@ -43,10 +43,10 @@
 {% if paris|length > 0 %}
 <div class="candidats">
 {% for pari in paris %}
-    {% if pari.user_id == joueur.id %}
+    {% if pari.joueur == joueur %}
         {% for candidat in candidats %}
 
-            {% if candidat.wiki_id == pari.wiki_id and candidat.DDD is null %}
+            {% if candidat == pari.candidat and candidat.DDD is null %}
     <div class="alignement">
         <a href="/candidats/{{ candidat.id }}/">
             {% if candidat.photo == '' %}
@@ -79,10 +79,10 @@
 <h2>Dans nos cœurs</h2>
 <div class="candidats">
 {% for pari in deces %}
-    {% if pari.user_id == joueur.id %}
+    {% if pari.joueur == joueur %}
         {% for candidat in candidats %}
 
-            {% if candidat.wiki_id == pari.wiki_id and candidat.DDD %}
+            {% if candidat == pari.candidat and candidat.DDD %}
     <div class="alignement">
         <a href="/candidats/{{ candidat.id }}/">
             {% if candidat.photo == '' %}

@@ -26,12 +26,13 @@ h1 {
     color: rgb(248,191,3);
     padding: 2rem 1rem 1.5rem 1rem;
     font-size: 2.2em;
-    text-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 1px;
 }
 
 
 h2 {
     color: rgb(248,148,3);
+    text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 1px;
     font-size: 1.7rem;
     padding: 2rem 1rem 1rem 1rem;
 }
@@ -48,7 +49,7 @@ h3 {
     color: rgb(248,191,3);
     font-size: 1.4rem;
     padding: 1rem 1rem 0.5rem 1rem;
-    text-shadow: rgba(0, 0, 0, 0.15) 1px 1px 3px;
+    text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 1px;
 }
 
 li {
@@ -60,7 +61,7 @@ li {
     background-color : rgb(217,217,217);
     border-radius: 1rem;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    text-shadow: rgba(0, 0, 0, 0.5) 1px 1px 1px;
+    text-shadow: rgba(0, 0, 0, 0) 0px 0px 0px;
     margin: 0.8rem;
     width: 12rem;
     height: 13rem;
@@ -90,15 +91,15 @@ li {
 #fond_cercle {
     padding: 1rem 1rem 1rem 1rem;
     color: #f89403;
-    box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
+    box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 5px;
 }
 
 
 body {
     background-image: url("/static/jdm/fond.png");
     background-attachment: fixed;
-    color: #f9fbe3;
-    text-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
+    color: rgb(217,217,217);
+    text-shadow: rgba(0, 0, 0, 1) 1px 3px 1px;
     font-size: 1.2rem;
     text-align: center;
 }
@@ -117,7 +118,7 @@ header {
     color: rgb(217,217,217);
     align-content: center;
     font-size: 1.5rem;
-    text-shadow: rgba(0, 0, 0, 1) 3px 1px 3px;
+    text-shadow: rgba(0, 0, 0, 1) 1px 3px 1px;
 }
 
 .menu:hover {
@@ -137,7 +138,7 @@ header {
     justify-content: center;
     flex-wrap: wrap;
     max-width: 70rem;
-    box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
+    box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
     padding: 1rem;
 }
 
@@ -165,18 +166,15 @@ header {
     padding: 1rem 1rem 1rem 1rem;
     flex-wrap: wrap;
     margin: 4rem 0 2rem 0;
-    box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
+    box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
 }
 
-#candidats_cercle {
-    margin: 1rem 0 1rem 0;
-    box-shadow: rgba(0, 0, 0, 0) 0px 5px 15px;
-}
+
 
 .description{
     font-style: italic;
     padding: 0.5rem;
-    color: #add9ce;
+    color: rgb(248,148,3);
 }
 
 .bouton {
@@ -187,63 +185,7 @@ header {
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;
 }
 
-.mes_cercles {
-    flex: inline-flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-    box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
-    margin: 3rem;
-}
 
-
-.cercle {
-    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
-    background-color : #FFC100;
-    border-radius: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    text-shadow: rgba(0, 0, 0, 0.5) 1px 1px 1px;
-    justify-content: center;
-    width: 18rem;
-    margin: 2rem 1rem 2rem 1rem;
-    color: #f9fbe3;
-    height: 15rem;
-}
-
-.cercle:hover {
-    background-color : #255067;
-    box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
-    transition: 0.5s ease;
-    text-shadow: rgba(0, 0, 0, 0) 0px 0px 0px;
-}
-
-#en_cours {
-    background-color: #add9ce;
-    color: #f9fbe3;
-}
-
-#en_cours:hover {
-    background-color : #255067;
-}
-
-#pas_lance {
-    color: #add9ce;
-    background-color: #f9fbe3;
-}
-
-#pas_lance:hover {
-    background-color : #255067;
-}
-
-.cercle_action {
-    padding: 0 1rem 1rem 1rem;
-    margin: 2rem;
-    color: #f9fbe3;
-    background-color: #f89403;
-    border-radius: 15px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    align-content: center;
-}
 
 .offcanvas-body{
     display: flex;
@@ -254,7 +196,7 @@ header {
 a:link {
     color: rgb(248,191,3);
     text-decoration: none;
-    text-shadow: rgba(0, 0, 0, 0.35) 1px 5px 15px;
+    text-shadow: rgba(0, 0, 0, 0.8) 1px 3px 1px;
 }
 
 a:visited {
@@ -311,7 +253,7 @@ a:hover {
   color: white;
   width: auto;
   height: 0;
-  text-shadow: rgba(0, 0, 0, 0.5) 2px 0px 2px;
+  text-shadow: rgba(0, 0, 0, 0) 1px 5px 5px;
 }
 
 
@@ -332,6 +274,7 @@ a:hover {
 }
 
 .text {
+  text-shadow: rgba(0, 0, 0, 0) 1px 5px 5px;
   text-align: center;
   font-size: 1rem;
   position: absolute;
@@ -347,7 +290,7 @@ a:hover {
     margin: 0.5rem 3rem 0 3rem;
     padding: 0.5rem;
     background-color: red;
-    text-shadow: rgba(0, 0, 0, 0.15) 1px 1px 1px;
+    text-shadow: rgba(0, 0, 0, 0.8) 1px 3px 1px;
 }
 
 .connexion {
@@ -371,3 +314,58 @@ a:hover {
     font-size: 1rem;
 }
 
+table {
+    margin: 3rem;
+    justify-content: center;
+    color: rgb(217,217,217);
+    text-shadow: rgba(0, 0, 0, 1) 1px 3px 1px;
+    border-collapse: collapse;
+    table-layout: fixed;
+    box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 10px;
+}
+
+thead th {
+   color: red;
+   font-size: 1.9rem;
+   text-align: center;
+   background-color: rgba(25,25,25, 1);
+}
+
+thead th:nth-child(1) {
+  width: 35%;
+}
+
+thead th:nth-child(2) {
+  width: 20%;
+}
+
+thead th:nth-child(3) {
+  width: 20%;
+}
+
+thead th:nth-child(4) {
+  width: 25%;
+}
+
+th,
+td {
+  padding: 10px;
+}
+
+tbody td {
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: rgba(40,40,40, 0);
+}
+
+tbody tr:nth-child(even) {
+  background-color: rgb(25,25,25, 0.7);
+}
+
+.classement_user {
+    color: rgb(217,217,217);
+    background-color: red;
+}

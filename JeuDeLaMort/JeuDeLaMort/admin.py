@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Candidat, Pari, Cercle, Ligue, Ligue_user, Pari_unique
+from .models import Candidat, Pari, Cercle
 
 
 class CandidatAdmin(admin.ModelAdmin):
@@ -7,7 +7,7 @@ class CandidatAdmin(admin.ModelAdmin):
 
 
 class PariAdmin(admin.ModelAdmin):
-    list_display = ('username', 'candidat_nom')
+    list_display = ('joueur', 'candidat')
 
 
 class RechercheAdmin(admin.ModelAdmin):
@@ -15,24 +15,9 @@ class RechercheAdmin(admin.ModelAdmin):
 
 
 class CercleAdmin(admin.ModelAdmin):
-    list_display = ('username', 'ami_name')
-
-
-class LigueAdmin(admin.ModelAdmin):
-    list_display = ('nom', 'description', 'lancee')
-
-
-class Ligue_userAdmin(admin.ModelAdmin):
-    list_display = ('ligue', 'user_id')
-
-
-class Pari_uniqueAdmin(admin.ModelAdmin):
-    list_display = ('ligue', 'user_id', 'wiki_id')
+    list_display = ('joueur', 'ami')
 
 
 admin.site.register(Candidat, CandidatAdmin)
 admin.site.register(Pari, PariAdmin)
 admin.site.register(Cercle, CercleAdmin)
-admin.site.register(Ligue, LigueAdmin)
-admin.site.register(Ligue_user, Ligue_userAdmin)
-admin.site.register(Pari_unique, Pari_uniqueAdmin)

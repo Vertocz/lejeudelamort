@@ -13,10 +13,10 @@
 <h2>Ajouter un ami</h2>
 <div>Inscrire ici le pseudo d'un ami pour le retrouver</div>
 
-<form action="" method="post" novalidate>
+<form style="padding: 2rem;" action="" method="post" novalidate>
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Rechercher">
+    {{ form }}
+    <p style="padding: 2rem"><input type="submit" value="Rechercher"></p>
 </form>
 {% endif %}
 

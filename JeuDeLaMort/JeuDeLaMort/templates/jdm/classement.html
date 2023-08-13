@@ -1,0 +1,64 @@
+{% extends 'jdm/base.html' %}
+{% block content %}
+{% load static %}
+
+<h1>Classement</h1>
+<div>Ici apparaissent les joueurs qui ont marqué des points ainsi que vos amis</div>
+
+{% if liste|length > 0 %}
+<div>
+<table>
+  <thead>
+    <tr>
+        <th>Joueur</th>
+        <th>Score</th>
+        <th>Succès</th>
+        <th>Nominations</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for user, est_un_ami, score, nominations, succes in liste %}
+  <tr>
+      {% if est_un_ami %}
+      <td><a href="{% url 'salle-user' user.id %}">{{ user.username }}</a></td>
+      <td>{{ score }}</td>
+      <td>{{ succes }}</td>
+      <td>{{ nominations }}</td>
+
+      {% elif user == request.user %}
+      <td class="classement_user"><a style="color:rgb(217,217,217)" href="{% url 'salle-user' user.id %}">{{ user.username }}</a></td>
+      <td class="classement_user">{{ score }}</td>
+      <td class="classement_user">{{ succes }}</td>
+      <td class="classement_user">{{ nominations }}</td>
+
+      {% else %}
+          {% if score != 0 %}
+          <td>{{ user.username }}</td>
+          <td>{{ score }}</td>
+          <td>{{ succes }}</td>
+          <td>{{ nominations }}</td>
+
+          {% endif %}
+      {% endif %}
+
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+
+
+{% else %}
+<div>Suivez ici vos amis. Il ne faut pas rester seul.e.</div>
+{% endif %}
+
+<a href="{% url 'recherche-amis' %}"><h2 id="lien">Ajouter un ami</h2></a>
+
+{% if en_devenir|length > 0 %}
+<h2>Ajouter quelqu'un qui vous suit :</h2>
+{% for ami in en_devenir %}
+<a href="{% url 'nouvel-ami' ami.id %}"><div>{{ ami.username }}</div></a>
+{% endfor%}
+{% endif %}
+
+{% endblock %}
