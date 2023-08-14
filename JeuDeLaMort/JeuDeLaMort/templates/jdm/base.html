@@ -17,7 +17,7 @@
         {% if user.is_authenticated %}
         <a href="{% url 'logout' %}">Déconnexion</a>
         {% else %}
-        <div style="flex-direction: row; justify-content: right"><a href="{% url 'login' %}">Connexion</a> | <a href="{% url 'register_user' %}">Inscription</a></div>
+        <div style="flex-direction: row; justify-content: right; "><a href="{% url 'login' %}">Connexion</a> | <a href="{% url 'register_user' %}">Inscription</a></div>
         {% endif %}
         </div>
 
@@ -64,7 +64,7 @@
 
 </main>
 <footer>
-<div class="pied">Source des données :&nbsp;<a href="https://fr.wikipedia.org/wiki/Cynisme" target="_blank"><div style="color: rgb(248,191,3)">Wikipedia</div></a></div>
+<div class="pied">Source des données :&nbsp;<a href="https://fr.wikipedia.org/wiki/Cynisme" target="_blank"><div style="color: rgb(144, 150, 144)">Wikipedia</div></a></div>
 <div>©Victor Crézé - 2023</div>
 </footer>
 

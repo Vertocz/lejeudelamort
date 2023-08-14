@@ -415,3 +415,6 @@ def maj(request):
     envoyer_mail()
     return redirect('resume')
 
+
+def change_password(request):
+    pass

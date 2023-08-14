@@ -1,13 +1,15 @@
 {% load static %}
 
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rye&display=swap');
 
 html, body {
-    font-family: 'Permanent Marker', cursive;
+    font-family: 'Rye', cursive;
 }
 
 
 /*
+'Permanent Marker', cursive;
 rgb(248,148,3) orange
 rgb(40,40,40) gris foncé
 rgb(217,217,217) gris clair
@@ -23,18 +25,18 @@ div{
 
 
 h1 {
-    color: rgb(248,191,3);
-    padding: 2rem 1rem 1.5rem 1rem;
+    color: rgb(144, 150, 144);
+    padding: 4rem 1rem 1.5rem 1rem;
     font-size: 2.2em;
-    text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 1px;
+    text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 2px;
 }
 
 
 h2 {
-    color: rgb(248,148,3);
-    text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 1px;
+    color: rgb(144, 150, 144);
+    text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 2px;
     font-size: 1.7rem;
-    padding: 2rem 1rem 1rem 1rem;
+    padding: 3rem 1rem 1rem 1rem;
 }
 
 #lien {
@@ -46,11 +48,12 @@ h2 {
 }
 
 h3 {
-    color: rgb(248,191,3);
+    color: rgb(144, 150, 144);
     font-size: 1.4rem;
     padding: 1rem 1rem 0.5rem 1rem;
-    text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 1px;
+    text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 2px;
 }
+
 
 li {
     padding: 1rem;
@@ -69,7 +72,7 @@ li {
 }
 
 .titre_bloc {
-    color: rgb(248,148,3);
+    color: rgb(132, 140, 148);
     font-size: 1.3rem;
     padding: 0.5rem 1rem 0.5rem 1rem;
 }
@@ -99,32 +102,27 @@ body {
     background-image: url("/static/jdm/fond.png");
     background-attachment: fixed;
     color: rgb(217,217,217);
-    text-shadow: rgba(0, 0, 0, 1) 1px 3px 1px;
+    text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 2px;
     font-size: 1.2rem;
     text-align: center;
 }
 
 
 header {
-    background: url("/static/jdm/texture.jpg") no-repeat content-box;  /* -color: #ae6b13;*/
+    /*background: url("/static/jdm/texture.jpg") no-repeat content-box;   */
     background-size: cover;
-    background-color: #8E6A40;
+    background-color: rgb(39, 37, 33);
     margin: 4rem 3rem 0 3rem;
     height: 200px;
-    border: 2px solid rgb(248,191,3);
+    box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
 }
 
 .menu {
-    color: rgb(217,217,217);
     align-content: center;
-    font-size: 1.5rem;
-    text-shadow: rgba(0, 0, 0, 1) 1px 3px 1px;
+    font-size: 2rem;
+    text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 2px;
 }
 
-.menu:hover {
-    color: red;
-    transition: 0.5s ease;
-}
 
 .connect {
     position: absolute;
@@ -169,14 +167,6 @@ header {
     box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
 }
 
-
-
-.description{
-    font-style: italic;
-    padding: 0.5rem;
-    color: rgb(248,148,3);
-}
-
 .bouton {
     margin: 2rem;
     background-color: #f89403;
@@ -194,18 +184,18 @@ header {
 }
 
 a:link {
-    color: rgb(248,191,3);
+    color: rgb(240,240,240);
     text-decoration: none;
-    text-shadow: rgba(0, 0, 0, 0.8) 1px 3px 1px;
+    text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 2px;
 }
 
 a:visited {
-    color: rgb(248,191,3);
+    color: rgb(240,240,240);
     text-decoration: none;
 }
 
 a:hover {
-    color: rgb(240,240,240);
+    color: rgb(144, 150, 144);
     text-decoration: none;
     transition: 0.5s ease;
 }
@@ -222,7 +212,7 @@ a:hover {
   left: 0;
   right: 0;
   background-color : Gainsboro;
-  color: rgb(248,148,3);
+  color: rgb(132, 140, 148);
   opacity: 0.9;
   overflow: hidden;
   width: auto;
@@ -276,7 +266,7 @@ a:hover {
 .text {
   text-shadow: rgba(0, 0, 0, 0) 1px 5px 5px;
   text-align: center;
-  font-size: 1rem;
+  font-size: 0.9rem;
   position: absolute;
   overflow: hidden;
   top: 50%;
@@ -290,7 +280,7 @@ a:hover {
     margin: 0.5rem 3rem 0 3rem;
     padding: 0.5rem;
     background-color: red;
-    text-shadow: rgba(0, 0, 0, 0.8) 1px 3px 1px;
+    text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 2px;
 }
 
 .connexion {
@@ -310,7 +300,7 @@ a:hover {
 .pied {
     display: inline-flex;
     flex-direction: row;
-    padding: 10rem 0 0 0;
+    padding: 5rem 0 0 0;
     font-size: 1rem;
 }
 
@@ -318,17 +308,17 @@ table {
     margin: 3rem;
     justify-content: center;
     color: rgb(217,217,217);
-    text-shadow: rgba(0, 0, 0, 1) 1px 3px 1px;
+    text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 2px;
     border-collapse: collapse;
     table-layout: fixed;
     box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 10px;
 }
 
 thead th {
-   color: red;
+   color: rgb(144, 150, 144);
    font-size: 1.9rem;
    text-align: center;
-   background-color: rgba(25,25,25, 1);
+   background-color: rgba(39,37,33, 0.9);
 }
 
 thead th:nth-child(1) {
@@ -358,14 +348,14 @@ tbody td {
 }
 
 tbody tr:nth-child(odd) {
-  background-color: rgba(40,40,40, 0);
+  background-color: rgb(25,25,25, 0.7);
 }
 
 tbody tr:nth-child(even) {
-  background-color: rgb(25,25,25, 0.7);
+  background-color: rgba(40,40,40, 0);
 }
 
 .classement_user {
     color: rgb(217,217,217);
-    background-color: red;
+    background-color: rgb(132, 140, 148);
 }
