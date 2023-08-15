@@ -9,15 +9,7 @@
 <div><a href="{% url 'nouvel-ami' ami.id %}">{{ ami.username }}</a></div>
 {% endfor %}
 
-{% else %}
-<h2>Ajouter un ami</h2>
-<div>Inscrire ici le pseudo d'un ami pour le retrouver</div>
 
-<form style="padding: 2rem;" action="" method="post" novalidate>
-    {% csrf_token %}
-    {{ form }}
-    <p style="padding: 2rem"><input type="submit" value="Rechercher"></p>
-</form>
 {% endif %}
 
 

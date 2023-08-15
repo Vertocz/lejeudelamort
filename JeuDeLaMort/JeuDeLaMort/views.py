@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from datetime import datetime, date
 from .models import Candidat, Pari, Cercle
 from django.contrib.auth.models import User
-from .forms import RechercheCandidatForm, CercleForm
+from .forms import RechercheCandidatForm
 from django.contrib import messages
 import requests
 
@@ -123,14 +123,12 @@ def salle_attente(request):
 
 
 def recherche_amis(request):
-    form = CercleForm(request.POST)
-    if form.is_valid():
-        amis_potentiels = User.objects.filter(username__iexact=form.data['username'])
-        return render(request, 'jdm/recherche_amis.html', {'form': form, 'liste': amis_potentiels})
-
+    if request.method == 'POST':
+        your_name = request.POST['your_name']
+        amis_potentiels = User.objects.filter(username__iexact=your_name)
+        return render(request, 'jdm/recherche_amis.html', {'liste': amis_potentiels})
     else:
-        form = CercleForm()
-        return render(request, 'jdm/recherche_amis.html', {'form': form})
+        classement(request)
 
 
 def classement(request):
@@ -172,8 +170,10 @@ def nouvel_ami(request, id):
     ami = User.objects.get(id=id)
     liste = liste_amis(request.user.id)[0]
     if Cercle.objects.filter(ami=ami, joueur=request.user):
+        messages.success(request, (str(User.objects.get(id=id).username) + " est déjà dans votre cercle"))
         return render(request, 'jdm/classement.html', {'liste': liste})
     if id == request.user.id:
+        messages.success(request, ("Vous voudriez vraiment être ami.e avec vous-même ?"))
         return render(request, 'jdm/classement.html', {'liste': liste})
     else:
         Cercle(ami=ami, joueur=request.user).save()

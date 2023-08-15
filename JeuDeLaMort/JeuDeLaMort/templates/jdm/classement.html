@@ -52,7 +52,13 @@
 <div>Suivez ici vos amis. Il ne faut pas rester seul.e.</div>
 {% endif %}
 
-<h2><a href="{% url 'recherche-amis' %}">Ajouter un ami</a></h2>
+<h2>Ajouter un ami</h2>
+<form action="{% url 'recherche-amis' %}" method="post">
+    {% csrf_token %}
+    <label for="your_name">Pseudo :</label>
+    <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
+    <input type="submit" value="Rechercher">
+</form>
 
 {% if en_devenir|length > 0 %}
 <h2>Ajouter quelqu'un qui vous suit :</h2>

@@ -4,10 +4,16 @@
 {% load static %}
 
 
-<h2>{{ ami.username }} a élargi votre cercle !</h2>
+<h1>{{ ami.username }} a élargi votre cercle !</h1>
 
-<a href="{% url 'salle-user' ami.id %}"><div>Voir sa salle d'attente</div></a>
+<h2><a href="{% url 'salle-user' ami.id %}">Voir sa salle d'attente</a></h2>
 
-<a href="{% url 'recherche-amis' %}">Nouvelle recherche</a>
+<h2>Nouvelle recherche</h2>
+<form action="{% url 'recherche-amis' %}" method="post">
+    {% csrf_token %}
+    <label for="your_name">Pseudo :</label>
+    <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
+    <input type="submit" value="Rechercher">
+</form>
 
 {% endblock %}

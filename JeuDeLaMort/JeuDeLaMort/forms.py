@@ -19,11 +19,3 @@ class SavePersonneForm(forms.ModelForm):
     class Meta:
         model = Candidat
         fields = '__all__'
-
-
-class CercleForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ['username']
-
-
