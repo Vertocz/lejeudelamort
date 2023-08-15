@@ -1,12 +1,12 @@
 from django.urls import path, include
 from django.contrib import auth, admin
-from .views import index, resume, salle_attente, candidat_create, candidat_detail, candidat_valide, salle_user, classement, favoris, nouvel_ami, recherche_amis, retirer_ami, change_password, maj
+from .views import index, resume, candidat_create, candidat_detail, candidat_valide, salle_user, \
+    classement, favoris, nouvel_ami, recherche_amis, retirer_ami, change_password, maj
 
 urlpatterns = [
     path('', index, name="jdm-index"),
     path('resume/', resume, name='resume'),
     path('candidats/<int:id>/', candidat_detail, name='candidat-detail'),
-    path('joueurs/salle_attente/', salle_attente, name="salle-attente"),
     path('joueurs/<int:id>/', salle_user, name="salle-user"),
     path('joueurs/add/', candidat_create, name='candidat-create'),
     path('joueurs/add/<str:qqn>/', candidat_valide, name='candidat-valide'),

@@ -5,7 +5,15 @@
 <h1 id="joueur">{{ joueur.username }}</h1>
 
 {% if rap > 0 %}
+{% if joueur == request.user %}
+<div>Vous pouvez encore nommer {{ rap }} candidat{{ rap|pluralize }}.</div>
+<h2 style="padding: 1rem 0 2rem 0; "><a href="{% url 'candidat-create' %}">Ajouter un candidat</a></h2>
+
+
+{% else %}
 <div>{{ joueur.username }} peut encore nommer {{ rap }} candidat{{ rap|pluralize }}.</div>
+{% endif %}
+
 {% endif %}
 
 <div class="resume">
@@ -96,6 +104,8 @@
     </div>
 {% endif %}
 
+{% if joueur != request.user %}
 <a href="{% url 'retirer-ami' joueur.id %}"><h2>Retirer {{ joueur.username }} de mon cercle d'amis</h2></a>
+{% endif %}
 
 {% endblock %}

@@ -103,23 +103,24 @@ def moyenne_age(joueur):
         pass
 
 
-def salle_attente(request):
-    joueur = request.user
-    candidats_salle = []
-    for pari in Pari.objects.filter(joueur=joueur):
-        candidats_salle.append(pari.candidat)
-    joueur = User.objects.get(id=joueur.id)
-    paris_user = Pari.objects.filter(joueur=joueur)
-    paris_decedes = Pari.objects.filter(joueur=joueur, mort=True)
-    user = User.objects.get(id=joueur.id)
-    reste_a_parier = 10 - len(paris_user.filter(mort=False))
-    poker = joker(joueur)
-    moyenne = moyenne_age(joueur)
-    return render(request,
-                  'jdm/salle_attente.html',
-                  {'joueur': joueur, 'candidats_salle': candidats_salle, 'score_max': score_max(joueur),
-                   'paris': paris_user, 'deces': paris_decedes, 'score_user': score_user(paris_user), 'poker': poker, 'moyenne': moyenne,
-                   'rap': reste_a_parier, 'user': user, 'candidats': Candidat.objects.all()})
+def salle_user(request, id):
+    joueur = User.objects.get(id=id)
+    if len(Cercle.objects.filter(joueur=request.user, ami=joueur)) > 0 or request.user == joueur:
+        paris_user = Pari.objects.filter(joueur=joueur)
+        paris_decedes = Pari.objects.filter(joueur=joueur, mort=True)
+        candidats_joueur = []
+        for pari in paris_user:
+            candidat = candidats.get(wiki_id=pari.candidat.wiki_id)
+            candidats_joueur.append(candidat)
+        return render(request,
+                      'jdm/salle_user.html',
+                      {'joueur': joueur, 'poker': joker(joueur), 'score_max': score_max(joueur),
+                       'score': score_user(paris_user), 'paris': Pari.objects.filter(joueur=joueur), 'deces': paris_decedes,
+                       'rap': 10 - len(paris_user), 'candidats_joueur': candidats_joueur,
+                       'moyenne': moyenne_age(joueur)})
+    else:
+        messages.success(request, ("Ce joueur ne fait pas partie de votre cercle"))
+        return redirect('classement')
 
 
 def recherche_amis(request):
@@ -227,26 +228,6 @@ def recherche_candidat(nom):
     return candidats_potentiels
 
 
-def salle_user(request, id):
-    joueur = User.objects.get(id=id)
-    if len(Cercle.objects.filter(joueur=request.user, ami=joueur)) > 0:
-        paris_user = Pari.objects.filter(joueur=joueur)
-        paris_decedes = Pari.objects.filter(joueur=joueur, mort=True)
-        candidats_joueur = []
-        for pari in paris_user:
-            candidat = candidats.get(wiki_id=pari.candidat.wiki_id)
-            candidats_joueur.append(candidat)
-        return render(request,
-                      'jdm/salle_user.html',
-                      {'joueur': joueur, 'poker': joker(joueur), 'score_max': score_max(joueur),
-                       'score': score_user(paris_user), 'paris': Pari.objects.filter(joueur=joueur), 'deces': paris_decedes,
-                       'rap': 10 - len(paris_user), 'candidats_joueur': candidats_joueur,
-                       'moyenne': moyenne_age(joueur)})
-    elif joueur == request.user:
-        return redirect('salle-attente')
-    else:
-        return redirect('classement')
-
 
 def candidat_create(request):
     if request.method == 'POST':
@@ -315,9 +296,9 @@ def candidat_valide(request, qqn):
     joueur = request.user
     candidat = Candidat.objects.get(wiki_id=qqn)
     nb_paris = len(Pari.objects.filter(joueur=joueur, mort=False))
-    print(nb_paris)
     if Pari.objects.filter(joueur=joueur, candidat=candidat):
-        return render(request, 'jdm/redite.html')
+        messages.success(request, ("Ce candidat est déjà dans votre liste"))
+        return redirect('candidat-create')
     elif nb_paris < 10:
         Pari(candidat=candidat, joueur=joueur).save()
         candidat = Candidat.objects.get(wiki_id=qqn)
@@ -334,7 +315,6 @@ def candidat_detail(request, id):
         for pari in paris_candidat:
             if cercles.filter(joueur=request.user, ami=pari.joueur):
                 paris_amis.append(pari.joueur)
-        print(candidat, paris_candidat, paris_amis)
         return render(request, 'jdm/candidat_detail.html',
                       context={'candidat': candidat, 'paris': paris_amis, 'cercles': cercles})
     else:
@@ -411,7 +391,6 @@ def maj(request):
                     if User.objects.get(id=pari.user_id) not in gagnants:
                         gagnants.append(pari.joueur)
                 resultats.append([candidat, gagnants])
-    print(resultats)
     envoyer_mail()
     return redirect('resume')
 
