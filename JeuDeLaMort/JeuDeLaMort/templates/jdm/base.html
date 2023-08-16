@@ -10,12 +10,12 @@
 </head>
 
 <body>
-
+<a href="{% url 'jdm-index' %}"><img src="{% static 'jdm/vautour.png' %}" style="margin: 0.2rem" height="150"></a>
 <div>
 
         <div class="connect">
         {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}">Déconnexion</a>
+        <div style="flex-direction: row; justify-content: right; "><a href="">Paramètres du compte</a> | <a href="{% url 'logout' %}">Déconnexion</a></div>
         {% else %}
         <div style="flex-direction: row; justify-content: right; "><a href="{% url 'login' %}">Connexion</a> | <a href="{% url 'register_user' %}">Inscription</a></div>
         {% endif %}
@@ -26,7 +26,6 @@
 <header>
     <nav>
     <ul style="list-style-type: none; display: flex; align-items: center; justify-content:space-evenly">
-       <a href="{% url 'jdm-index' %}"><img src="{% static 'jdm/vautour.png' %}" style="margin: 0.2rem" height="100"></a>
         {% if user.is_authenticated %}
 
             <a href="{% url 'salle-user' request.user.id %}"><li class="menu">Ma salle d'attente</li></a>
