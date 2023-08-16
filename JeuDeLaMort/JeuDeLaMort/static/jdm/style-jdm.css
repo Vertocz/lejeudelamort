@@ -101,8 +101,9 @@ li {
 
 body {
     background: no-repeat center url("/static/jdm/vautour_seul_fond_gris.svg");
-    background-color: #746C61;
     background-attachment: fixed;
+    background-position-y: calc(100% + 5.5rem);
+    background-color: #746C61;
     color: rgb(217,217,217);
     text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 2px;
     font-size: 1.2rem;
