@@ -28,7 +28,7 @@
     {% endif %}
 
 {% else %}
-<div style="padding: 2rem">{{ candidat.description|capfirst }}</div>
+<div style="padding: 2rem; color:#F2B6D7">{{ candidat.description|capfirst }}</div>
 <div>Date de naissance : {{ candidat.DDN }} ({{ candidat.calcul_age }} ans)</div>
 <div style="display: inline">Ce candidat peut rapporter <span style="color: #F2B6D7">{{ candidat.points }} point{{ candidat.points|pluralize }}</span>.</div>
     {% if paris|length > 0 %}

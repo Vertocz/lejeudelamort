@@ -26,10 +26,10 @@
       <td>{{ nominations }}</td>
 
       {% elif user == request.user %}
-      <td class="classement_user"><a style="color:rgb(217,217,217)" href="{% url 'salle-user' user.id %}">{{ user.username }}</a></td>
-      <td class="classement_user">{{ score }}</td>
-      <td class="classement_user">{{ succes }}</td>
-      <td class="classement_user">{{ nominations }}</td>
+      <td class="classement_user"><a style="color: #F2B6D7" href="{% url 'salle-user' user.id %}">{{ user.username }}</a></td>
+      <td class="classement_user"><a style="color: #F2B6D7" href="{% url 'salle-user' user.id %}">{{ score }}</a></td>
+      <td class="classement_user"><a style="color: #F2B6D7" href="{% url 'salle-user' user.id %}">{{ succes }}</a></td>
+      <td class="classement_user"><a style="color: #F2B6D7" href="{% url 'salle-user' user.id %}">{{ nominations }}</a></td>
 
       {% else %}
           {% if score != 0 %}

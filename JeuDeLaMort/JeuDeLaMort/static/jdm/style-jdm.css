@@ -25,10 +25,10 @@ div{
 
 
 h1 {
-    color: black;
+    color: #F2B6D7;
     padding: 4rem 1rem 1.5rem 1rem;
     font-size: 2.2em;
-    text-shadow: rgba(217,217,217, 0.7) 1px 3px 1px;
+    text-shadow: rgba(0,0,0, 1) 1px 3px 2px;
 }
 
 
@@ -123,13 +123,13 @@ header {
 .menu {
     align-content: center;
     font-size: 2rem;
-    text-shadow: rgba(0, 0, 0, 0.9) 1px 1px 2px;
+    text-shadow: rgba(0, 0, 0, 1) 1px 1px 2px;
 }
 
 .menu:hover{
     transition: 0.5s ease;
-    color: #F2B807;
-    text-shadow: rgba(0, 0, 0, 0.9) 1px 1px 2px;
+    color: black;
+    text-shadow: white 1px 1px 2px;
 }
 
 
