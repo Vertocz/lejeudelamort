@@ -42,3 +42,9 @@ class Pari(models.Model):
 class Cercle(models.Model):
     joueur = models.ForeignKey(User, on_delete=models.CASCADE, related_name='joueur', null=True)
     ami = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ami', null=True)
+
+
+class Preference(models.Model):
+    joueur = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    newsletter = models.BooleanField('Etre prévenu.e lorsqu\'un candidat rapporte des points', default=True)
+    infos = models.BooleanField('Rester informé.e des évolutions du Jeu de la Mort', default=True)

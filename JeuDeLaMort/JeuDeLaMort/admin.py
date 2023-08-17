@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Candidat, Pari, Cercle
+from .models import Candidat, Pari, Cercle, Preference
 
 
 class CandidatAdmin(admin.ModelAdmin):
@@ -18,6 +18,11 @@ class CercleAdmin(admin.ModelAdmin):
     list_display = ('joueur', 'ami')
 
 
+class PreferenceAdmin(admin.ModelAdmin):
+    list_display = ('joueur', 'newsletter', 'infos')
+
+
 admin.site.register(Candidat, CandidatAdmin)
 admin.site.register(Pari, PariAdmin)
 admin.site.register(Cercle, CercleAdmin)
+admin.site.register(Preference, PreferenceAdmin)

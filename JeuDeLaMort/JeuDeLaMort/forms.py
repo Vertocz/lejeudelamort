@@ -1,5 +1,5 @@
 from django import forms
-from .models import Candidat, Cercle
+from .models import Candidat, Preference
 from django.contrib.auth.models import User
 
 
@@ -19,3 +19,9 @@ class SavePersonneForm(forms.ModelForm):
     class Meta:
         model = Candidat
         fields = '__all__'
+
+
+class PreferenceForm(forms.ModelForm):
+    class Meta:
+        model = Preference
+        fields = ['newsletter', 'infos']

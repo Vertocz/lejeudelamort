@@ -3,9 +3,9 @@ import time
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 from datetime import datetime, date
-from .models import Candidat, Pari, Cercle
+from .models import Candidat, Pari, Cercle, Preference
 from django.contrib.auth.models import User
-from .forms import RechercheCandidatForm
+from .forms import RechercheCandidatForm, PreferenceForm
 from django.contrib import messages
 import requests
 
@@ -17,30 +17,7 @@ URL = "https://www.wikidata.org/w/api.php"
 
 
 def index(request):
-    morts_recentes = []
-    amis = []
-    joueur = request.user
-    if joueur.is_authenticated:
-        for cercle in Cercle.objects.filter(joueur=joueur):
-            amis.append(User.objects.get(id=cercle.ami.id))
-        for candidat in candidats:
-            if candidat.DDD is not None:
-                try:
-                    if datetime.timestamp(joueur.last_login) <= time.mktime(candidat.DDD.timetuple()):
-                        votants_candidat = []
-                        for pari in Pari.objects.filter(candidat=candidat):
-                            if User.objects.get(id=pari.joueur.id) in amis:
-                                votants_candidat.append(User.objects.get(id=pari.joueur.id).username)
-                            morts_recentes.append((candidat, votants_candidat))
-                except AttributeError:
-                    pass
-
-        if len(morts_recentes) > 0:
-            return render(request, "jdm/news.html", {"deces": morts_recentes})
-        else:
-            return render(request, "jdm/index.html", context={"date": datetime.today(), "candidats": candidats})
-    else:
-        return render(request, "jdm/index.html", context={"date": datetime.today(), "candidats": candidats})
+    return render(request, "jdm/index.html")
 
 
 def score_max(joueur):
@@ -304,7 +281,7 @@ def candidat_valide(request, qqn):
         candidat = Candidat.objects.get(wiki_id=qqn)
         return render(request, 'jdm/candidat_valide.html', {'candidat': candidat, 'nb_paris': nb_paris})
     else:
-        return render(request, 'jdm/liste_terminee.html')
+        return redirect('jdm/classement.html')
 
 
 def candidat_detail(request, id):
@@ -397,3 +374,21 @@ def maj(request):
 
 def change_password(request):
     pass
+
+
+def parametres(request):
+    if len(Preference.objects.filter(joueur=request.user)) == 0:
+        Preference(joueur=request.user).save()
+    prefs = Preference.objects.get(joueur=request.user)
+
+    if request.method == 'POST':
+        form = PreferenceForm(request.POST, instance=prefs)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Vos paramètres ont été mis à jour')
+            return redirect('parametres')
+
+    else:
+        form = PreferenceForm(instance=prefs)
+        return render(request, "jdm/parametres.html", {'parametres': prefs, 'form': form})
+
