@@ -14,11 +14,11 @@
 <div class="alignement">
         <a href="/candidats/{{ x.id }}/">
             {% if x.photo is None or x.photo == '' %}
-            <img src="{% static 'jdm/candidat.png' %}" width="200" height="200" alt="{{ x.nom }}" class="image"/>
+            <img src="{% static 'jdm/candidat.png' %}" width="170" height="170" alt="{{ x.nom }}" class="image"/>
             {% else %}
-            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ x.photo }}&width=300" width="200" height="200" alt="{{ x.nom }}" class="image"/>
+            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ x.photo }}&width=300" width="170" height="170" alt="{{ x.nom }}" class="image"/>
             {% endif %}
-                <div class="overlay">
+                <div class="overlay2">
                     <div class="text">
                         <p>{{ x.nom }}</p>
                         <p>{{ x.calcul_age }} ans</p>

@@ -9,7 +9,7 @@
 <div class="candidats">
 {% for candidat, nb_votes, z in favoris %}
 <div class="alignement">
-        <a href="/candidats/{{ candidat.id }}/"><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" width="180" height="180" alt="{{ candidat.nom }}" class="image"/>
+        <a href="/candidats/{{ candidat.id }}/"><img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" width="170" height="170" alt="{{ candidat.nom }}" class="image"/>
                 <div class="overlay">
                     <div class="text">
                         <p>{{ candidat.nom }}</p>

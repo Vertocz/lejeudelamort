@@ -1,28 +1,52 @@
 {% load static %}
 
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rye&display=swap');
 
 html, body {
     font-family: 'Rye', cursive;
 }
 
+body {
+    background: no-repeat center url("/static/jdm/vautour_seul_fond_gris.svg");
+    background-attachment: fixed;
+    background-position-y: calc(100% + 7rem);
+    background-position-x: calc(100% + 16.5rem);
+    background-color: #746C61;
+    color: rgb(217,217,217);
+    text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 2px;
+    font-size: 1.2rem;
+    text-align: center;
+}
 
-/*
-'Permanent Marker', cursive;
-rgb(248,148,3) orange
-rgb(40,40,40) gris foncé
-rgb(217,217,217) gris clair
-rgb(248,191,3) jaune
-rgb(244,179,211) rose
-*/
+.connect {
+    position: absolute;
+    top: 1rem;
+    right: 3rem;
+}
 
+header {
+    background-size: cover;
+    background-color: #F2B6D7;
+    box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
+}
+
+.menu {
+    margin: 1rem;
+    align-content: center;
+    font-size: 2rem;
+    text-shadow: rgba(0, 0, 0, 1) 1px 1px 2px;
+}
+
+.menu:hover{
+    transition: 0.5s ease;
+    color: black;
+    text-shadow: white 1px 1px 2px;
+}
 
 div{
     display: flex;
     flex-direction: column;
 }
-
 
 h1 {
     color: #F2B6D7;
@@ -31,32 +55,11 @@ h1 {
     text-shadow: rgba(0,0,0, 1) 1px 3px 2px;
 }
 
-
 h2 {
     color: #F2B807;
     text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 2px;
     font-size: 1.7rem;
     padding: 3rem 1rem 1rem 1rem;
-}
-
-#lien {
-    color: rgb(217,217,217);
-}
-
-#lien:hover {
-    color: rgb(248,191,3);
-}
-
-h3 {
-    color: rgb(144, 150, 144);
-    font-size: 1.4rem;
-    padding: 1rem 1rem 0.5rem 1rem;
-    text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 2px;
-}
-
-
-li {
-    padding: 1rem;
 }
 
 .bloc {
@@ -77,78 +80,13 @@ li {
     padding: 0.5rem 1rem 0.5rem 1rem;
 }
 
-#ami:hover {
-    background-color : rgb(248,191,3);
-    box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
-    transition: 0.5s ease;
-}
-
 .fond {
     background-color: rgba(0,0,0,0.7);
     padding: 1rem;
     border-radius:15px;
-    margin: 1rem 2rem 1rem 2rem;
+    margin: 1rem 3rem 1rem 3rem;
     backdrop-filter: blur(5px);
 }
-
-
-#fond_cercle {
-    padding: 1rem 1rem 1rem 1rem;
-    color: #f89403;
-    box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 5px;
-}
-
-
-body {
-    background: no-repeat center url("/static/jdm/vautour_seul_fond_gris.svg");
-    background-attachment: fixed;
-    background-position-y: calc(100% + 5.5rem);
-    background-position-x: calc(100% + 16.5rem);
-    background-color: #746C61;
-    color: rgb(217,217,217);
-    text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 2px;
-    font-size: 1.2rem;
-    text-align: center;
-}
-
-
-header {
-    /*background: url("/static/jdm/texture.jpg") no-repeat content-box;
-     height: 200px;*/
-    background-size: cover;
-    background-color: #F2B6D7;
-    box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
-}
-
-.menu {
-    align-content: center;
-    font-size: 2rem;
-    text-shadow: rgba(0, 0, 0, 1) 1px 1px 2px;
-}
-
-.menu:hover{
-    transition: 0.5s ease;
-    color: black;
-    text-shadow: white 1px 1px 2px;
-}
-
-
-.connect {
-    position: absolute;
-    top: 1rem;
-    right: 3rem;
-}
-
-.amis {
-    display: inline-flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-    max-width: 70rem;
-    box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
-    padding: 1rem;
-}
-
 
 .score_user {
     font-size: 3rem;
@@ -170,12 +108,12 @@ header {
     display: inline-flex;
     flex-direction: row;
     justify-content: center;
-    align-content: center;
     padding: 1rem 1rem 1rem 1rem;
     flex-wrap: wrap;
-    margin: 4rem 0 2rem 0;
+    margin: 4rem 3rem 2rem 3rem;
     box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
     backdrop-filter: blur(2px);
+    max-width: 900px;
 }
 
 .bouton {
@@ -245,24 +183,9 @@ a:hover {
   transition: .5s ease;
 }
 
-.overlay3 {
-  position: relative;
-  bottom: 100;
-  left: 0;
-  right: 0;
-  opacity: 1;
-  color: white;
-  width: auto;
-  height: 0;
-  text-shadow: rgba(0, 0, 0, 0) 1px 5px 5px;
-}
-
-
 .alignement {
-  display: inline-flex;
   margin: 0.1rem;
 }
-
 
 .alignement:hover .overlay {
   bottom: 100%;
@@ -288,7 +211,7 @@ a:hover {
 
 .message {
     color: rgb(217,217,217);
-    margin: 0.5rem 3rem 0 3rem;
+    margin: 0.5rem 0rem 0 0rem;
     padding: 0.5rem;
     background-color: red;
     text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 2px;
@@ -314,6 +237,7 @@ a:hover {
     padding: 5rem 0 0 0;
     font-size: 1rem;
 }
+
 
 table {
     margin: 3rem;
