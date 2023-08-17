@@ -390,5 +390,5 @@ def parametres(request):
 
     else:
         form = PreferenceForm(instance=prefs)
-        return render(request, "jdm/parametres.html", {'parametres': prefs, 'form': form})
+        return render(request, "jdm/parametres.html", {'joueur': request.user, 'form': form})
 
