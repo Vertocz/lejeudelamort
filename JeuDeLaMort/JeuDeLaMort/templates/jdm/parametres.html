@@ -8,8 +8,8 @@
 
 <h2>Informations personnelles</h2>
 <div>Pseudo: {{ joueur.username }}</div>
-
 <div>E-mail: {{ joueur.email }}</div>
+<a href="{% url 'parametres' %}"><div>Modifier mon mot de passe</div></a>
 
 <h2>Préférences de communication</h2>
 <form action="" method="post" novalidate>

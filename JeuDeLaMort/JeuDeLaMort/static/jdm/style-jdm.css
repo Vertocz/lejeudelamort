@@ -160,9 +160,8 @@ a:hover {
   bottom: 100%;
   left: 0;
   right: 0;
-  background-color : Gainsboro;
-  color: rgb(132, 140, 148);
-  opacity: 0.9;
+  background-color : rgba(220,220,220,0.9);
+  color: rgb(0, 0, 0);
   overflow: hidden;
   width: auto;
   height: 0;
@@ -174,9 +173,8 @@ a:hover {
   bottom: 100%;
   left: 0;
   right: 0;
-  background-color : black;
+  background-color : rgba(0,0,0,0.7);
   color: white;
-  opacity: 0.7;
   overflow: hidden;
   width: auto;
   height: 0;
@@ -293,4 +291,17 @@ tbody tr:nth-child(even) {
 .classement_user {
     color: rgb(217,217,217);
     background-color: rgb(132, 140, 148);
+}
+
+@media screen and (max-width: 1200px){
+
+.overlay {
+    background-color : rgba(220,220,220,0.6);
+    height: 100%;
+}
+
+.overlay2 {
+    background-color : rgba(0,0,0,0.5);
+    height: 100%;
+}
 }
