@@ -14,7 +14,7 @@ body {
     background-color: #746C61;
     color: rgb(217,217,217);
     text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 2px;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     text-align: center;
 }
 
@@ -52,14 +52,14 @@ div{
 h1 {
     color: #F2B807;
     padding: 4rem 1rem 1.5rem 1rem;
-    font-size: 2.2em;
+    font-size: 3em;
     text-shadow: rgba(0,0,0, 1) 1px 3px 2px;
 }
 
 h2 {
     color: #F2B6D7;
     text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 2px;
-    font-size: 1.7rem;
+    font-size: 2.7rem;
     padding: 3rem 1rem 1rem 1rem;
 }
 
@@ -258,7 +258,7 @@ table {
 
 thead th {
    color: #F2B807;
-   font-size: 1.9rem;
+   font-size: 2.5rem;
    text-align: center;
    background-color: rgb(217,217,217);
 }
@@ -286,7 +286,7 @@ td {
 
 tbody td {
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 2.4rem;
 }
 
 tbody tr:nth-child(odd) {
@@ -301,6 +301,7 @@ tbody tr:nth-child(even) {
     color: rgb(217,217,217);
     background-color: rgb(132, 140, 148);
 }
+
 
 @media screen and (max-width: 1200px){
 
@@ -333,6 +334,6 @@ tbody tr:nth-child(even) {
 }
 
 .soustexte {
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 }

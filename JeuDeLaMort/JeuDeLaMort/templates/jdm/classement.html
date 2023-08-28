@@ -2,7 +2,6 @@
 {% block content %}
 {% load static %}
 
-<h1>Classement</h1>
 <div>Ici apparaissent les joueurs qui ont marqué des points ainsi que vos amis</div>
 
 {% if liste|length > 0 %}
@@ -13,17 +12,17 @@
         <th>Joueur</th>
         <th>Score</th>
         <th>Succès</th>
-        <th>Nominations</th>
+        <th>Sélections</th>
     </tr>
   </thead>
   <tbody>
   {% for user, est_un_ami, score, nominations, succes in liste %}
   <tr>
       {% if est_un_ami %}
-      <td><a href="{% url 'salle-user' user.id %}">{{ user.username }}</a></td>
-      <td>{{ score }}</td>
-      <td>{{ succes }}</td>
-      <td>{{ nominations }}</td>
+      <td class="classement_ami"><a href="{% url 'salle-user' user.id %}">{{ user.username }}</a></td>
+      <td class="classement_ami">{{ score }}</td>
+      <td class="classement_ami">{{ succes }}</td>
+      <td class="classement_ami">{{ nominations }}</td>
 
       {% elif user == request.user %}
       <td class="classement_user"><a style="color: #F2B6D7" href="{% url 'salle-user' user.id %}">{{ user.username }}</a></td>
@@ -33,10 +32,10 @@
 
       {% else %}
           {% if score != 0 %}
-          <td>{{ user.username }}</td>
-          <td>{{ score }}</td>
-          <td>{{ succes }}</td>
-          <td>{{ nominations }}</td>
+          <td class="classement_points">{{ user.username }}</td>
+          <td class="classement_points">{{ score }}</td>
+          <td class="classement_points">{{ succes }}</td>
+          <td class="classement_points">{{ nominations }}</td>
 
           {% endif %}
       {% endif %}

@@ -2,7 +2,6 @@
 
 {% block content %}
 
-<h1>Qui a le plus été désigné volontaire ?</h1>
 {% if favoris|length < 1 %}
 <div>Aucun favori ne semble se détacher pour le moment...</div>
 {% else %}
@@ -13,7 +12,7 @@
                 <div class="overlay">
                     <div class="text">
                         <p>{{ candidat.nom }}</p>
-                        <p class="soustexte">{{ nb_votes }} nominations</p>
+                        <p class="soustexte">{{ nb_votes }} sélections</p>
                     </div>
                 </div>
         </a>
