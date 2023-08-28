@@ -125,8 +125,6 @@ h2 {
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;
 }
 
-
-
 .offcanvas-body{
     display: flex;
     flex-direction: column;
@@ -207,6 +205,10 @@ a:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
+}
+
+.soustexte {
+    font-size: 0.7rem;
 }
 
 .message {
@@ -307,7 +309,20 @@ tbody tr:nth-child(even) {
     height: 100%;
 }
 
+.portrait {
+    width: 24rem;
+    height: 24rem;
+}
+
 .candidats {
     max-width: 51rem;
+}
+
+.text {
+    font-size: 1.8rem;
+}
+
+.soustexte {
+    font-size: 1.2rem;
 }
 }
