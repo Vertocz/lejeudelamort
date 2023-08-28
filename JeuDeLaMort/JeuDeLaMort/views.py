@@ -310,7 +310,7 @@ def favoris(request):
         favoris.sort(key=lambda favori: favori[2])
         favoris.sort(key=lambda favori: favori[1], reverse=True)
     if len(favoris) > 5:
-        favoris = favoris[0:5]
+        favoris = favoris[0:3]
     return render(request, 'jdm/favoris.html', {'favoris': favoris, 'candidats': candidats})
 
 

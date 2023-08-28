@@ -154,6 +154,11 @@ a:hover {
     object-fit: cover;
     }
 
+.portfav {
+    width: 12rem;
+    height: 12rem;
+    object-fit: cover;
+}
 
 .overlay {
   position: relative;
@@ -314,6 +319,11 @@ tbody tr:nth-child(even) {
     height: 24rem;
 }
 
+.portfav {
+    width: 16rem;
+    height: 16rem;
+}
+
 .candidats {
     max-width: 51rem;
 }
@@ -323,6 +333,6 @@ tbody tr:nth-child(even) {
 }
 
 .soustexte {
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 }
