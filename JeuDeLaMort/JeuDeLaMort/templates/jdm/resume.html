@@ -14,9 +14,9 @@
 <div class="alignement">
         <a href="/candidats/{{ x.id }}/">
             {% if x.photo is None or x.photo == '' %}
-            <img src="{% static 'jdm/candidat.png' %}" width="170" height="170" alt="{{ x.nom }}" class="image"/>
+            <img src="{% static 'jdm/candidat.png' %}" alt="{{ x.nom }}" class="portrait"/>
             {% else %}
-            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ x.photo }}&width=300" width="170" height="170" alt="{{ x.nom }}" class="image"/>
+            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ x.photo }}&width=300" alt="{{ x.nom }}" class="portrait"/>
             {% endif %}
                 <div class="overlay2">
                     <div class="text">

@@ -114,7 +114,7 @@ h2 {
     margin: 4rem 3rem 2rem 3rem;
     box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
     backdrop-filter: blur(2px);
-    max-width: 900px;
+    max-width: 63rem;
 }
 
 .bouton {
@@ -150,11 +150,12 @@ a:hover {
     transition: 0.5s ease;
 }
 
-.image {
-  width: 250 px;
-  height: 250 px;
-  object-fit: cover;
-}
+.portrait {
+    width: 12rem;
+    height: 12rem;
+    object-fit: cover;
+    }
+
 
 .overlay {
   position: relative;
@@ -304,5 +305,9 @@ tbody tr:nth-child(even) {
 .overlay2 {
     background-color : rgba(0,0,0,0.5);
     height: 100%;
+}
+
+.candidats {
+    max-width: 51rem;
 }
 }
