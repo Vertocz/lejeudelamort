@@ -3,6 +3,8 @@
 {% block content %}
 {% load static %}
 
+<h1>Dans nos cœurs</h1>
+
 {% if candidats_decedes|length == 0 %}
 <div>Aucun.e candidat.e n'a à ce jour été élu.e</div>
 
@@ -18,10 +20,10 @@
             {% endif %}
                 <div class="overlay2">
                     <div class="text">
-                        <p>{{ x.nom }}</p>
-                        <p>{{ x.calcul_age }} ans</p>
-                        <p>{{ x.points }} point{{ x.points|pluralize }}</p>
-                        <p class="soustexte">{{ y|length }} nomination{{ y|length|pluralize }}</p>
+                        <div>{{ x.nom }}</div>
+                        <div>{{ x.calcul_age }} ans</div>
+                        <div>{{ x.points }} point{{ x.points|pluralize }}</div>
+                        <div class="soustexte">{{ y|length }} nomination{{ y|length|pluralize }}</div>
                     </div>
                 </div>
         </a>

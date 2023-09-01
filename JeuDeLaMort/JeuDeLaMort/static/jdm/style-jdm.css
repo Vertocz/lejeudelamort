@@ -2,6 +2,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Rye&display=swap');
 
+:root{
+    --c1: #F2B6D7;
+    --c2: #F2B807;
+    --fond: #746C61;
+}
+
 html, body {
     font-family: 'Rye', cursive;
 }
@@ -11,10 +17,10 @@ body {
     background-attachment: fixed;
     background-position-y: calc(100% + 7rem);
     background-position-x: calc(100% + 16.5rem);
-    background-color: #746C61;
+    background-color: var(--fond);
     color: rgb(217,217,217);
-    text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 2px;
-    font-size: 1.6rem;
+    text-shadow: rgba(0,0,0, 1) 1px 3px 2px;
+    font-size: calc(20px + 0.390625vw);
     text-align: center;
 }
 
@@ -24,24 +30,20 @@ body {
     right: 3rem;
 }
 
-header {
+nav {
+    font-size: calc(20px + 0.390625vw);
+    padding: 1.1rem 1rem 1rem 1rem;
+    align-content: center;
     background-size: cover;
-    background-color: #F2B6D7;
+    background-color: var(--c1);
     box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
 }
 
-.menu {
-    color: black;
-    margin: 1rem;
-    align-content: center;
-    font-size: 2rem;
-    text-shadow: rgba(200, 200, 200, 0.8) 1px 1px 2px;
-}
-
-.menu:hover{
-    transition: 0.5s ease;
-    color: white;
-    text-shadow: black 1px 1px 2px;
+ul {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content:space-evenly;
 }
 
 div{
@@ -49,17 +51,24 @@ div{
     flex-direction: column;
 }
 
+p{
+    padding: 0.5rem;
+}
+
 h1 {
-    color: #F2B807;
+    color: var(--c2);
     padding: 4rem 1rem 1.5rem 1rem;
-    font-size: 3em;
-    text-shadow: rgba(0,0,0, 1) 1px 3px 2px;
+    font-size: calc(50px + 0.390625vw);
+}
+
+#titre_logo{
+    font-size: calc(55px + 0.390625vw);
+    text-decoration: underline overline #F2B807;
 }
 
 h2 {
-    color: #F2B6D7;
-    text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 2px;
-    font-size: 2.7rem;
+    color: var(--c1);
+    font-size: calc(45px + 0.390625vw);
     padding: 3rem 1rem 1rem 1rem;
 }
 
@@ -70,23 +79,22 @@ h2 {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     text-shadow: rgba(0, 0, 0, 0) 0px 0px 0px;
     margin: 0.8rem;
-    width: 12rem;
-    height: 13rem;
-    justify-content: space-between;
+    width: 25%;
+    justify-content: space-around;
 }
 
 .titre_bloc {
     color: rgb(132, 140, 148);
-    font-size: 1.3rem;
-    padding: 0.5rem 1rem 0.5rem 1rem;
+    padding: 0.2rem;
 }
 
 .fond {
-    background-color: rgba(0,0,0,0.7);
-    padding: 1rem;
     border-radius:15px;
-    margin: 1rem 3rem 1rem 3rem;
     backdrop-filter: blur(5px);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: 90%;
+    margin: auto;
+    padding: 1rem;
 }
 
 .score_user {
@@ -97,12 +105,14 @@ h2 {
 .resume {
     display: inline-flex;
     flex-direction: row;
+    width: 90%;
     justify-content: center;
     padding: 1rem 1rem 1rem 1rem;
     margin: 1rem 0 2rem 0;
     color: rgb(40,40,40);
     box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
     backdrop-filter: blur(2px);
+    max-width: 1200px;
 }
 
 .candidats {
@@ -111,10 +121,9 @@ h2 {
     justify-content: center;
     padding: 1rem 1rem 1rem 1rem;
     flex-wrap: wrap;
-    margin: 4rem 3rem 2rem 3rem;
     box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
     backdrop-filter: blur(2px);
-    max-width: 63rem;
+    max-width: 1015px;
 }
 
 .bouton {
@@ -134,7 +143,6 @@ h2 {
 a:link {
     color: rgb(240,240,240);
     text-decoration: none;
-    text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 2px;
 }
 
 a:visited {
@@ -143,7 +151,7 @@ a:visited {
 }
 
 a:hover {
-    color: #F2B6D7;
+    color: var(--c2);
     text-decoration: none;
     transition: 0.5s ease;
 }
@@ -158,6 +166,10 @@ a:hover {
     width: 12rem;
     height: 12rem;
     object-fit: cover;
+}
+
+.image {
+    padding: 0 0 2rem 0;
 }
 
 .overlay {
@@ -213,7 +225,7 @@ a:hover {
 }
 
 .soustexte {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
 }
 
 .message {
@@ -221,7 +233,6 @@ a:hover {
     margin: 0.5rem 0rem 0 0rem;
     padding: 0.5rem;
     background-color: red;
-    text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 2px;
 }
 
 .connexion {
@@ -247,18 +258,21 @@ a:hover {
 
 
 table {
-    margin: 3rem;
+    width: 90%;
+    margin: auto;
     justify-content: center;
     color: rgb(217,217,217);
-    text-shadow: rgba(0, 0, 0, 0.9) 1px 3px 2px;
     border-collapse: collapse;
     table-layout: fixed;
     box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 10px;
+    text-shadow: rgba(0, 0, 0, 0) 1px 5px 5px;
+    max-width: 900px;
 }
 
 thead th {
-   color: #F2B807;
-   font-size: 2.5rem;
+   color: black;
+   font-size: calc(20px + 0.390625vw);
+   font-weight: normal;
    text-align: center;
    background-color: rgb(217,217,217);
 }
@@ -285,8 +299,8 @@ td {
 }
 
 tbody td {
-  text-align: center;
-  font-size: 2.4rem;
+    font-size: calc(19px + 0.390625vw);
+    text-align: center;
 }
 
 tbody tr:nth-child(odd) {
@@ -298,8 +312,8 @@ tbody tr:nth-child(even) {
 }
 
 .classement_user {
-    color: rgb(217,217,217);
-    background-color: rgb(132, 140, 148);
+    background-color: var(--c1);
+    text-shadow: rgba(0,0,0, 1) 1px 3px 2px;
 }
 
 
@@ -318,6 +332,7 @@ tbody tr:nth-child(even) {
 .portrait {
     width: 24rem;
     height: 24rem;
+    opacity: 75%;
 }
 
 .portfav {

@@ -11,8 +11,8 @@
 
 <body>
 
-<a href="{% url 'jdm-index' %}"><div style="margin: 3rem; font-size: 4rem; text-decoration: underline overline #F2B807;">LE JEU DE LA MORT</div></a>
-<div>
+<header>
+    <div>
 
         <div class="connect">
         {% if user.is_authenticated %}
@@ -23,23 +23,24 @@
         </div>
 
         </div>
+    <h1 id="titre_logo"><a href="{% url 'jdm-index' %}">LE JEU DE LA MORT</a></h1>
 
-<header>
+
     <nav>
-    <ul style="list-style-type: none; display: flex; align-items: center; justify-content:space-evenly">
+    <ul>
         {% if user.is_authenticated %}
 
-            <a href="{% url 'salle-user' request.user.id %}"><li class="menu">Ma salle d'attente</li></a>
+            <li><a href="{% url 'salle-user' request.user.id %}">Ma salle d'attente</a></li>
 
 
-            <a href="{% url 'classement' %}"><li class="menu">Classement</li></a>
+            <li><a href="{% url 'classement' %}">Classement</a></li>
 
         {% endif %}
 
-            <a href="{% url 'favoris' %}"><li class="menu">Les favoris</li></a>
+            <li><a href="{% url 'favoris' %}">Les favoris</a></li>
 
 
-            <a href="{% url 'resume' %}"><li class="menu">Ils nous ont quittés</li></a>
+            <li><a href="{% url 'resume' %}">Ils nous ont quittés</a></li>
 
 
     </ul>

@@ -2,7 +2,7 @@
 {% block content %}
 {% load static %}
 
-<div>Ici apparaissent les joueurs qui ont marqué des points ainsi que vos amis</div>
+<p>Ici apparaissent les joueurs qui ont marqué des points ainsi que vos amis</p>
 
 {% if liste|length > 0 %}
 <div>
@@ -19,16 +19,16 @@
   {% for user, est_un_ami, score, nominations, succes in liste %}
   <tr>
       {% if est_un_ami %}
-      <td class="classement_ami"><a href="{% url 'salle-user' user.id %}">{{ user.username }}</a></td>
-      <td class="classement_ami">{{ score }}</td>
-      <td class="classement_ami">{{ succes }}</td>
-      <td class="classement_ami">{{ nominations }}</td>
+      <td class="classement_ami"><a style="color: var(--c2)" href="{% url 'salle-user' user.id %}">{{ user.username }}</a></td>
+      <td class="classement_ami"><a style="color: var(--c2)" href="{% url 'salle-user' user.id %}">{{ score }}</a></td>
+      <td class="classement_ami"><a style="color: var(--c2)" href="{% url 'salle-user' user.id %}">{{ score }}</a></td>
+      <td class="classement_ami"><a style="color: var(--c2)" href="{% url 'salle-user' user.id %}">{{ nominations }}</a></td>
 
       {% elif user == request.user %}
-      <td class="classement_user"><a style="color: #F2B6D7" href="{% url 'salle-user' user.id %}">{{ user.username }}</a></td>
-      <td class="classement_user"><a style="color: #F2B6D7" href="{% url 'salle-user' user.id %}">{{ score }}</a></td>
-      <td class="classement_user"><a style="color: #F2B6D7" href="{% url 'salle-user' user.id %}">{{ succes }}</a></td>
-      <td class="classement_user"><a style="color: #F2B6D7" href="{% url 'salle-user' user.id %}">{{ nominations }}</a></td>
+      <td class="classement_user"><a style="color: var(--c2)" href="{% url 'salle-user' user.id %}">{{ user.username }}</a></td>
+      <td class="classement_user"><a style="color: var(--c2)" href="{% url 'salle-user' user.id %}">{{ score }}</a></td>
+      <td class="classement_user"><a style="color: var(--c2)" href="{% url 'salle-user' user.id %}">{{ succes }}</a></td>
+      <td class="classement_user"><a style="color: var(--c2)" href="{% url 'salle-user' user.id %}">{{ nominations }}</a></td>
 
       {% else %}
           {% if score != 0 %}
