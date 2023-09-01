@@ -271,7 +271,7 @@ table {
 
 thead th {
    color: black;
-   font-size: calc(20px + 0.390625vw);
+   font-size: calc(29px + 0.390625vw);
    font-weight: normal;
    text-align: center;
    background-color: rgb(217,217,217);
@@ -299,7 +299,7 @@ td {
 }
 
 tbody td {
-    font-size: calc(19px + 0.390625vw);
+    font-size: calc(27px + 0.390625vw);
     text-align: center;
 }
 
