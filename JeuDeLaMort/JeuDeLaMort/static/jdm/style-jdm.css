@@ -173,6 +173,7 @@ h3 {
     width: 90%;
     margin: auto;
     padding: 1rem;
+    transition: .5s ease;
 }
 
 .fond:hover {
