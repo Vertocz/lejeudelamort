@@ -14,7 +14,7 @@
 <header>
     <nav>
 
-    <ul id="menu">
+    <ul>
         <div style="flex-direction: row">
             <a href="{% url 'jdm-index' %}"><img src="{% static 'jdm/accueil.png' %}" alt="Accueil" class="icone"></a>
 
@@ -29,17 +29,17 @@
         </div>
         {% if user.is_authenticated %}
 
-            <li><a href="{% url 'salle-user' request.user.id %}">Ma salle d'attente</a></li>
+            <li><a class="menu" href="{% url 'salle-user' request.user.id %}">Ma salle d'attente</a></li>
 
 
-            <li><a href="{% url 'classement' %}">Classement</a></li>
+            <li><a class="menu" href="{% url 'classement' %}">Classement</a></li>
 
         {% endif %}
 
-            <li><a href="{% url 'favoris' %}">Les favoris</a></li>
+            <li><a class="menu" href="{% url 'favoris' %}">Les favoris</a></li>
 
 
-            <li><a href="{% url 'resume' %}">Dans nos cœurs</a></li>
+            <li><a class="menu" href="{% url 'resume' %}">Dans nos cœurs</a></li>
 
 
     </ul>

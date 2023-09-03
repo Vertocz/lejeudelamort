@@ -64,15 +64,39 @@ body {
 }
 
 nav {
-    font-size: calc(15px + 0.390625vw);
+    font-size: 0;
     align-content: center;
     box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
     margin: 2rem 2rem 0;
     transition: .5s ease;
+    max-width: 20%;
 }
 
+
 nav:hover{
+    font-size: calc(15px + 0.390625vw);
+    max-width: 100%;
     background-color: var(--c1);
+        ul{
+            justify-content: space-around;
+        }
+        .menu:link {
+            color: white;
+            text-shadow: rgba(0,0,0, 1) 1px 2px 1px;
+            transition: .5s ease;
+        }
+
+        .menu:visited {
+            color: white;
+            text-shadow: rgba(0,0,0, 1) 1px 2px 1px;
+            transition: .5s ease;
+        }
+
+        .menu:hover {
+            color: var(--c2);
+            text-shadow: rgba(0,0,0, 1) 1px 2px 1px;
+            transition: .5s ease;
+        }
 }
 
 .icone{
@@ -89,8 +113,8 @@ ul {
     list-style-type: none;
     display: flex;
     align-items: center;
-    justify-content:space-around;
-    padding: 0 2rem;
+    justify-content: flex-start;
+    transition: .5s ease;
 }
 
 div{
@@ -243,6 +267,16 @@ h3 {
 a:link {
     color: rgb(240,240,240);
     text-decoration: none;
+}
+
+.menu:link {
+    color: rgba(0,0,0,0);
+    text-shadow: rgba(0,0,0,0) 0px 0px 5px;
+}
+
+.menu:visited {
+    color: rgba(0,0,0,0);
+    text-shadow: rgba(0,0,0,0) 0px 0px 5px;
 }
 
 a:visited {
