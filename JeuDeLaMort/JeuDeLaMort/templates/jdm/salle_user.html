@@ -2,7 +2,9 @@
 {% block content %}
 {% load static %}
 
+{% if joueur != request.user %}
 <h1 id="joueur">{{ joueur.username }}</h1>
+{% endif %}
 
 {% if rap > 0 %}
 {% if joueur == request.user %}

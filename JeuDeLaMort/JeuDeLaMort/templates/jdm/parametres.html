@@ -5,14 +5,6 @@
 
 
 
-        {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}">Déconnexion</a>
-        {% else %}
-        <div style="flex-direction: row; justify-content: right; "><a href="{% url 'login' %}">Connexion</a> | <a href="{% url 'register_user' %}">Inscription</a></div>
-        {% endif %}
-        </div>
-
-
 <div class="fond_pref">
 <h2>Informations personnelles</h2>
 <div>Pseudo: {{ joueur.username }}</div>
@@ -29,6 +21,11 @@
 </form>
 </div>
 
+        {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}">Déconnexion</a>
+        {% else %}
+        <div style="flex-direction: row; justify-content: right; "><a href="{% url 'login' %}">Connexion</a> | <a href="{% url 'register_user' %}">Inscription</a></div>
+        {% endif %}
 
 
 {% endblock %}
