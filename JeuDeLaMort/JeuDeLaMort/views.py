@@ -93,7 +93,7 @@ def salle_user(request, id):
                       'jdm/salle_user.html',
                       {'joueur': joueur, 'poker': joker(joueur), 'score_max': score_max(joueur),
                        'score': score_user(paris_user), 'paris': Pari.objects.filter(joueur=joueur), 'deces': paris_decedes,
-                       'rap': 10 - len(paris_user), 'candidats_joueur': candidats_joueur,
+                       'rap': 10 - len(paris_user) + len(paris_decedes), 'candidats_joueur': candidats_joueur,
                        'moyenne': moyenne_age(joueur)})
     else:
         messages.success(request, ("Ce joueur ne fait pas partie de votre cercle"))
