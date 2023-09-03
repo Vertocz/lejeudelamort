@@ -230,11 +230,12 @@ h3 {
 
 .resume:hover {
     background-color: var(--c1);
-    .titre_bloc {
+}
+
+.titre_bloc:hover {
     text-shadow: rgba(0,0,0, 1) 0px 0px 5px;
     color: var(--c2);
     }
-}
 
 .candidats {
     display: inline-flex;
@@ -449,7 +450,7 @@ tbody tr:nth-child(even):hover{
 @media screen and (max-width: 1200px){
 
 nav{
-    font-size: calc(15px + 0.390625vw);
+    font-size: calc(20px + 0.390625vw);
     max-width: 100%;
     background-color: var(--c1);
 }
@@ -500,7 +501,11 @@ ul{
 
 .titre_bloc {
     text-shadow: rgba(0,0,0, 1) 0px 0px 5px;
-    color: var(--c2);
+    color: white;
+    }
+
+.titre_bloc:hover {
+    color: white;
     }
 
 
