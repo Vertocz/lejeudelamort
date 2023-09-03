@@ -17,14 +17,14 @@
 <div style="color: var(--c2)">{{ candidat.description|capfirst }}</div>
 </div>
     {% if paris|length > 0 %}
-
+<div class="fond_pref">
 <h2>Qui avait désigné ce candidat ?</h2>
 <div>
         {% for pari in paris %}
     <a href="{% url 'salle-user' pari.id %}">{{ pari.username }}</a>
         {% endfor %}
     </div>
-
+</div>
     {% endif %}
 
 {% else %}
