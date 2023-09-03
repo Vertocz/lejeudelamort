@@ -7,31 +7,34 @@
 <h1>{{ candidat.nom }}</h1>
 
 
-{% if candidat.photo == '' %}
-<img src="{% static 'jdm/candidat.png' %}" width="170" height="170" alt="" class="image"/>
-{% else %}
+{% if not candidat.photo == '' %}
 <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" alt="" class="image"/>
 {% endif %}
 
 
 {% if candidat.DDD %}
+<div class="description">
 <h3 style="color: rgb(217,217,217)">{{ candidat.DDN }} - {{ candidat.DDD }}</h3>
 <div style="color: var(--c2)">{{ candidat.description|capfirst }}</div>
-
+</div>
     {% if paris|length > 0 %}
+
 <h2>Qui avait désigné ce candidat ?</h2>
 <div>
         {% for pari in paris %}
     <a href="{% url 'salle-user' pari.id %}">{{ pari.username }}</a>
         {% endfor %}
     </div>
+
     {% endif %}
 
 {% else %}
+<div class="description">
 <div style="padding: 2rem; color: var(--c2)">{{ candidat.description|capfirst }}</div>
 <div>Date de naissance : {{ candidat.DDN }} ({{ candidat.calcul_age }} ans)</div>
 <div style="display: inline">Ce candidat peut rapporter <span style="color: var(--c2)">{{ candidat.points }} point{{ candidat.points|pluralize }}</span>.</div>
     {% if paris|length > 0 %}
+</div>
 
 
 

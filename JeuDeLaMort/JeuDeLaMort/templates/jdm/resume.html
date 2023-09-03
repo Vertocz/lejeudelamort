@@ -20,10 +20,9 @@
             {% endif %}
                 <div class="overlay2">
                     <div class="text">
-                        <div>{{ x.nom }}</div>
-                        <div>{{ x.calcul_age }} ans</div>
-                        <div>{{ x.points }} point{{ x.points|pluralize }}</div>
-                        <div class="soustexte">{{ y|length }} nomination{{ y|length|pluralize }}</div>
+                        <p>{{ x.nom }}</p>
+                        <p>{{ x.points }} point{{ x.points|pluralize }}</p>
+                        <p class="soustexte">{{ y|length }} nomination{{ y|length|pluralize }}</p>
                     </div>
                 </div>
         </a>

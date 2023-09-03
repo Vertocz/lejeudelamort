@@ -23,6 +23,7 @@ body {
     text-shadow: rgba(0,0,0, 1) 1px 2px 1px;
     font-size: calc(20px + 0.390625vw);
     text-align: center;
+    padding: 0 1rem;
 }
 
 .connect {
@@ -59,10 +60,10 @@ body {
 }
 
 nav {
-    font-size: calc(25px + 0.390625vw);
+    font-size: calc(15px + 0.390625vw);
     align-content: center;
     box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
-    margin: 3rem;
+    margin: 2rem;
     transition: .5s ease;
 }
 
@@ -98,14 +99,14 @@ h1 {
     font-family: 'Rye', cursive;
     color: var(--c2);
     padding: 4rem 1rem 1.5rem 1rem;
-    font-size: calc(50px + 0.390625vw);
+    font-size: calc(60px + 0.390625vw);
 }
 
 
 h2 {
     font-family: 'Rye', cursive;
     color: var(--c2);
-    font-size: calc(45px + 0.390625vw);
+    font-size: calc(40px + 0.390625vw);
     padding: 3rem 1rem 1rem 1rem;
 }
 
@@ -134,6 +135,15 @@ h2 {
     width: 90%;
     margin: auto;
     padding: 1rem;
+}
+
+.description{
+    border-radius:15px;
+    backdrop-filter: blur(4px);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 1rem;
+    max-width: calc(600px + 4vw);
+    margin: 1rem auto 1rem;
 }
 
 .score_user {
@@ -276,13 +286,12 @@ a:hover {
 
 
 footer{
-  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
   text-align: center;
   font-size: 0.7rem;
-  backdrop-filter: blur(2px);
+  margin: 8rem 0 0 0;
 }
 
 

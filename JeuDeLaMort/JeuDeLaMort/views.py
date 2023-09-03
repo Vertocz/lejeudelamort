@@ -205,7 +205,6 @@ def recherche_candidat(nom):
     return candidats_potentiels
 
 
-
 def candidat_create(request):
     if request.method == 'POST':
         form = RechercheCandidatForm(request.POST)
