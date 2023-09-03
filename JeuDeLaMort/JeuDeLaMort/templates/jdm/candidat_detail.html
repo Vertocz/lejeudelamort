@@ -13,7 +13,7 @@
 
 {% if candidat.DDD %}
 <div class="description">
-<h3 style="color: rgb(217,217,217)">{{ candidat.DDN }} - {{ candidat.DDD }}</h3>
+<div>{{ candidat.DDN }} - {{ candidat.DDD }}</div>
 <div style="color: var(--c2)">{{ candidat.description|capfirst }}</div>
 </div>
     {% if paris|length > 0 %}
@@ -29,7 +29,7 @@
 
 {% else %}
 <div class="description">
-<div style="padding: 2rem; color: var(--c2)">{{ candidat.description|capfirst }}</div>
+<div style="color: var(--c2)">{{ candidat.description|capfirst }}</div>
 <div>Date de naissance : {{ candidat.DDN }} ({{ candidat.calcul_age }} ans)</div>
 <div style="display: inline">Ce candidat peut rapporter <span style="color: var(--c2)">{{ candidat.points }} point{{ candidat.points|pluralize }}</span>.</div>
     {% if paris|length > 0 %}
