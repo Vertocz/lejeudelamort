@@ -83,9 +83,9 @@
     <div class="alignement">
         <a href="/candidats/{{ candidat.id }}/">
             {% if candidat.photo == '' %}
-            <img src="{% static 'jdm/candidat.png' %}" width="170" height="170" alt="{{ candidat.nom }}" class="image"/>
+            <img src="{% static 'jdm/candidat.png' %}" alt="{{ candidat.nom }}" class="portrait"/>
             {% else %}
-            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" width="200" height="200" alt="{{ candidat.nom }}" class="image"/>
+            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" alt="{{ candidat.nom }}" class="portrait"/>
             {% endif %}
                 <div class="overlay2">
                     <div class="text">

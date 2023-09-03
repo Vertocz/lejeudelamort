@@ -26,10 +26,10 @@
       <td class="classement_ami"><a style="color: var(--c2)" href="{% url 'salle-user' user.id %}">{{ nominations }}</a></td>
 
       {% elif user == request.user %}
-      <td class="classement_user"><a style="color: var(--c2)" href="{% url 'salle-user' user.id %}">{{ user.username }}</a></td>
-      <td class="classement_user"><a style="color: var(--c2)" href="{% url 'salle-user' user.id %}">{{ score }}</a></td>
-      <td class="classement_user"><a style="color: var(--c2)" href="{% url 'salle-user' user.id %}">{{ succes }}</a></td>
-      <td class="classement_user"><a style="color: var(--c2)" href="{% url 'salle-user' user.id %}">{{ nominations }}</a></td>
+      <td class="classement_user"><a style="color: black" href="{% url 'salle-user' user.id %}">{{ user.username }}</a></td>
+      <td class="classement_user"><a style="color: black" href="{% url 'salle-user' user.id %}">{{ score }}</a></td>
+      <td class="classement_user"><a style="color: black" href="{% url 'salle-user' user.id %}">{{ succes }}</a></td>
+      <td class="classement_user"><a style="color: black" href="{% url 'salle-user' user.id %}">{{ nominations }}</a></td>
 
       {% else %}
           {% if score != 0 %}

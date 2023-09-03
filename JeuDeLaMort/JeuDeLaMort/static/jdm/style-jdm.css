@@ -1,25 +1,26 @@
 {% load static %}
 
 @import url('https://fonts.googleapis.com/css2?family=Rye&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
 :root{
-    --c1: #F2B6D7;
-    --c2: #F2B807;
-    --fond: #746C61;
+    --c1: #4e3929;
+    --c2: #db878f;
+    --fond: #8a909c;
 }
 
 html, body {
-    font-family: 'Rye', cursive;
+    font-family: 'Quicksand', sans-serif;
+      background: url("/static/jdm/fondp.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 body {
-    background: no-repeat center url("/static/jdm/vautour_seul_fond_gris.svg");
-    background-attachment: fixed;
-    background-position-y: calc(100% + 7rem);
-    background-position-x: calc(100% + 16.5rem);
-    background-color: var(--fond);
-    color: rgb(217,217,217);
-    text-shadow: rgba(0,0,0, 1) 1px 3px 2px;
+    color: #F1EBDB;
+    text-shadow: rgba(0,0,0, 1) 1px 2px 1px;
     font-size: calc(20px + 0.390625vw);
     text-align: center;
 }
@@ -30,20 +31,61 @@ body {
     right: 3rem;
 }
 
-nav {
-    font-size: calc(20px + 0.390625vw);
-    padding: 1.1rem 1rem 1rem 1rem;
-    align-content: center;
-    background-size: cover;
+.connexion {
+    margin: 3rem;
+    width: 30rem;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.inscription {
+    margin: 3rem;
+    width: 60rem;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.compte{
+    border-radius: 2.5rem;
+    box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 10px;
+    height: 5rem;
+    width: 5rem;
+    padding: 0.9rem;
+    transition: .5s ease;
+}
+
+.compte:hover {
     background-color: var(--c1);
+}
+
+nav {
+    font-size: calc(25px + 0.390625vw);
+    align-content: center;
     box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
+    margin: 3rem;
+    transition: .5s ease;
+}
+
+nav:hover{
+    background-color: var(--c1);
+}
+
+.icone{
+    height: 2rem;
+    margin: 1rem;
+}
+
+.icone:hover {
+    background-color: var(--c2);
+    border-radius: 0.9rem;
 }
 
 ul {
     list-style-type: none;
     display: flex;
     align-items: center;
-    justify-content:space-evenly;
+    justify-content:space-around;
+    padding: 0 2rem;
 }
 
 div{
@@ -51,30 +93,26 @@ div{
     flex-direction: column;
 }
 
-p{
-    padding: 0.5rem;
-}
-
 h1 {
+    z-index: 3;
+    font-family: 'Rye', cursive;
     color: var(--c2);
     padding: 4rem 1rem 1.5rem 1rem;
     font-size: calc(50px + 0.390625vw);
 }
 
-#titre_logo{
-    font-size: calc(55px + 0.390625vw);
-    text-decoration: underline overline #F2B807;
-}
 
 h2 {
-    color: var(--c1);
+    font-family: 'Rye', cursive;
+    color: var(--c2);
     font-size: calc(45px + 0.390625vw);
     padding: 3rem 1rem 1rem 1rem;
 }
 
+
 .bloc {
     padding: 1rem 0.3rem 1rem 0.3rem;
-    background-color : rgb(217,217,217);
+    background-color : rgba(217,217,217,0.7);
     border-radius: 1rem;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     text-shadow: rgba(0, 0, 0, 0) 0px 0px 0px;
@@ -84,7 +122,8 @@ h2 {
 }
 
 .titre_bloc {
-    color: rgb(132, 140, 148);
+    font-family: 'Rye', cursive;
+    color: rgb(100, 100, 100);
     padding: 0.2rem;
 }
 
@@ -163,8 +202,8 @@ a:hover {
     }
 
 .portfav {
-    width: 12rem;
-    height: 12rem;
+    width: 20rem;
+    height: 20rem;
     object-fit: cover;
 }
 
@@ -235,33 +274,25 @@ a:hover {
     background-color: red;
 }
 
-.connexion {
-    margin: 3rem;
-    width: 30rem;
-    display: inline-flex;
-    justify-content: center;
+
+footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 0.7rem;
+  backdrop-filter: blur(2px);
 }
 
-.inscription {
-    margin: 3rem;
-    width: 60rem;
-    display: inline-flex;
-    justify-content: center;
-}
 
-.pied {
-    display: inline-flex;
-    flex-direction: row;
-    padding: 5rem 0 0 0;
-    font-size: 1rem;
-}
 
 
 table {
     width: 90%;
     margin: auto;
     justify-content: center;
-    color: rgb(217,217,217);
+    color: white;
     border-collapse: collapse;
     table-layout: fixed;
     box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 10px;
@@ -270,6 +301,7 @@ table {
 }
 
 thead th {
+   font-family: 'Rye', cursive;
    color: black;
    font-size: calc(29px + 0.390625vw);
    font-weight: normal;
@@ -308,12 +340,12 @@ tbody tr:nth-child(odd) {
 }
 
 tbody tr:nth-child(even) {
-  background-color: rgba(40,40,40, 0);
+  background-color: rgba(40,40,40, 0.4);
 }
 
 .classement_user {
-    background-color: var(--c1);
-    text-shadow: rgba(0,0,0, 1) 1px 3px 2px;
+    background-color: var(--c2);
+    font-weight: bold;
 }
 
 

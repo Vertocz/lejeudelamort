@@ -289,9 +289,10 @@ def candidat_detail(request, id):
         candidat = Candidat.objects.get(id=id)
         paris_candidat = Pari.objects.filter(candidat=candidat)
         paris_amis = []
-        for pari in paris_candidat:
-            if cercles.filter(joueur=request.user, ami=pari.joueur):
-                paris_amis.append(pari.joueur)
+        if request.user.is_authenticated:
+            for pari in paris_candidat:
+                if cercles.filter(joueur=request.user, ami=pari.joueur):
+                    paris_amis.append(pari.joueur)
         return render(request, 'jdm/candidat_detail.html',
                       context={'candidat': candidat, 'paris': paris_amis, 'cercles': cercles})
     else:
