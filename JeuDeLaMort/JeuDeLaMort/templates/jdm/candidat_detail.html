@@ -3,7 +3,6 @@
 {% block content %}
 {% load static %}
 
-
 <h1>{{ candidat.nom }}</h1>
 
 
@@ -37,19 +36,18 @@
 </div>
 
 
-
+<div class="fond_pref">
 <h2>Qui a désigné ce candidat ?</h2>
 <div>
         {% for pari in paris %}
     <a href="{% url 'salle-user' pari.id %}">{{ pari.username }}</a>
         {% endfor %}
     </div>
+    </div>
     {% endif %}
 
 
 {% endif %}
-
-
 
 
 {% endblock %}

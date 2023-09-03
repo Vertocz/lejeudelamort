@@ -67,7 +67,7 @@ nav {
     font-size: calc(15px + 0.390625vw);
     align-content: center;
     box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
-    margin: 2rem;
+    margin: 2rem 2rem 0;
     transition: .5s ease;
 }
 
@@ -102,7 +102,8 @@ h1 {
     z-index: 3;
     font-family: 'Rye', cursive;
     color: var(--c2);
-    padding: 4rem 1rem 1.5rem 1rem;
+    padding: 1rem;
+    margin: 0 0 1rem;
     font-size: calc(60px + 0.390625vw);
 }
 
@@ -111,9 +112,16 @@ h2 {
     font-family: 'Rye', cursive;
     color: var(--c2);
     font-size: calc(40px + 0.390625vw);
-    padding: 3rem 1rem 1rem 1rem;
+    padding: 1rem;
 }
 
+h3 {
+    font-family: 'Rye', cursive;
+    color: var(--c2);
+    padding: 1rem;
+    margin: 2rem 0 1rem;
+    font-size: calc(22px + 0.390625vw);
+}
 
 .bloc {
     padding: 1rem 0.3rem 1rem 0.3rem;
@@ -130,6 +138,7 @@ h2 {
     font-family: 'Rye', cursive;
     color: rgb(100, 100, 100);
     padding: 0.2rem;
+    transition: .5s ease;
 }
 
 .fond {
@@ -141,13 +150,22 @@ h2 {
     padding: 1rem;
 }
 
+.fond:hover {
+    background-color: var(--c1);
+}
+
 .description{
     border-radius:15px;
     backdrop-filter: blur(4px);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     padding: 1rem;
     max-width: calc(600px + 4vw);
-    margin: 1rem auto 1rem;
+    margin: 1rem auto 0;
+    transition: .5s ease;
+}
+
+.description:hover {
+    background-color: var(--c1);
 }
 
 .fond_pref{
@@ -180,6 +198,16 @@ h2 {
     box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
     backdrop-filter: blur(2px);
     max-width: 1200px;
+    transition: .5s ease;
+}
+
+
+.resume:hover {
+    background-color: var(--c1);
+    .titre_bloc {
+    text-shadow: rgba(0,0,0, 1) 0px 0px 5px;
+    color: var(--c2);
+    }
 }
 
 .candidats {
@@ -319,7 +347,6 @@ table {
     width: 90%;
     margin: auto;
     justify-content: center;
-    color: white;
     border-collapse: collapse;
     table-layout: fixed;
     box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 10px;
@@ -366,13 +393,20 @@ tbody tr:nth-child(odd) {
   background-color: rgb(25,25,25, 0.7);
 }
 
+tbody tr:nth-child(odd):hover{
+    background-color: var(--c1);
+}
+
 tbody tr:nth-child(even) {
   background-color: rgba(40,40,40, 0.4);
 }
 
+tbody tr:nth-child(even):hover{
+    background-color: var(--c1);
+}
+
 .classement_user {
-    background-color: var(--c2);
-    font-weight: bold;
+    color: black;
 }
 
 

@@ -106,7 +106,7 @@
 {% endif %}
 
 {% if joueur != request.user %}
-<a href="{% url 'retirer-ami' joueur.id %}"><h2>Retirer {{ joueur.username }} de mon cercle d'amis</h2></a>
+<h3><a href="{% url 'retirer-ami' joueur.id %}">Retirer {{ joueur.username }} de mon cercle d'amis</a></h3>
 {% endif %}
 
 {% endblock %}
