@@ -100,13 +100,13 @@ nav:hover{
 }
 
 .icone{
-    height: 2rem;
+    height: 4rem;
     margin: 1rem;
 }
 
 .icone:hover {
     background-color: var(--c2);
-    border-radius: 0.9rem;
+    border-radius: 2rem;
 }
 
 ul {
@@ -452,35 +452,34 @@ nav{
     font-size: calc(15px + 0.390625vw);
     max-width: 100%;
     background-color: var(--c1);
-        ul{
-            justify-content: space-around;
-        }
-        .menu:link {
-            color: white;
-            text-shadow: rgba(0,0,0, 1) 1px 2px 1px;
-            transition: 1s ease;
-        }
-
-        .menu:visited {
-            color: white;
-            text-shadow: rgba(0,0,0, 1) 1px 2px 1px;
-            transition: 1s ease;
-        }
-
-        .menu:hover {
-            color: var(--c2);
-            text-shadow: rgba(0,0,0, 1) 1px 2px 1px;
-            transition: 1s ease;
-        }
 }
+
+ul{
+    justify-content: space-around;
+}
+
+.menu:link {
+    color: var(--c2);
+    text-shadow: rgba(0,0,0, 1) 1px 2px 1px;
+    transition: 1s ease;
+}
+
+.menu:visited {
+    color: var(--c2);
+    text-shadow: rgba(0,0,0, 1) 1px 2px 1px;
+    transition: 1s ease;
+}
+
 
 .compte {
     background-color: var(--c1);
 }
 
 .icone {
+    height: 5rem;
+    margin: 1rem;
     background-color: var(--c2);
-    border-radius: 0.9rem;
+    border-radius: 2.5rem;
 }
 
 .fond {
@@ -504,9 +503,6 @@ nav{
     color: var(--c2);
     }
 
-a {
-    color: var(--c2);
-}
 
 .overlay {
     background-color : rgba(220,220,220,0.6);
