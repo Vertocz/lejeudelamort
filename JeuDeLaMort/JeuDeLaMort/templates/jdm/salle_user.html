@@ -6,17 +6,7 @@
 <h1 id="joueur">{{ joueur.username }}</h1>
 {% endif %}
 
-{% if rap > 0 %}
-{% if joueur == request.user %}
-<div>Vous pouvez encore nommer {{ rap }} candidat{{ rap|pluralize }}.</div>
-<h2 style="padding: 1rem 0 2rem 0; "><a href="{% url 'candidat-create' %}">Ajouter un candidat</a></h2>
 
-
-{% else %}
-<div>{{ joueur.username }} peut encore nommer {{ rap }} candidat{{ rap|pluralize }}.</div>
-{% endif %}
-
-{% endif %}
 
 <div class="resume">
     <div class="bloc"><div class="titre_bloc">Score</div>
@@ -73,6 +63,21 @@
     {% endfor %}
     </div>
 {% endif %}
+
+
+{% if rap > 0 %}
+{% if joueur == request.user %}
+<div>Vous pouvez encore nommer {{ rap }} candidat{{ rap|pluralize }}.</div>
+<h2 style="padding: 1rem 0 2rem 0; "><a href="{% url 'candidat-create' %}">Ajouter un candidat</a></h2>
+
+
+{% else %}
+<div>{{ joueur.username }} peut encore nommer {{ rap }} candidat{{ rap|pluralize }}.</div>
+{% endif %}
+
+{% endif %}
+
+
 
 {% if deces|length > 0 %}
 <h1>Dans nos cœurs</h1>
