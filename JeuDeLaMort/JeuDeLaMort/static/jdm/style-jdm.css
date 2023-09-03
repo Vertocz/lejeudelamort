@@ -474,6 +474,40 @@ nav{
         }
 }
 
+.compte {
+    background-color: var(--c1);
+}
+
+.icone {
+    background-color: var(--c2);
+    border-radius: 0.9rem;
+}
+
+.fond {
+    background-color: var(--c1);
+}
+
+.description {
+    background-color: var(--c1);
+}
+
+.fond_pref{
+    background-color: var(--c1);
+}
+
+.resume {
+    background-color: var(--c1);
+}
+
+.titre_bloc {
+    text-shadow: rgba(0,0,0, 1) 0px 0px 5px;
+    color: var(--c2);
+    }
+
+a {
+    color: var(--c2);
+}
+
 .overlay {
     background-color : rgba(220,220,220,0.6);
     height: 100%;
@@ -497,6 +531,7 @@ nav{
 
 .candidats {
     max-width: 51rem;
+    background-color: var(--c1);
 }
 
 .text {
