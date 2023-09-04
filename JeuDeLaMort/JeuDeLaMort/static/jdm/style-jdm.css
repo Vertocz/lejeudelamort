@@ -122,6 +122,7 @@ h2 {
     font-family: 'Rye', cursive;
     color: var(--c2);
     font-size: calc(35px + 0.390625vw);
+    text-shadow: rgba(0,0,0, 1) 1px 2px 1px;
     padding: 1rem;
 }
 
@@ -467,7 +468,7 @@ header {
 @media screen and (max-width: 768px) {
 
     body {
-        font-size: calc(25px + 0.390625vw);
+        font-size: calc(18px + 0.390625vw);
     }
 
     main {
@@ -496,10 +497,10 @@ header {
         display: block;
         cursor: pointer;
         margin: 1rem 0 0 1rem;
-        height: 7rem;
-        width: 7rem;
+        height: 4rem;
+        width: 4rem;
         background: var(--c2);
-        border-radius: 3.5rem;
+        border-radius: 2rem;
     }
 
 
@@ -507,10 +508,10 @@ header {
         display: block;
         cursor: pointer;
         margin: 1rem 0 0 1rem;
-        height: 7rem;
-        width: 7rem;
+        height: 4rem;
+        width: 4rem;
         background: var(--c2);
-        border-radius: 3.5rem;
+        border-radius: 2rem;
     }
 
     #menu-toggle img {
@@ -541,7 +542,7 @@ header {
     }
 
     #mobile-menu ul li {
-        margin: 55px 0;
+        margin: 45px 0;
     }
 
     #mobile-menu a {
@@ -554,7 +555,13 @@ header {
         color: #db878f;
     }
 
+    h1{
+        font-size: calc(25px + 0.390625vw);
+    }
 
+    h2{
+        font-size: calc(21px + 0.390625vw);
+    }
 
     .compte {
         background-color: var(--c1);
@@ -597,18 +604,18 @@ header {
     }
 
     .portrait {
-        width: 24rem;
-        height: 24rem;
+        width: 22rem;
+        height: 22rem;
         opacity: 75%;
     }
 
     .portfav {
-        width: 24rem;
-        height: 24rem;
+        width: 22rem;
+        height: 22rem;
     }
 
     .candidats {
-        max-width: 26rem;
+        max-width: 24rem;
         background-color: var(--c1);
     }
 
