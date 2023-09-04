@@ -615,7 +615,8 @@ header {
     }
 
     .candidats {
-        max-width: 24rem;
+        max-width: 90%;
+        margin: auto;
         background-color: var(--c1);
     }
 
