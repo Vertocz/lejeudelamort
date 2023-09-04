@@ -161,7 +161,8 @@ h3 {
 
 .titre_bloc {
     font-family: 'Rye', cursive;
-    color: rgb(100, 100, 100);
+    color: white;
+    text-shadow: rgba(0,0,0, 1) 1px 2px 1px;
     padding: 0.2rem;
     transition: .5s ease;
 }
@@ -232,11 +233,6 @@ h3 {
     background-color: var(--c1);
 }
 
-.titre_bloc:hover {
-    text-shadow: rgba(0,0,0, 1) 0px 0px 5px;
-    color: var(--c2);
-    }
-
 .candidats {
     display: inline-flex;
     flex-direction: row;
@@ -280,6 +276,10 @@ a:link {
 .menu:visited {
     color: rgba(0,0,0,0);
     text-shadow: rgba(0,0,0,0) 0px 0px 5px;
+}
+
+.menu:hover {
+    font-size: calc(20px + 0.390625vw);
 }
 
 a:visited {
@@ -394,7 +394,7 @@ table {
 thead th {
    font-family: 'Rye', cursive;
    color: black;
-   font-size: calc(29px + 0.390625vw);
+   font-size: calc(27px + 0.390625vw);
    font-weight: normal;
    text-align: center;
    background-color: rgb(217,217,217);
@@ -422,7 +422,7 @@ td {
 }
 
 tbody td {
-    font-size: calc(27px + 0.390625vw);
+    font-size: calc(35px + 0.390625vw);
     text-align: center;
 }
 
@@ -447,10 +447,10 @@ tbody tr:nth-child(even):hover{
 }
 
 
-@media screen and (max-width: 1200px){
+@media screen and (max-width: 1200px) and (min-width: 850px){
 
 nav{
-    font-size: calc(20px + 0.390625vw);
+    font-size: calc(15px + 0.390625vw);
     max-width: 100%;
     background-color: var(--c1);
 }
@@ -460,17 +460,23 @@ ul{
 }
 
 .menu:link {
-    color: var(--c2);
+    color: white;
     text-shadow: rgba(0,0,0, 1) 1px 2px 1px;
     transition: 1s ease;
 }
 
 .menu:visited {
-    color: var(--c2);
+    color: white;
     text-shadow: rgba(0,0,0, 1) 1px 2px 1px;
     transition: 1s ease;
 }
 
+.menu:hover {
+    font-size: calc(15px + 0.390625vw);
+    color: white;
+    text-shadow: rgba(0,0,0, 1) 1px 2px 1px;
+    transition: 1s ease;
+}
 
 .compte {
     background-color: var(--c1);
@@ -479,6 +485,10 @@ ul{
 .icone {
     height: 5rem;
     margin: 1rem;
+    border-radius: 2.5rem;
+}
+
+.icone:hover {
     background-color: var(--c2);
     border-radius: 2.5rem;
 }
@@ -532,6 +542,112 @@ ul{
 
 .candidats {
     max-width: 51rem;
+    background-color: var(--c1);
+}
+
+.text {
+    font-size: 1.8rem;
+}
+
+.soustexte {
+    font-size: 1.2rem;
+}
+}
+
+@media screen and (max-width: 849px) {
+
+nav{
+    font-size: calc(20px + 0.390625vw);
+    max-width: 100%;
+    background-color: var(--c1);
+}
+
+ul{
+    justify-content: space-around;
+}
+
+.menu:link {
+    color: white;
+    text-shadow: rgba(0,0,0, 1) 1px 2px 1px;
+    transition: 1s ease;
+}
+
+.menu:visited {
+    color: white;
+    text-shadow: rgba(0,0,0, 1) 1px 2px 1px;
+    transition: 1s ease;
+}
+
+.menu:hover {
+    font-size: calc(15px + 0.390625vw);
+    color: white;
+    text-shadow: rgba(0,0,0, 1) 1px 2px 1px;
+    transition: 1s ease;
+}
+
+.compte {
+    background-color: var(--c1);
+}
+
+.icone {
+    height: 7rem;
+    margin: 1rem;
+    border-radius: 3.5rem;
+}
+
+.icone:hover {
+    background-color: var(--c2);
+}
+
+.fond {
+    background-color: var(--c1);
+}
+
+.description {
+    background-color: var(--c1);
+}
+
+.fond_pref{
+    background-color: var(--c1);
+}
+
+.resume {
+    background-color: var(--c1);
+}
+
+.titre_bloc {
+    text-shadow: rgba(0,0,0, 1) 0px 0px 5px;
+    color: white;
+    }
+
+.titre_bloc:hover {
+    color: white;
+    }
+
+
+.overlay {
+    background-color : rgba(220,220,220,0.6);
+    height: 100%;
+}
+
+.overlay2 {
+    background-color : rgba(0,0,0,0.5);
+    height: 100%;
+}
+
+.portrait {
+    width: 24rem;
+    height: 24rem;
+    opacity: 75%;
+}
+
+.portfav {
+    width: 24rem;
+    height: 24rem;
+}
+
+.candidats {
+    max-width: 26rem;
     background-color: var(--c1);
 }
 
