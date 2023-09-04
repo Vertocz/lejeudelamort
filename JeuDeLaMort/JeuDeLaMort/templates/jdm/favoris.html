@@ -6,6 +6,7 @@
 {% if favoris|length < 1 %}
 <div>Aucun favori ne semble se détacher pour le moment...</div>
 {% else %}
+<h1>Les favoris</h1>
 <div class="candidats">
 {% for candidat, nb_votes, z in favoris %}
 <div class="alignement">

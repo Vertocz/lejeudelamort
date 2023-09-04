@@ -3,6 +3,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Le Jeu de la Mort</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'jdm/style-jdm.css' %}">
@@ -10,40 +11,41 @@
 </head>
 
 <body>
+    <header>
+        <nav class="navbar">
+            <ul>
+                <li><a href="{% url 'jdm-index' %}">Accueil</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'salle-user' request.user.id %}">Ma salle d'attente</a></li>
+                <li><a href="{% url 'classement' %}">Classement</a></li>
+                {% endif %}
+                <div id="indication_menu">MENU</div>
+                <li><a href="{% url 'favoris' %}">Les favoris</a></li>
+                <li><a href="{% url 'resume' %}">Dans nos cœurs</a></li>
+                <li><a href="{% url 'parametres' %}">Préférences</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<header>
-    <nav>
+    <img id="menu-toggle" src="{% static 'jdm/menu.png' %}" alt="Menu">
 
+
+    <div id="mobile-menu">
+        <img id="close-menu" src="{% static 'jdm/fermer.png' %}" alt="Fermer">
     <ul>
-        <div style="flex-direction: row">
-            <a href="{% url 'jdm-index' %}"><img src="{% static 'jdm/accueil.png' %}" alt="Accueil" class="icone"></a>
-
-
-        </div>
-        {% if user.is_authenticated %}
-
-            <li><a class="menu" href="{% url 'salle-user' request.user.id %}">Ma salle d'attente</a></li>
-
-
-            <li><a class="menu" href="{% url 'classement' %}">Classement</a></li>
-
-        {% endif %}
-
-            <li><a class="menu" href="{% url 'favoris' %}">Les favoris</a></li>
-
-
-            <li><a class="menu" href="{% url 'resume' %}">Dans nos cœurs</a></li>
-
-                    {% if user.is_authenticated %}
-            <a href="{% url 'parametres' %}"><img src="{% static 'jdm/utilisateur.png' %}" alt="Préférences" class="icone"></a>
-            {% else %}
-            <a href="{% url 'login' %}"><img src="{% static 'jdm/utilisateur.png' %}" alt="Connexion" class="icone"></a>
-
-            {% endif %}
-
+        <li><a href="{% url 'jdm-index' %}">Accueil</a></li>
+        <li><a href="{% url 'salle-user' request.user.id %}">Ma salle d'attente</a></li>
+        <li><a href="{% url 'classement' %}">Classement</a></li>
+        <li><a href="{% url 'favoris' %}">Les favoris</a></li>
+        <li><a href="{% url 'resume' %}">Dans nos cœurs</a></li>
+        <li><a href="{% url 'parametres' %}">Préférences</a></li>
     </ul>
-</nav>
-</header>
+
+    </div>
+
+    <script src="{% static 'jdm/script.js' %}"></script>
+
+
 
 <main>
 {% if messages %}
