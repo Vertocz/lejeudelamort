@@ -51,7 +51,6 @@ main {
     height: 5rem;
     justify-content: space-evenly;
     box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
-
     transition: .5s ease;
     border-radius:15px;
     ul li {
@@ -60,7 +59,6 @@ main {
 }
 
 .navbar:hover {
-    border-radius:0;
     font-size: calc(20px + 0.390625vw);
     width: 80%;
     background-color: var(--c1);
@@ -356,6 +354,7 @@ a:hover {
 }
 
 .message {
+    border-radius:15px;
     color: white;
     margin: 0.5rem 0rem 0 0rem;
     padding: 0.5rem;
