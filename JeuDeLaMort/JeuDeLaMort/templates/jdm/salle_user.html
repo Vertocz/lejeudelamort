@@ -81,7 +81,7 @@
 
 {% if deces|length > 0 %}
 <h1>Dans nos cœurs</h1>
-<div class="candidats">
+<div class="candidats" id="deces">
 {% for pari in paris %}
     {% if pari.joueur == joueur %}
         {% for candidat in candidats_joueur %}
@@ -92,7 +92,7 @@
             {% if candidat.photo == '' %}
             <img src="{% static 'jdm/candidat.png' %}" alt="{{ candidat.nom }}" class="portrait"/>
             {% else %}
-            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" alt="{{ candidat.nom }}" class="portrait"/>
+            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" alt="{{ candidat.nom }}" class="portrait" style="filter: grayscale(1);"/>
             {% endif %}
                 <div class="overlay2">
                     <div class="text">

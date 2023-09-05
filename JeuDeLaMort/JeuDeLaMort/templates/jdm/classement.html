@@ -12,8 +12,8 @@
     <tr>
         <th>Joueur</th>
         <th>Score</th>
-        <th>Nommés</th>
-        <th>Nominés</th>
+        <th class="ordi">Nommés</th>
+        <th class="ordi">Nominés</th>
     </tr>
   </thead>
   <tbody>
@@ -23,23 +23,23 @@
       <tr class="classement_ami">
       <td><a style="color: var(--c2)" href="{% url 'salle-user' user.id %}">{{ user.username }}</a></td>
       <td><a style="color: var(--c2)" href="{% url 'salle-user' user.id %}">{{ score }}</a></td>
-      <td><a style="color: var(--c2)" href="{% url 'salle-user' user.id %}">{{ succes }}</a></td>
-      <td class="classement_ami"><a style="color: var(--c2)" href="{% url 'salle-user' user.id %}">{{ nominations }}</a></td></tr>
+      <td class="ordi"><a style="color: var(--c2)" href="{% url 'salle-user' user.id %}">{{ succes }}</a></td>
+      <td class="ordi"><a style="color: var(--c2)" href="{% url 'salle-user' user.id %}">{{ nominations }}</a></td></tr>
 
       {% elif user == request.user %}
       <tr class="classement_user" style="background-color: var(--c2)">
       <td><a style="color: black; " href="{% url 'salle-user' user.id %}">{{ user.username }}</a></td>
       <td><a style="color: black" href="{% url 'salle-user' user.id %}">{{ score }}</a></td>
-      <td><a style="color: black" href="{% url 'salle-user' user.id %}">{{ succes }}</a></td>
-      <td><a style="color: black" href="{% url 'salle-user' user.id %}">{{ nominations }}</a></td></tr>
+      <td class="ordi"><a style="color: black" href="{% url 'salle-user' user.id %}">{{ succes }}</a></td>
+      <td class="ordi"><a style="color: black" href="{% url 'salle-user' user.id %}">{{ nominations }}</a></td></tr>
 
       {% else %}
           {% if score != 0 %}
           <tr>
           <td class="classement_points">{{ user.username }}</td>
           <td class="classement_points">{{ score }}</td>
-          <td class="classement_points">{{ succes }}</td>
-          <td class="classement_points">{{ nominations }}</td></tr>
+          <td class="ordi">{{ succes }}</td>
+          <td class="ordi">{{ nominations }}</td></tr>
 
           {% endif %}
       {% endif %}

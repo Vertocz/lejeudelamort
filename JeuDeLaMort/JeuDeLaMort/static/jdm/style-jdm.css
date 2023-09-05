@@ -661,4 +661,8 @@ header {
         font-size: calc(20px + 0.390625vw);
         text-align: center;
     }
+
+    .ordi {
+        display: none;
+    }
 }
