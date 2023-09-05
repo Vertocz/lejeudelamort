@@ -270,17 +270,30 @@ h3 {
 a:link {
     color: rgb(240,240,240);
     text-decoration: none;
+    .complement_bloc{
+        color: black;
+    }
 }
 
 a:visited {
     color: rgb(240,240,240);
     text-decoration: none;
+    .complement_bloc{
+        color: black;
+    }
 }
 
 a:hover {
     color: var(--c2);
     text-decoration: none;
     transition: 0.5s ease;
+}
+
+#joker{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--c2);
+    align-content: flex-start;
 }
 
 .portrait {
@@ -577,11 +590,24 @@ header {
     }
 
     h1{
+        margin: 5rem auto 2rem;
         font-size: calc(36px + 0.390625vw);
     }
 
     h2{
         font-size: calc(28px + 0.390625vw);
+    }
+
+    a:link{
+        .bloc{
+        background-color: var(--c2);
+    }
+    }
+
+    a:visited{
+        .bloc{
+        background-color: var(--c2);
+    }
     }
 
     .compte {

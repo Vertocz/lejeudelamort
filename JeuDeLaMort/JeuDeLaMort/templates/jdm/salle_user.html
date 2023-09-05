@@ -4,6 +4,8 @@
 
 {% if joueur != request.user %}
 <h1 id="joueur">{{ joueur.username }}</h1>
+{% else %}
+<h1>Ma salle d'attente</h1>
 {% endif %}
 
 
@@ -20,11 +22,10 @@
     </div>
     {% endif %}
     {% if paris|length > 0 %}
-
-    <div class="bloc">
+    <a href="/candidats/{{ poker.id }}/" class="bloc" id="joker">
         <div class="titre_bloc">Le coup de poker</div>
         <div style="font-weight: bold;"  class="complement_bloc">{{ poker.nom }}</div>
-    </div>
+    </a>
 
     <div class="bloc">
         <div class="titre_bloc">Âge moyen</div>
