@@ -6,16 +6,18 @@
 :root{
     --c1: #4e3929;
     --c2: #db878f;
-    --fond: #8a909c;
+    --fond: #293E4E;
 }
 
 html, body {
     font-family: 'Quicksand', sans-serif;
-      background: url("/static/jdm/fondp.jpg") no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+
+    /*background: url("/static/jdm/fondp.jpg") no-repeat center center fixed;*/
+    background-color: var(--fond);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 body {
@@ -218,7 +220,7 @@ h3 {
     width: 90%;
     justify-content: center;
     padding: .5rem .5rem .5rem .5rem;
-    margin: 1rem 0 2rem 0;
+    margin: 1rem 0 5rem 0;
     color: rgb(40,40,40);
     box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
     backdrop-filter: blur(2px);
@@ -600,6 +602,8 @@ header {
     }
 
     .resume {
+        width: 70%;
+        margin: 1rem auto 5rem;
         flex-direction: column;
         background-color: var(--c1);
     }
@@ -611,8 +615,13 @@ header {
         }
 
     .bloc {
-        width: 100%;
-        margin: 0.2rem;
+        width: 90%;
+        height: 8rem;
+        margin: 1rem auto 1rem;
+    }
+
+    .complement_bloc {
+        font-size: calc(30px + 0.390625vw);
     }
 
     .titre_bloc:hover {
@@ -622,6 +631,12 @@ header {
     .score_user {
         font-size: 1.3rem;
         }
+
+    .contenu_bloc {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
 
     .overlay {
         background-color : rgba(220,220,220,0.6);

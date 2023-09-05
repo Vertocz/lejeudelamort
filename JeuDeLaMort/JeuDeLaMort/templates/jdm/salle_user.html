@@ -10,28 +10,25 @@
 
 <div class="resume">
     <div class="bloc"><div class="titre_bloc">Score</div>
-        <div style="font-size: calc(40px + 0.390625vw)">{{ score }}</div>
-        <div>point{{ score|pluralize }}</div>
+        <div class="contenu_bloc"><span style="font-size: calc(40px + 0.390625vw)">{{ score }}</span><span class="complement_bloc">&nbsp;point{{ score|pluralize }}</span></div>
     </div>
 
     {% if paris|length > 0 %}
     <div class="bloc">
         <div class="titre_bloc">Points à gagner</div>
-        <div style="font-size: calc(40px + 0.390625vw)">{{ score_max }}</div>
-        <div>point{{ score_max|pluralize }}</div>
+        <div class="contenu_bloc"><span style="font-size: calc(40px + 0.390625vw)">{{ score_max }}</span><span class="complement_bloc">&nbsp;point{{ score_max|pluralize }}</span></div>
     </div>
     {% endif %}
     {% if paris|length > 0 %}
 
     <div class="bloc">
         <div class="titre_bloc">Le coup de poker</div>
-        <div style="font-weight: bold;">{{ poker.nom }}</div>
+        <div style="font-weight: bold;"  class="complement_bloc">{{ poker.nom }}</div>
     </div>
 
     <div class="bloc">
         <div class="titre_bloc">Âge moyen</div>
-        <div style="font-size: calc(40px + 0.390625vw)">{{ moyenne }}</div>
-        <div>ans</div>
+        <div class="contenu_bloc"><span style="font-size: calc(40px + 0.390625vw)">{{ moyenne }}</span><span class="complement_bloc">&nbsp;ans</span></div>
     </div>
 
     {% endif %}
