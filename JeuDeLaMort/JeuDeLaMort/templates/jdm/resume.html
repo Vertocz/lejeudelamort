@@ -15,7 +15,7 @@
             {% if x.photo is None or x.photo == '' %}
             <img src="{% static 'jdm/candidat.png' %}" alt="{{ x.nom }}" class="portrait"/>
             {% else %}
-            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ x.photo }}&width=300" alt="{{ x.nom }}" class="portrait" style="filter: grayscale(1);"/>
+            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ x.photo }}&width=300" alt="{{ x.nom }}" class="portrait" style="filter: sepia(1) saturate(30%);"/>
             {% endif %}
                 <div class="overlay2">
                     <div class="text">
