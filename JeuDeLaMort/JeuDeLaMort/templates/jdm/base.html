@@ -22,7 +22,12 @@
                 <div id="indication_menu">MENU</div>
                 <li><a href="{% url 'favoris' %}">Les favoris</a></li>
                 <li><a href="{% url 'resume' %}">Dans nos cœurs</a></li>
+                {% if user.is_authenticated %}
                 <li><a href="{% url 'parametres' %}">Préférences</a></li>
+                {% else %}
+                <li><a href="{% url 'login' %}">Connexion</a></li>
+                <li><a href="{% url 'register_user' %}">Inscription</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
@@ -34,11 +39,18 @@
         <img id="close-menu" src="{% static 'jdm/fermer.png' %}" alt="Fermer">
     <ul>
         <li><a href="{% url 'jdm-index' %}">Accueil</a></li>
+        {% if user.is_authenticated %}
         <li><a href="{% url 'salle-user' request.user.id %}">Ma salle d'attente</a></li>
         <li><a href="{% url 'classement' %}">Classement</a></li>
+        {% endif %}
         <li><a href="{% url 'favoris' %}">Les favoris</a></li>
         <li><a href="{% url 'resume' %}">Dans nos cœurs</a></li>
+        {% if user.is_authenticated %}
         <li><a href="{% url 'parametres' %}">Préférences</a></li>
+        {% else %}
+        <li><a href="{% url 'login' %}">Connexion</a></li>
+        <li><a href="{% url 'register_user' %}">Inscription</a></li>
+        {% endif %}
     </ul>
 
     </div>
