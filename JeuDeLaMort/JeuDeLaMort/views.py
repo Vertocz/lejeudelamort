@@ -81,21 +81,25 @@ def moyenne_age(joueur):
 
 
 def salle_user(request, id):
-    joueur = User.objects.get(id=id)
-    if len(Cercle.objects.filter(joueur=request.user, ami=joueur)) > 0 or request.user == joueur:
-        paris_user = Pari.objects.filter(joueur=joueur)
-        paris_decedes = Pari.objects.filter(joueur=joueur, mort=True)
-        candidats_joueur = []
-        for pari in paris_user:
-            candidat = candidats.get(wiki_id=pari.candidat.wiki_id)
-            candidats_joueur.append(candidat)
-        return render(request,
-                      'jdm/salle_user.html',
-                      {'joueur': joueur, 'poker': joker(joueur), 'score_max': score_max(joueur),
-                       'score': score_user(paris_user), 'paris': Pari.objects.filter(joueur=joueur), 'deces': paris_decedes,
-                       'rap': 10 - len(paris_user) + len(paris_decedes), 'candidats_joueur': candidats_joueur,
-                       'moyenne': moyenne_age(joueur)})
-    else:
+    try:
+        joueur = User.objects.get(id=id)
+        if len(Cercle.objects.filter(joueur=request.user, ami=joueur)) > 0 or request.user == joueur:
+            paris_user = Pari.objects.filter(joueur=joueur)
+            paris_decedes = Pari.objects.filter(joueur=joueur, mort=True)
+            candidats_joueur = []
+            for pari in paris_user:
+                candidat = candidats.get(wiki_id=pari.candidat.wiki_id)
+                candidats_joueur.append(candidat)
+            return render(request,
+                          'jdm/salle_user.html',
+                          {'joueur': joueur, 'poker': joker(joueur), 'score_max': score_max(joueur),
+                           'score': score_user(paris_user), 'paris': Pari.objects.filter(joueur=joueur), 'deces': paris_decedes,
+                           'rap': 10 - len(paris_user) + len(paris_decedes), 'candidats_joueur': candidats_joueur,
+                           'moyenne': moyenne_age(joueur)})
+        else:
+            messages.success(request, ("Ce joueur ne fait pas partie de votre cercle"))
+            return redirect('classement')
+    except ObjectDoesNotExist:
         messages.success(request, ("Ce joueur ne fait pas partie de votre cercle"))
         return redirect('classement')
 
