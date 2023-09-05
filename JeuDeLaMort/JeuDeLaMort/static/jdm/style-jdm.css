@@ -595,7 +595,7 @@ header {
     }
 
     h2{
-        font-size: calc(28px + 0.390625vw);
+        font-size: calc(20px + 0.390625vw);
     }
 
     a:link{
