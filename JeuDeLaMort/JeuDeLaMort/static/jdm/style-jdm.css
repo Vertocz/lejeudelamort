@@ -241,6 +241,7 @@ h3 {
     backdrop-filter: blur(2px);
     max-width: 1015px;
     transition: 0.5s ease;
+    margin: 1rem auto 3rem;
 }
 
 .candidats:hover{
@@ -655,7 +656,7 @@ header {
 
     .portfav {
         width: 18rem;
-        height: 22rem;
+        height: 18rem;
     }
 
     .candidats {
