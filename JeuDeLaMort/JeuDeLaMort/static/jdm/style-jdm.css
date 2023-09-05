@@ -614,18 +614,18 @@ header {
     }
 
     .portrait {
-        width: 22rem;
-        height: 22rem;
+        width: 18rem;
+        height: 18rem;
         opacity: 75%;
     }
 
     .portfav {
-        width: 22rem;
+        width: 18rem;
         height: 22rem;
     }
 
     .candidats {
-        max-width: 24rem;
+        max-width: 20rem;
         background-color: var(--c1);
     }
 
