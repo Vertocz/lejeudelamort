@@ -468,7 +468,7 @@ header {
 @media screen and (max-width: 768px) {
 
     body {
-        font-size: calc(18px + 0.390625vw);
+        font-size: calc(15px + 0.390625vw);
     }
 
     main {
@@ -609,7 +609,7 @@ header {
     }
 
     .overlay2 {
-        background-color : rgba(0,0,0,0.5);
+        background-color : rgba(0,0,0,0);
         height: 100%;
     }
 
@@ -635,5 +635,10 @@ header {
 
     .soustexte {
         font-size: 1rem;
+    }
+
+    tbody td {
+        font-size: calc(20px + 0.390625vw);
+        text-align: center;
     }
 }
