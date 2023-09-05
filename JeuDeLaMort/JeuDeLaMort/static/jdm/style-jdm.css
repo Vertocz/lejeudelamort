@@ -195,6 +195,18 @@ h3 {
     background-color: var(--c1);
 }
 
+#deco {
+    background-color: var(--c2);
+    padding: 1rem;
+    width: 200px;
+    border-radius: 15px;
+    margin: 3rem auto;
+}
+
+#deco a:hover {
+    color: var(--c1);
+}
+
 .score_user {
     font-size: 3rem;
     color: rgb(40,40,40);
@@ -233,6 +245,10 @@ h3 {
 
 .candidats:hover{
     background-color: var(--c1);
+}
+
+#deces:hover {
+    background-color: black;
 }
 
 .bouton {
@@ -338,10 +354,10 @@ a:hover {
 }
 
 .message {
-    color: rgb(217,217,217);
+    color: white;
     margin: 0.5rem 0rem 0 0rem;
     padding: 0.5rem;
-    background-color: red;
+    background-color: var(--c2);
 }
 
 
@@ -556,7 +572,7 @@ header {
     }
 
     h1{
-        font-size: calc(38px + 0.390625vw);
+        font-size: calc(36px + 0.390625vw);
     }
 
     h2{
@@ -569,6 +585,10 @@ header {
 
     .fond {
         background-color: var(--c1);
+    }
+
+    #deces {
+        background-color: black;
     }
 
     .description {

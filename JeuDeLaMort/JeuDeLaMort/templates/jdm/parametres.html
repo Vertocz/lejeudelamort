@@ -22,7 +22,7 @@
 </div>
 
         {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}">Déconnexion</a>
+        <div id="deco"><a href="{% url 'logout' %}">Déconnexion</a></div>
         {% else %}
         <div style="flex-direction: row; justify-content: right; "><a href="{% url 'login' %}">Connexion</a> | <a href="{% url 'register_user' %}">Inscription</a></div>
         {% endif %}

@@ -8,7 +8,7 @@
 <div>Aucun.e candidat.e n'a à ce jour été élu.e</div>
 
 {% else %}
-<div class="candidats">
+<div class="candidats" id="deces">
 {% for x, y in candidats_decedes %}
 <div class="alignement">
         <a href="/candidats/{{ x.id }}/">
