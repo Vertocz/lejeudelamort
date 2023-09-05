@@ -7,7 +7,11 @@
 
 
 {% if not candidat.photo == '' %}
-<img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" alt="" class="image"/>
+    {% if candidat.DDD %}
+<img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" style="filter: grayscale(1);" alt="" class="image"/>
+    {% else %}
+<img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" style="filter: grayscale(1);" alt="" class="image"/>
+    {% endif %}
 {% endif %}
 
 
