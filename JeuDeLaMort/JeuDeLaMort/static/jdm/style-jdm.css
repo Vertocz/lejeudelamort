@@ -523,6 +523,8 @@ header {
 
 
     #menu-toggle {
+        z-index: 3;
+        position: fixed;
         display: block;
         cursor: pointer;
         margin: 1rem 0 0 1rem;
