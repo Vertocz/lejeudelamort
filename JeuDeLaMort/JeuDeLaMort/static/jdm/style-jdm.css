@@ -49,8 +49,9 @@ main {
     font-size: 0;
     backdrop-filter: blur(5px);
     margin: 2rem auto 2rem;
-    width: 15%;
-    height: 5rem;
+    padding: 1rem 3rem;
+    max-width: 20%;
+    min-height: 6rem;
     justify-content: space-evenly;
     box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
     transition: .5s ease;
@@ -62,13 +63,14 @@ main {
 
 .navbar:hover {
     font-size: calc(20px + 0.390625vw);
-    width: 80%;
+    max-width: 90%;
     background-color: var(--c1);
     #indication_menu {
         display: none;
     }
     ul li {
         display: flex;
+        justify-content: space-around;
         }
 }
 
@@ -381,6 +383,7 @@ a:hover {
 
 footer{
   font-size: 0.7rem;
+  color: var(--text);
 }
 
 
@@ -453,7 +456,7 @@ tbody tr:nth-child(even):hover{
 
 /* Styles pour le menu de navigation */
 header {
-    color: #fff;
+    color: var(--text);
     padding: 0 0;
     display: flex;
     justify-content: space-between;
@@ -478,7 +481,7 @@ header {
 
 .navbar a {
     text-decoration: none;
-    color: #fff;
+    color: var(--text);
     transition: color 0.3s;
 }
 
@@ -583,7 +586,7 @@ header {
 
     #mobile-menu a {
         text-decoration: none;
-        color: #fff;
+        color: var(--text);
         transition: color 0.3s;
     }
 

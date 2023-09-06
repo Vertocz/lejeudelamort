@@ -30,9 +30,6 @@
                 <li><a href="{% url 'login' %}">Connexion</a></li>
                 <li><a href="{% url 'register_user' %}">Inscription</a></li>
                 {% endif %}
-                {% if user.is_superuser %}
-                <li><a href="/admin/">Admin</a></li>
-                {% endif %}
             </ul>
         </nav>
     </header>
@@ -55,9 +52,6 @@
         {% else %}
         <li><a href="{% url 'login' %}">Connexion</a></li>
         <li><a href="{% url 'register_user' %}">Inscription</a></li>
-        {% endif %}
-        {% if user.is_superuser %}
-        <li><a href="/admin/">Admin</a></li>
         {% endif %}
     </ul>
 
@@ -85,8 +79,8 @@
 <footer>
 
     <div>Victor Crézé © 2023</div>
-            {% if user.is_superuser %}
-    <a href="{% url 'maj' %}">Mise à jour des données</a>
+        {% if user.is_superuser %}
+    <a href="{% url 'maj' %}">Mise à jour des données</a> // <a href="/admin/">Admin</a>
         {% endif %}
 </footer>
 
