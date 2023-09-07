@@ -396,3 +396,7 @@ def parametres(request):
         form = PreferenceForm(instance=prefs)
         return render(request, "jdm/parametres.html", {'joueur': request.user, 'form': form})
 
+
+def diapo(request):
+    return render(request, 'jdm/diapo.html', {'candidats': candidats})
+

@@ -1,4 +1,5 @@
 {% extends 'jdm/base.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -22,6 +23,35 @@
 
 {% endfor %}
     </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <!-- Additional required wrapper -->
+<div class="swiper" id="favoris">
+<div class="swiper-wrapper">
+    {% for candidat, nb_votes, z in favoris %}
+    <div class="swiper-slide"><a href="/candidats/{{ candidat.id }}/">
+            {% if candidat.photo == '' %}
+            <img class="portrait" src="{% static 'jdm/candidat.png' %}" alt="{{ candidat.nom }}"/>
+            {% else %}
+            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" alt="{{ candidat.nom }}" class="portfav"/>
+            {% endif %}
+            <div class="diapo">
+                <p>{{ candidat.nom }}</p>
+                <p class="soustexte">{{ nb_votes }} nominations</p>
+            </div></a>
+        </div>
+    {% endfor %}
+    </div>
+
+    <!-- If we need scrollbar -->
+    <div class="swiper-pagination"></div>
+</div>
+<!-- Slider main container -->
+<script src="{% static 'jdm/slider.js' %}"></script>
+
+
+
 {% endif %}
 
 {% endblock %}

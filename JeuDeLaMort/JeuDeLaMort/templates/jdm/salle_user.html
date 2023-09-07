@@ -9,7 +9,6 @@
 {% endif %}
 
 
-
 <div class="resume">
     <div class="bloc"><div class="titre_bloc">Score</div>
         <div class="contenu_bloc"><span style="font-size: calc(40px + 0.390625vw)">{{ score }}</span><span class="complement_bloc">&nbsp;point{{ score|pluralize }}</span></div>
@@ -61,6 +60,41 @@
     {% endfor %}
     </div>
 {% endif %}
+
+{% if paris|length > 0 %}
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <!-- Additional required wrapper -->
+<div class="swiper" id="candidats_mobile">
+<div class="swiper-wrapper">
+        {% for pari in paris %}
+        {% for candidat in candidats_joueur %}
+        {% if candidat == pari.candidat and candidat.DDD is null %}
+        <div class="swiper-slide"><a href="/candidats/{{ candidat.id }}/">
+            {% if candidat.photo == '' %}
+            <img class="portrait" src="{% static 'jdm/candidat.png' %}" alt="{{ candidat.nom }}"/>
+            {% else %}
+            <img class="portrait" src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" alt="{{ candidat.nom }}"/>
+            {% endif %}
+            <div class="diapo">
+                <div>{{ candidat.nom }}</div>
+                <div class="soustexte">{{ candidat.calcul_age }} ans</div>
+                <div class="soustexte">{{ candidat.points }} point{{ candidat.points|pluralize }}</div>
+            </div></a>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+    </div>
+    <div class="swiper-pagination"></div>
+</div>
+<!-- Slider main container -->
+<script src="{% static 'jdm/slider.js' %}"></script>
+{% endif %}
+
+
+
+
+
 
 
 {% if rap > 0 %}

@@ -11,3 +11,4 @@ document.addEventListener("DOMContentLoaded", function () {
         mobileMenu.classList.remove("active");
     });
 });
+

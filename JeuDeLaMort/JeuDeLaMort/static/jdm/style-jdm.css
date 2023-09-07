@@ -501,6 +501,88 @@ header {
     display: none;
 }
 
+.swiper {
+  --swiper-pagination-color: var(--c2);
+  --swiper-pagination-bullet-inactive-color: var(--text);
+  width: 22rem;
+  height: 32rem;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
+  margin: 1rem auto 4rem;
+}
+
+#candidats_mobile {
+    display: none;
+    box-shadow: rgba(0, 0, 0, 0) 1px 5px 15px;
+    .swiper-slide {
+      border-radius: 15px;
+      background-color: var(--c1);
+      box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
+    }
+    .diapo {
+    box-shadow: rgba(0, 0, 0, 0) 1px 5px 15px;
+    }
+    .swiper-slide img {
+      border: 5px solid var(--c2);
+      box-shadow: rgba(0, 0, 0, 0) 1px 5px 15px;
+    }
+    a{
+      color: var(--text);
+    }
+}
+
+#favoris {
+    display: none;
+    box-shadow: rgba(0, 0, 0, .8) 1px 5px 15px;
+    .swiper-slide {
+      border-radius: 15px;
+      background-color: var(--c1);
+    }
+    a{
+      color: var(--text);
+    }
+}
+
+#decedes {
+    display: none;
+    box-shadow: rgba(0, 0, 0, .8) 1px 5px 15px;
+    .swiper-slide {
+      border-radius: 15px;
+      background-color: black;
+    }
+    a{
+      color: var(--text);
+    }
+}
+
+.swiper-slide {
+  height: 100%;
+  text-align: center;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  height: 18rem;
+  width: 18rem;
+  object-fit: cover;
+  margin: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
+}
+
+.diapo {
+    font-size: 26px;
+    background-color: var(--c2);
+    margin: 2rem;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
+}
+
 /* Styles pour le menu hamburger sur mobile */
 @media screen and (max-width: 768px) {
 
@@ -672,16 +754,6 @@ header {
         justify-content: center;
     }
 
-    .overlay {
-        background-color : rgba(220,220,220,0.6);
-        height: 100%;
-    }
-
-    .overlay2 {
-        background-color : rgba(0,0,0,0);
-        height: 100%;
-    }
-
     .portrait {
         width: 18rem;
         height: 18rem;
@@ -694,8 +766,7 @@ header {
     }
 
     .candidats {
-        max-width: 20rem;
-        background-color: var(--c1);
+        display: none;
     }
 
     .text {
@@ -703,7 +774,7 @@ header {
     }
 
     .soustexte {
-        font-size: 1rem;
+        font-size: 20px;
     }
 
     tbody td {
@@ -714,4 +785,17 @@ header {
     .ordi {
         display: none;
     }
+
+    #candidats_mobile {
+        display: flex;
+    }
+
+    #favoris {
+        display: flex;
+    }
+
+    #decedes {
+        display: flex;
+    }
+
 }
