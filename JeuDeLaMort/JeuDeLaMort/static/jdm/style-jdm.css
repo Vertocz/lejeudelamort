@@ -721,11 +721,11 @@ header {
       --swiper-pagination-bullet-inactive-color: var(--text);
       width: 22rem;
       max-width: 80%;
+      height: 27rem;
       border-radius: 15px;
       display: flex;
       justify-content: center;
       box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
-      padding: 1rem;
       margin: 1rem auto 4rem;
     }
 
