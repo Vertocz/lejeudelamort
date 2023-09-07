@@ -505,6 +505,7 @@ header {
   --swiper-pagination-color: var(--c2);
   --swiper-pagination-bullet-inactive-color: var(--text);
   width: 22rem;
+  max-width: 80%;
   height: 32rem;
   border-radius: 15px;
   display: flex;
