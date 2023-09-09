@@ -325,7 +325,7 @@ def resume(request):
         nb_paris = Pari.objects.filter(candidat=candidat)
         liste.append((candidat, nb_paris))
     liste.sort(key=lambda x: x[0].DDN, reverse=True)
-    return render(request, "jdm/resume.html", {'candidats_decedes': liste})
+    return render(request, "jdm/dans_nos_coeurs.html", {'candidats_decedes': liste})
 
 
 def envoyer_mail():

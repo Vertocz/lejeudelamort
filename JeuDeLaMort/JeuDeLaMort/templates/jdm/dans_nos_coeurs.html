@@ -3,6 +3,7 @@
 {% block content %}
 {% load static %}
 
+
 <h1>Dans nos cœurs</h1>
 {% if candidats_decedes|length == 0 %}
 <div>Aucun.e candidat.e n'a à ce jour été élu.e</div>
@@ -32,39 +33,36 @@
 
 
 
-
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-    <!-- Additional required wrapper -->
+<!-- Conteneur Swiper -->
 <div class="swiper" id="decedes">
-<div class="swiper-wrapper">
-    {% for x, y in candidats_decedes %}
-    <div class="swiper-slide"><a href="/candidats/{{ x.id }}/">
-        {% if x.photo is None or x.photo == '' %}
-        <img src="{% static 'jdm/candidat.png' %}" alt="{{ x.nom }}" class="portrait"/>
-        {% else %}
-        <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ x.photo }}&width=300" alt="{{ x.nom }}" class="portrait" style="filter: sepia(1) saturate(30%);"/>
-        {% endif %}
-            <div class="diapo">
-                <div>{{ x.nom }}</div>
-                <div>{{ x.points }} point{{ x.points|pluralize }}</div>
-                <p class="soustexte">{{ y|length }} nomination{{ y|length|pluralize }}</p>
-            </div></a>
-        </div>
+    <!-- Diapositives Swiper -->
+    <div class="swiper-wrapper">
+        {% for x, y in candidats_decedes %}
+        <div class="swiper-slide">
+            <a href="/candidats/{{ x.id }}/">
+                {% if x.photo is None or x.photo == '' %}
+                <img src="{% static 'jdm/candidat.png' %}" alt="{{ x.nom }}" class="portrait"/>
+                {% else %}
+                <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ x.photo }}&width=300" alt="{{ x.nom }}" class="portrait" style="filter: sepia(1) saturate(30%);"/>
+                {% endif %}
+                <div class="diapo">
+                    <p>{{ x.nom }}</p>
+                    <p>{{ x.points }} point{{ x.points|pluralize }}</p>
+                    <p class="soustexte">{{ y|length }} nomination{{ y|length|pluralize }}</p>
+                </div>
+            </a>
+    </div>
     {% endfor %}
     </div>
-
-    <!-- If we need scrollbar -->
-    <div class="swiper-pagination"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
 </div>
-<!-- Slider main container -->
-<script src="{% static 'jdm/slider.js' %}"></script>
 
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
-
-
+  <!-- Initialize Swiper -->
+  <script src="{% static 'jdm/script.js' %}"></script>
 
 {% endif %}
 {% endblock %}

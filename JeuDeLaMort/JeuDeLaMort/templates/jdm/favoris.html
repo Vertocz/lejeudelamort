@@ -25,30 +25,37 @@
     </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-    <!-- Additional required wrapper -->
+<!-- Conteneur Swiper -->
 <div class="swiper" id="favoris">
-<div class="swiper-wrapper">
-    {% for candidat, nb_votes, z in favoris %}
-    <div class="swiper-slide"><a href="/candidats/{{ candidat.id }}/">
-            {% if candidat.photo == '' %}
-            <img class="portrait" src="{% static 'jdm/candidat.png' %}" alt="{{ candidat.nom }}"/>
-            {% else %}
-            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" alt="{{ candidat.nom }}" class="portfav"/>
-            {% endif %}
-            <div class="diapo">
-                <p>{{ candidat.nom }}</p>
-                <p class="soustexte">{{ nb_votes }} nominations</p>
-            </div></a>
+    <!-- Diapositives Swiper -->
+    <div class="swiper-wrapper">
+        {% for candidat, nb_votes, z in favoris %}
+        <div class="swiper-slide">
+            <a href="/candidats/{{ candidat.id }}/">
+                {% if candidat.photo == '' %}
+                <img class="portfav" src="{% static 'jdm/candidat.png' %}" alt="{{ candidat.nom }}"/>
+                {% else %}
+                <img class="portfav" src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" alt="{{ candidat.nom }}"/>
+                {% endif %}
+                <div class="diapo">
+                    <p>{{ candidat.nom }}</p>
+                    <p class="soustexte">{{ nb_votes }} nominations</p>
+                </div>
+            </a>
         </div>
-    {% endfor %}
+        {% endfor %}
     </div>
-
-    <!-- If we need scrollbar -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
     <div class="swiper-pagination"></div>
 </div>
-<!-- Slider main container -->
-<script src="{% static 'jdm/slider.js' %}"></script>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script src="{% static 'jdm/script.js' %}"></script>
+
 
 
 

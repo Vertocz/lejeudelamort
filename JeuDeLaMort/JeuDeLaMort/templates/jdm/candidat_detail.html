@@ -44,7 +44,7 @@
 <h2>Qui a désigné ce candidat ?</h2>
 <div>
         {% for pari in paris %}
-    <a href="{% url 'salle-user' pari.id %}">{{ pari.username }}</a>
+    <a href="{% url 'salle-user' pari.id %}" class="designeurs">{{ pari.username }}</a>
         {% endfor %}
     </div>
     </div>

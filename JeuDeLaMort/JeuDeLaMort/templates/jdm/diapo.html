@@ -5,34 +5,19 @@
     <meta charset="UTF-8">
     <title>Diapo</title>
     <link rel="stylesheet" href="{% static 'jdm/style-jdm.css' %}">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
 
 
 </head>
 <body>
-
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-<!-- Slider main container -->
-<div class="swiper">
-  <!-- Additional required wrapper -->
-  <div class="swiper-wrapper">
-    <!-- Slides -->
-    <div class="swiper-slide">Slide 1</div>
-    <div class="swiper-slide">Slide 2</div>
-    <div class="swiper-slide">Slide 3</div>
-  </div>
-  <!-- If we need pagination -->
-  <div class="swiper-pagination"></div>
-
-  <!-- If we need navigation buttons -->
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
-
-  <!-- If we need scrollbar -->
-  <div class="swiper-scrollbar"></div>
+<div class="siema">
+    <div><img src="{% static 'jdm/candidat.png' %}" alt="{{ x.nom }}" class="portrait"/></div>
+    <div>B</div>
+    <div><img src="{% static 'jdm/candidat.png' %}" alt="{{ x.nom }}" class="portrait"/></div>
 </div>
-<script src="{% static 'jdm/script.js' %}"></script>
+<script src="{% static 'jdm/siema.min.js' %}"></script>
+<script>
+  new Siema();
+</script>
 
 
 

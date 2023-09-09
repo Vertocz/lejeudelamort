@@ -33,6 +33,34 @@
 
     {% endif %}
     </div>
+
+
+<div class="swiper" id="resume">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+          <p class="titre_bloc">Score</p>
+          <p class="diapo">{{ score }} point{{ score|pluralize }}</p></div>
+      <div class="swiper-slide">
+          <p class="titre_bloc">Points à gagner</p>
+          <p class="diapo">{{ score_max }} point{{ score_max|pluralize }}</p></div>
+      <div class="swiper-slide">
+          <a href="/candidats/{{ poker.id }}/">
+              <p class="titre_bloc">Le coup de poker</p>
+              <p class="diapo" style="color: var(--c2)">{{ poker.nom }}</p></a></div>
+      <div class="swiper-slide">
+          <p class="titre_bloc">Âge moyen</p>
+          <p class="diapo">{{ moyenne }} ans</p></div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script src="{% static 'jdm/script.js' %}"></script>
+
 <div></div>
 {% if paris|length > 0 %}
 <div class="candidats">
@@ -59,54 +87,50 @@
             {% endfor %}
     {% endfor %}
     </div>
-{% endif %}
 
-{% if paris|length > 0 %}
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-    <!-- Additional required wrapper -->
-<div class="swiper" id="favoris">
-<div class="swiper-wrapper">
-        {% for pari in paris %}
-        {% for candidat in candidats_joueur %}
-        {% if candidat == pari.candidat and candidat.DDD is null %}
-        <div class="swiper-slide"><a href="/candidats/{{ candidat.id }}/">
-            {% if candidat.photo == '' %}
-            <img class="portrait" src="{% static 'jdm/candidat.png' %}" alt="{{ candidat.nom }}"/>
-            {% else %}
-            <img class="portrait" src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" alt="{{ candidat.nom }}"/>
-            {% endif %}
-            <div class="diapo">
-                <div>{{ candidat.nom }}</div>
-                <div class="soustexte">{{ candidat.calcul_age }} ans</div>
-                <div class="soustexte">{{ candidat.points }} point{{ candidat.points|pluralize }}</div>
-            </div></a>
-        </div>
+
+<div class="swiper" id="candidats">
+    <div class="swiper-wrapper">
+    {% for pari in paris %}
+    {% for candidat in candidats_joueur %}
+    {% if candidat == pari.candidat and candidat.DDD is null %}
+    <div class="swiper-slide"><a href="/candidats/{{ candidat.id }}/">
+        {% if candidat.photo == '' %}
+        <img class="portrait" src="{% static 'jdm/candidat.png' %}" alt="{{ candidat.nom }}"/>
+        {% else %}
+        <img class="portrait" src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" alt="{{ candidat.nom }}" class="image"/>
         {% endif %}
-        {% endfor %}
-        {% endfor %}
-    </div>
+
+        <div style="color: var(--text);">
+            <p>{{ candidat.nom }}</p>
+            <p>{{ candidat.calcul_age }} ans</p>
+            <p>{{ candidat.points }} point{{ candidat.points|pluralize }}</p>
+        </div>
+    </a></div>
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+</div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
     <div class="swiper-pagination"></div>
 </div>
-<!-- Slider main container -->
-<script src="{% static 'jdm/slider.js' %}"></script>
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script src="{% static 'jdm/script.js' %}"></script>
+
 {% endif %}
-
-
-
-
-
 
 
 {% if rap > 0 %}
-{% if joueur == request.user %}
-<div>Vous pouvez encore nommer {{ rap }} candidat{{ rap|pluralize }}.</div>
-<h2 style="padding: 1rem 0 2rem 0; "><a href="{% url 'candidat-create' %}">Ajouter un candidat</a></h2>
-
-
-{% else %}
-<div>{{ joueur.username }} peut encore nommer {{ rap }} candidat{{ rap|pluralize }}.</div>
-{% endif %}
-
+    {% if joueur == request.user %}
+    <div>Vous pouvez encore nommer {{ rap }} candidat{{ rap|pluralize }}.</div>
+    <h2 style="padding: 1rem 0 2rem 0; "><a href="{% url 'candidat-create' %}">Ajouter un candidat</a></h2>
+    {% else %}
+    <div>{{ joueur.username }} peut encore nommer {{ rap }} candidat{{ rap|pluralize }}.</div>
+    {% endif %}
 {% endif %}
 
 

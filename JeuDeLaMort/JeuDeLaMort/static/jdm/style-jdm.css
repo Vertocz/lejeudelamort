@@ -22,19 +22,14 @@ html, body {
 }
 
 body {
-    display: flex;
-    flex-direction: column;
     color: #F1EBDB;
     font-size: calc(16px + 0.390625vw);
     text-align: center;
-    padding: 0 1rem;
     height: 100%;
     justify-content:space-between;
+    margin: 9rem 3rem 1rem;
 }
 
-main {
-    padding: 9rem 0 0 0;
-}
 
 #indication_menu {
     font-family: 'Rye', cursive;
@@ -49,9 +44,9 @@ main {
     font-size: 0;
     backdrop-filter: blur(5px);
     margin: 2rem auto 2rem;
-    padding: 1rem 3rem;
+    padding: 1rem 2rem;
     max-width: 20%;
-    min-height: 6rem;
+    min-height: 3rem;
     justify-content: space-evenly;
     box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
     transition: .5s ease;
@@ -107,11 +102,6 @@ main {
     background-color: var(--c1);
 }
 
-div{
-    display: flex;
-    flex-direction: column;
-}
-
 h1 {
     z-index: 3;
     font-family: 'Rye', cursive;
@@ -127,7 +117,6 @@ h2 {
     color: var(--c2);
     font-size: calc(35px + 0.390625vw);
     text-shadow: rgba(0,0,0, 1) 1px 2px 1px;
-    padding: 1rem;
 }
 
 h3 {
@@ -246,7 +235,7 @@ h3 {
     backdrop-filter: blur(2px);
     max-width: 1015px;
     transition: 0.5s ease;
-    margin: 1rem auto 3rem;
+    margin: 1rem auto 1rem;
 }
 
 .candidats:hover{
@@ -384,6 +373,7 @@ a:hover {
 footer{
   font-size: 0.7rem;
   color: var(--text);
+  margin: 3rem auto 1rem;
 }
 
 
@@ -453,6 +443,11 @@ tbody tr:nth-child(even):hover{
     color: black;
 }
 
+.designeurs{
+    display: flex;
+    flex-direction: column;
+}
+
 
 /* Styles pour le menu de navigation */
 header {
@@ -489,10 +484,6 @@ header {
     color: var(--c2);
 }
 
-.regles {
-    padding: 1rem 0;
-}
-
 #mobile-menu {
         display: none;
     }
@@ -501,16 +492,26 @@ header {
     display: none;
 }
 
-#candidats_mobile {
+
+#resume {
     display: none;
 }
 
-#favoris {
+#candidats {
     display: none;
 }
 
-#decedes {
+#favoris{
     display: none;
+}
+
+#decedes{
+    display: none;
+}
+
+
+
+@media screen and (min-width: 769px) {
 }
 
 /* Styles pour le menu hamburger sur mobile */
@@ -518,6 +519,7 @@ header {
 
     body {
         font-size: calc(15px + 0.390625vw);
+        margin: 3rem;
     }
 
     main {
@@ -558,7 +560,7 @@ header {
         position: fixed;
         display: block;
         cursor: pointer;
-        margin: 1rem 0 0 1rem;
+        margin: -4rem 0 0 -2rem;
         height: 4rem;
         width: 4rem;
         background: var(--c2);
@@ -647,32 +649,25 @@ header {
         background-color: var(--c1);
     }
 
-    .resume {
-        width: 70%;
-        margin: 1rem auto 5rem;
-        flex-direction: column;
+    .resume{
+        display: none;
+    }
+
+    #resume {
+        display: flex;
+        border-radius: 15px;
+        max-width: 350px;
+        box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 10px;
+        margin: 3rem auto 3rem;
+        --swiper-theme-color: var(--c2);
+        transition: .5s ease;
         background-color: var(--c1);
+        --swiper-navigation-sides-offset: 3px;
     }
 
-    .titre_bloc {
-        font-size: 1rem;
-        text-shadow: rgba(0,0,0, 1) 0px 0px 5px;
-        color: var(--text);
-        }
-
-    .bloc {
-        width: 90%;
-        height: 8rem;
-        margin: 1rem auto 1rem;
+    .portrait {
+        box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 10px;
     }
-
-    .complement_bloc {
-        font-size: calc(30px + 0.390625vw);
-    }
-
-    .titre_bloc:hover {
-        color: var(--text);
-        }
 
     .score_user {
         font-size: 1.3rem;
@@ -687,7 +682,7 @@ header {
     .portrait {
         width: 18rem;
         height: 18rem;
-        opacity: 75%;
+        opacity: 100%;
     }
 
     .portfav {
@@ -716,85 +711,63 @@ header {
         display: none;
     }
 
-    .swiper {
-      --swiper-pagination-color: var(--c2);
-      --swiper-pagination-bullet-inactive-color: var(--text);
-      width: 22rem;
-      max-width: 80%;
-      height: 27rem;
-      border-radius: 15px;
-      display: flex;
-      justify-content: center;
-      box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
-      margin: 1rem auto 4rem;
-    }
 
-    #candidats_mobile {
-        display: flex;
-        box-shadow: rgba(0, 0, 0, 0) 1px 5px 15px;
+    .titre_bloc {
+        font-size: 25px;
+        text-shadow: rgba(0,0,0, 1) 0px 0px 5px;
+        color: var(--text);
+        }
+
+    #candidats {
+        padding: 2rem 0 0;
+        border-radius: 15px;
+        max-width: 75%;
+        box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 10px;
+        margin: 3rem auto 3rem;
+        background-color: var(--c2);
+        font-size: 20px;
+        display: block;
+        --swiper-theme-color: var(--c1);
+        --swiper-navigation-sides-offset: 2px;
         .swiper-slide {
-          border-radius: 15px;
-          background-color: var(--c1);
-          box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
-        }
-        .diapo {
-        box-shadow: rgba(0, 0, 0, 0) 1px 5px 15px;
-        }
-        .swiper-slide img {
-          border: 5px solid var(--c2);
-          box-shadow: rgba(0, 0, 0, 0) 1px 5px 15px;
-        }
-        a{
-          color: var(--text);
+            margin: 0 auto 1rem;
         }
     }
 
-    #favoris {
-        display: flex;
-        box-shadow: rgba(0, 0, 0, .8) 1px 5px 15px;
+    #favoris{
+        padding: 2rem 0 0;
+        border-radius: 15px;
+        max-width: 75%;
+        box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 10px;
+        margin: 3rem auto 3rem;
+        background-color: var(--c2);
+        font-size: 20px;
+        display: block;
+        --swiper-theme-color: var(--c1);
+        --swiper-navigation-sides-offset: 3px;
         .swiper-slide {
-          border-radius: 15px;
-          background-color: var(--c1);
-        }
-        a{
-          color: var(--text);
+            margin: 0 auto 1rem;
         }
     }
 
-    #decedes {
-        display: flex;
-        box-shadow: rgba(0, 0, 0, .8) 1px 5px 15px;
+    #decedes{
+        padding: 2rem 0 0;
+        border-radius: 15px;
+        max-width: 75%;
+        box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 10px;
+        margin: 3rem auto 3rem;
+        background-color: black;
+        font-size: 20px;
+        display: block;
+        --swiper-theme-color: var(--c2);
+        --swiper-navigation-sides-offset: 3px;
         .swiper-slide {
-          border-radius: 15px;
-          background-color: black;
+            margin: 0 auto 1rem;
         }
-        a{
-          color: var(--text);
-        }
-    }
-
-    .swiper-slide {
-      height: 100%;
-      text-align: center;
-      font-size: 24px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .swiper-slide img {
-      display: block;
-      height: 15rem;
-      width: 15rem;
-      object-fit: cover;
-      margin: 2rem auto;
-      box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
     }
 
     .diapo {
-        background-color: var(--c2);
-        margin: 2rem;
-        border-radius: 15px;
-        box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
+        font-size: 20px;
+        color: var(--text);
     }
 }
