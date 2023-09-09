@@ -33,9 +33,9 @@
         <div class="swiper-slide">
             <a href="/candidats/{{ candidat.id }}/">
                 {% if candidat.photo == '' %}
-                <img class="portfav" src="{% static 'jdm/candidat.png' %}" alt="{{ candidat.nom }}"/>
+                <img class="portrait_swiper" src="{% static 'jdm/candidat.png' %}" alt="{{ candidat.nom }}"/>
                 {% else %}
-                <img class="portfav" src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" alt="{{ candidat.nom }}"/>
+                <img class="portrait_swiper" src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" alt="{{ candidat.nom }}"/>
                 {% endif %}
                 <div class="diapo">
                     <p>{{ candidat.nom }}</p>

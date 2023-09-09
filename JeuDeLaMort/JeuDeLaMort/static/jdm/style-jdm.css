@@ -690,6 +690,11 @@ header {
         height: 18rem;
     }
 
+    .portrait_swiper{
+        max-width: 95%;
+        aspect-ratio: 1/1;
+    }
+
     .candidats {
         display: none;
     }
@@ -721,7 +726,7 @@ header {
     #candidats {
         padding: 2rem 0 0;
         border-radius: 15px;
-        max-width: 75%;
+        max-width: 100%;
         box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 10px;
         margin: 3rem auto 3rem;
         background-color: var(--c2);
@@ -737,7 +742,7 @@ header {
     #favoris{
         padding: 2rem 0 0;
         border-radius: 15px;
-        max-width: 75%;
+        max-width: 100%;
         box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 10px;
         margin: 3rem auto 3rem;
         background-color: var(--c2);
@@ -753,7 +758,7 @@ header {
     #decedes{
         padding: 2rem 0 0;
         border-radius: 15px;
-        max-width: 75%;
+        max-width: 100%;
         box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 10px;
         margin: 3rem auto 3rem;
         background-color: black;

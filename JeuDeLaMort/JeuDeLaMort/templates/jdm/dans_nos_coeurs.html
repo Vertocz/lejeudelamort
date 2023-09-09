@@ -41,9 +41,9 @@
         <div class="swiper-slide">
             <a href="/candidats/{{ x.id }}/">
                 {% if x.photo is None or x.photo == '' %}
-                <img src="{% static 'jdm/candidat.png' %}" alt="{{ x.nom }}" class="portrait"/>
+                <img src="{% static 'jdm/candidat.png' %}" alt="{{ x.nom }}" class="portrait_swiper"/>
                 {% else %}
-                <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ x.photo }}&width=300" alt="{{ x.nom }}" class="portrait" style="filter: sepia(1) saturate(30%);"/>
+                <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ x.photo }}&width=300" alt="{{ x.nom }}" class="portrait_swiper" style="filter: sepia(1) saturate(30%);"/>
                 {% endif %}
                 <div class="diapo">
                     <p>{{ x.nom }}</p>

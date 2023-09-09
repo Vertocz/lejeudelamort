@@ -96,9 +96,9 @@
     {% if candidat == pari.candidat and candidat.DDD is null %}
     <div class="swiper-slide"><a href="/candidats/{{ candidat.id }}/">
         {% if candidat.photo == '' %}
-        <img class="portrait" src="{% static 'jdm/candidat.png' %}" alt="{{ candidat.nom }}"/>
+        <img class="portrait_swiper" src="{% static 'jdm/candidat.png' %}" alt="{{ candidat.nom }}"/>
         {% else %}
-        <img class="portrait" src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" alt="{{ candidat.nom }}" class="image"/>
+        <img class="portrait_swiper" src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" alt="{{ candidat.nom }}" class="image"/>
         {% endif %}
 
         <div style="color: var(--text);">
