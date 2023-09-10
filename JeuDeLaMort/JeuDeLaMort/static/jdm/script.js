@@ -49,6 +49,20 @@ document.addEventListener("DOMContentLoaded", function () {
         prevEl: ".swiper-button-prev",}
     });
 
+    var swiperChoix = new Swiper("#choix", {
+      spaceBetween: 30,
+      loop: true,
+      effect: 'ease',
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+        clickable: true,
+        },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",}
+    });
+
         var swiperDecedes = new Swiper("#decedes", {
       spaceBetween: 30,
       loop: true,

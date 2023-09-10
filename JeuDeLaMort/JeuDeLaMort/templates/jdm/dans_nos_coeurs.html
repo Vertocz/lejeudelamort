@@ -2,9 +2,13 @@
 
 {% block content %}
 {% load static %}
+<style>
+    html, body{
+        background-color: rgb(70,70,70);
+    }
+</style>
 
-
-<h1>Dans nos cœurs</h1>
+<h1 style="color: var(--text)">Dans nos cœurs</h1>
 {% if candidats_decedes|length == 0 %}
 <div>Aucun.e candidat.e n'a à ce jour été élu.e</div>
 
@@ -14,11 +18,11 @@
 <div class="alignement">
         <a href="/candidats/{{ x.id }}/">
             {% if x.photo is None or x.photo == '' %}
-            <img src="{% static 'jdm/candidat.png' %}" alt="{{ x.nom }}" class="portrait"/>
+            <img src="{% static 'jdm/candidat.png' %}" alt="{{ x.nom }}" class="sans_portrait_dcd"/>
             {% else %}
-            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ x.photo }}&width=300" alt="{{ x.nom }}" class="portrait" style="filter: sepia(1) saturate(30%);"/>
+            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ x.photo }}&width=300" alt="{{ x.nom }}" class="portrait_dcd"/>
             {% endif %}
-                <div class="overlay2">
+                <div class="overlay">
                     <div class="text">
                         <p>{{ x.nom }}</p>
                         <p>{{ x.points }} point{{ x.points|pluralize }}</p>

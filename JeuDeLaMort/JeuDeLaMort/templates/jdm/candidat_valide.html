@@ -12,9 +12,9 @@
     <div class="alignement">
         <a href="/candidats/{{ candidat.id }}/">
             {% if candidat.photo == '' %}
-            <img src="{% static 'jdm/candidat.png' %}" width="170" height="170" alt="{{ candidat.nom }}" class="portrait"/>
+            <img src="{% static 'jdm/candidat.png' %}" width="170" height="170" alt="{{ candidat.nom }}" class="portchoix"/>
             {% else %}
-            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" width="170" height="170" alt="{{ candidat.nom }}" class="portrait"/>
+            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" width="170" height="170" alt="{{ candidat.nom }}" class="portchoix"/>
             {% endif %}
                 <div class="overlay">
                     <div class="text">

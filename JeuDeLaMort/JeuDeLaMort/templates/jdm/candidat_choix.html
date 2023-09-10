@@ -6,38 +6,48 @@
 
 <h1>De qui parlons-nous ?</h1>
 
-
 {% if recherche|length > 0 %}
-<div class="candidats">
-{% for candidat in recherche %}
-<div class="alignement">
-        <a href="/joueurs/add/{{ candidat.wiki_id }}/">
-            {% if candidat.photo == '' %}
-            <img src="{% static 'jdm/candidat.png' %}" width="250" height="250" alt="{{ candidat.nom }}" class="portrait"/>
-            {% else %}
-            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" width="250" height="250" alt="{{ candidat.nom }}" class="portrait"/>
-            {% endif %}
-                <div class="overlay">
-                    <div class="text">
-                        <p>{{ candidat.description|capfirst }}</p>
-                        <p>{{ candidat.calcul_age }} ans</p>
-                        <p>{{ candidat.points }} point{{ candidat.points|pluralize }}</p>
-                    </div>
-                </div>
-        </a>
-    <div>{{ candidat.nom }}</div>
-    <div>{% if paris_amis|length > 0 %}
-        {% for x, y in paris_amis %}
-        {% if candidat is x %}
-        <div style="font-size: 0.7rem">Sélectionné.e par {{ y }}</div>
-        {% endif %}
-        {% endfor %}
-        {% endif %}
-    </div>
-    </div>
-{% endfor %}
-</div>
-{% endif %}
+<!-- Conteneur Swiper -->
+<div class="swiper" id="choix">
+    <!-- Diapositives Swiper -->
+    <div class="swiper-wrapper" style="margin: 0 auto 1rem">
+        {% for candidat in recherche %}
+        <div class="swiper-slide">
+            <a href="/candidats/{{ candidat.id }}/">
+                {% if candidat.photo == '' %}
+                <img class="portchoix" src="{% static 'jdm/candidat.png' %}" alt="{{ candidat.nom }}"/>
+                {% else %}
+                <img class="portchoix" src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" alt="{{ candidat.nom }}"/>
+                {% endif %}
+            </a>
+            <div style="margin: 1rem auto">
+                <div style="color: var(--c2)">{{ candidat.nom }}</div>
+                <div class="soustexte">{{ candidat.description|capfirst }}</div>
+                <div class="soustexte">{{ candidat.calcul_age }} ans</div>
+                <div style="margin: 1rem auto 2rem">{{ candidat.points }} point{{ candidat.points|pluralize }}</div>
+                {% if paris_amis|length > 0 %}
+                {% for x, y in paris_amis %}
+                {% if candidat is x %}
+                <div class="soustexte">Sélectionné.e par {{ y }}</div>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+            </div>
+            <a href="/joueurs/add/{{ candidat.wiki_id }}/" style="font-size: 2rem">Sélectionner</a>
 
+        </div>
+        {% endfor %}
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+</div>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script src="{% static 'jdm/script.js' %}"></script>
+{% endif %}
 
 {% endblock %}

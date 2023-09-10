@@ -3,6 +3,19 @@
 {% block content %}
 {% load static %}
 
+{% if candidat.DDD %}
+<style>
+    html, body{
+        background-color: rgb(70,70,70);
+        h1, h2 {
+            color: color: var(--text);
+        }
+    }
+</style>
+{% endif %}
+
+
+
 <h1>{{ candidat.nom }}</h1>
 
 
