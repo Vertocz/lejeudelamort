@@ -691,8 +691,10 @@ header {
     }
 
     .portrait_swiper{
-        max-width: 95%;
-        aspect-ratio: 1/1;
+        width: 65vw;
+        height: 65vw;
+        max-width: 100%;
+        object-fit: cover;
     }
 
     .candidats {
