@@ -23,8 +23,7 @@
             <div style="margin: 1rem auto">
                 <div style="color: var(--c2)">{{ candidat.nom }}</div>
                 <div class="soustexte">{{ candidat.description|capfirst }}</div>
-                <div class="soustexte">{{ candidat.calcul_age }} ans</div>
-                <div style="margin: 1rem auto 2rem">{{ candidat.points }} point{{ candidat.points|pluralize }}</div>
+                <div class="soustexte" style="margin: 1rem auto 1rem">{{ candidat.calcul_age }} ans ({{ candidat.points }} point{{ candidat.points|pluralize }})</div>
                 {% if paris_amis|length > 0 %}
                 {% for x, y in paris_amis %}
                 {% if candidat is x %}

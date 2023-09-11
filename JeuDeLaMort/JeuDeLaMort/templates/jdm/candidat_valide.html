@@ -3,28 +3,26 @@
 {% block content %}
 {% load static %}
 
+<h1>Un de plus !</h1>
 
-<h1>{{ candidat.nom }} a bien été ajouté.e à votre liste</h1>
+<div>{{ candidat.nom }} a bien été ajouté.e à votre liste</div>
 
 
 
-<div class="candidats">
-    <div class="alignement">
+
+    <div class="choisi">
         <a href="/candidats/{{ candidat.id }}/">
             {% if candidat.photo == '' %}
-            <img src="{% static 'jdm/candidat.png' %}" width="170" height="170" alt="{{ candidat.nom }}" class="portchoix"/>
+            <img src="{% static 'jdm/candidat.png' %}" alt="{{ candidat.nom }}" class="portchoix" style="margin: 1rem auto 0;"/>
             {% else %}
-            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" width="170" height="170" alt="{{ candidat.nom }}" class="portchoix"/>
+            <img src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" alt="{{ candidat.nom }}" class="portchoix" style="margin: 1rem auto 0;"/>
             {% endif %}
-                <div class="overlay">
-                    <div class="text">
-                        <p>{{ candidat.calcul_age }} ans</p>
-                        <p>{{ candidat.points }} point{{ candidat.points|pluralize }}</p>
-                    </div>
-                </div>
+            <div style="padding: 0 0 1rem 0;">
+                <p>{{ candidat.calcul_age }} ans</p>
+                <p>{{ candidat.points }} point{{ candidat.points|pluralize }}</p>
+            </div>
         </a>
     </div>
-</div>
 
 <div style="flex-direction: row; justify-content: center;"><div style="padding: 1rem;"><a href="{% url 'salle-user' request.user.id %}">Retourner dans votre salle d'attente</a></div>
     {% if nb_paris <= 8 %}

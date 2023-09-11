@@ -188,6 +188,21 @@ h3 {
     background-color: var(--c1);
 }
 
+.choisi {
+    backdrop-filter: blur(4px);
+    box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
+    margin: 1rem auto;
+    transition: 0.5s ease;
+    border-radius:15px;
+    width: 22vw;
+    max-width: 300px;
+}
+
+.choisi:hover{
+    background-color: var(--c1);
+}
+
+
 #deco {
     background-color: var(--c2);
     padding: 1rem;
@@ -636,7 +651,7 @@ header {
 
     h1{
         margin: 5rem auto 2rem;
-        font-size: calc(36px + 0.390625vw);
+        font-size: calc(28px + 0.390625vw);
     }
 
     h2{
@@ -740,6 +755,17 @@ header {
 
     .ordi {
         display: none;
+    }
+
+    .choisi{
+        background-color: var(--c1);
+        backdrop-filter: blur(4px);
+        box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
+        margin: 1rem auto;
+        transition: 0.5s ease;
+        border-radius:15px;
+        width: 68vw;
+        max-width: 300px;
     }
 
 
