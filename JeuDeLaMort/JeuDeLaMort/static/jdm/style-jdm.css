@@ -650,12 +650,13 @@ header {
     }
 
     h1{
+        padding: 0;
         margin: 5rem auto 2rem;
-        font-size: calc(28px + 0.390625vw);
+        font-size: calc(23px + 0.390625vw);
     }
 
     h2{
-        font-size: calc(20px + 0.390625vw);
+        font-size: calc(19px + 0.390625vw);
     }
 
     a:link{
@@ -746,6 +747,10 @@ header {
 
     .soustexte {
         font-size: calc(12px + 0.390625vw);;
+    }
+
+    table{
+        width: 100%;
     }
 
     tbody td {
