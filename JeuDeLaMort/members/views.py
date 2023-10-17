@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import RegisterUserForm
 
+
 def login_user(request):
     if request.method == "POST":
         username = request.POST['username']
@@ -19,10 +20,12 @@ def login_user(request):
     else:
         return render(request, 'authenticate/login.html', {})
 
+
 def logout_user(request):
     logout(request)
     messages.success(request, ("Vous êtes déconnecté.e"))
     return redirect('jdm-index')
+
 
 def register_user(request):
     if request.method == "POST":
