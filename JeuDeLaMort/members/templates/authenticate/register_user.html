@@ -11,16 +11,30 @@
 
 {% endif %}
 
-<div class="inscription">
-<form action="{% url 'register_user' %}" method="post">
+<form action="{% url 'register_user' %}" method="post" class="connexion">
+
     {% csrf_token %}
 
-    {{ form.as_p }}
+    <label class="form-label">Nom d'utilisateur</label>
+    <input type="text" class="form-control" name="username">
 
+    <label class="form-label">Adresse e-mail</label>
+    <input type="text" class="form-control" name="email" aria-describedby="emailHelp">
 
-    <input type="submit" value="Inscription" class="btn btn-secondary">
+    <label class="form-label">Mot de passe</label>
+    <div style="font-size: 0.7rem">
+    <p>Votre mot de passe ne peut pas trop ressembler à vos autres informations personnelles.</p>
+    <p>Votre mot de passe doit contenir au minimum 8 caractères.</p>
+    <p>Votre mot de passe ne peut pas être un mot de passe couramment utilisé.</p>
+    <p>Votre mot de passe ne peut pas être entièrement numérique.</p></div>
+    <input type="password" class="form-control" name="password1">
+
+    <label class="form-label">Confirmation du mot de passe</label>
+    <input type="password" class="form-control" name="password2">
+
+    <input type="submit" value="Inscription" class="bouton">
 
 </form>
-    </div>
+
 
 {% endblock %}

@@ -71,24 +71,30 @@ body {
         }
 }
 
-.connect {
-    position: absolute;
-    top: 1rem;
-    right: 3rem;
-}
-
 .connexion {
-    margin: 3rem;
-    width: 30rem;
-    display: inline-flex;
+    margin: auto;
+    padding: 3rem;
+    max-width: 30rem;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    .form-control{
+        padding: 0.5rem;
+        margin: 1rem 0 3rem;
+    }
 }
 
-.inscription {
-    margin: 3rem;
-    width: 60rem;
-    display: inline-flex;
-    justify-content: center;
+.bouton{
+    font-size: 1.5rem;
+    color: var(--text);
+    padding: 1rem;
+    border-radius: 15px;
+    background-color: var(--fond);
+    transition: .5s ease;
+    margin: auto;
+}
+.bouton:hover{
+    background-color: var(--c2)
 }
 
 .compte{
@@ -260,14 +266,6 @@ h3 {
 
 #deces:hover {
     background-color: black;
-}
-
-.bouton {
-    margin: 2rem;
-    background-color: #f89403;
-    border-radius: 15px;
-    width: 15rem;
-    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
 }
 
 .offcanvas-body{
@@ -585,6 +583,10 @@ header {
     .navbar.active {
         display: flex;
         flex-direction: column;
+    }
+
+    .bouton{
+        background-color: var(--c2)
     }
 
     #close-menu {

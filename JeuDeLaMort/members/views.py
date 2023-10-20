@@ -38,6 +38,9 @@ def register_user(request):
             login(request, user)
             messages.success(request, ('Votre inscription fut un véritable succès, félicitations !'))
             return redirect('jdm-index')
+        else:
+            print(form.cleaned_data)
+            messages.success(request, ('Il semblerait que vous n\'ayez pas correctement rempli le formulaire A38...'))
     else:
         form = RegisterUserForm()
     return render(request, 'authenticate/register_user.html', {'form': form})

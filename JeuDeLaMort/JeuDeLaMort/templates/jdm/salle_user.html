@@ -8,7 +8,7 @@
 <h1>Ma salle d'attente</h1>
 {% endif %}
 
-
+{% if rap != 10%}
 <div class="resume">
     <div class="bloc"><div class="titre_bloc">Score</div>
         <div class="contenu_bloc"><span style="font-size: calc(40px + 0.390625vw)">{{ score }}</span><span class="complement_bloc">&nbsp;point{{ score|pluralize }}</span></div>
@@ -33,6 +33,7 @@
 
     {% endif %}
     </div>
+{% endif %}
 
 
 <div class="swiper" id="resume">
