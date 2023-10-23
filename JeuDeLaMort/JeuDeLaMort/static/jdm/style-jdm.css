@@ -78,10 +78,11 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    .form-control{
-        padding: 0.5rem;
-        margin: 1rem 0 3rem;
-    }
+}
+
+.form-control{
+    padding: 0.5rem;
+    margin: 1rem 0;
 }
 
 .bouton{
@@ -91,7 +92,7 @@ body {
     border-radius: 15px;
     background-color: var(--fond);
     transition: .5s ease;
-    margin: auto;
+    margin: 1rem auto;
 }
 .bouton:hover{
     background-color: var(--c2)
@@ -399,6 +400,13 @@ a:hover {
     background-color: var(--c2);
 }
 
+.parametres{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 75%;
+    margin: auto;
+}
 
 footer{
   font-size: 0.7rem;

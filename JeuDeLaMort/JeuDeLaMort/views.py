@@ -1,11 +1,9 @@
-import time
-
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 from datetime import datetime, date
 from .models import Candidat, Pari, Cercle, Preference
 from django.contrib.auth.models import User
-from .forms import RechercheCandidatForm, PreferenceForm
+from .forms import RechercheCandidatForm, PreferenceForm, UpdateUserForm
 from django.contrib import messages
 import requests
 
@@ -384,13 +382,22 @@ def parametres(request):
     if len(Preference.objects.filter(joueur=request.user)) == 0:
         Preference(joueur=request.user).save()
     prefs = Preference.objects.get(joueur=request.user)
+    user = User.objects.get(id=request.user.id)
 
     if request.method == 'POST':
-        form = PreferenceForm(request.POST, instance=prefs)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Vos paramètres ont été mis à jour')
-            return redirect('parametres')
+        if 'informations' in request.POST:
+            form = UpdateUserForm(request.POST, instance=user)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Vos paramètres ont été mis à jour')
+                return redirect('parametres')
+
+        elif 'communication' in request.POST:
+            form = PreferenceForm(request.POST, instance=prefs)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Vos paramètres ont été mis à jour')
+                return redirect('parametres')
 
     else:
         form = PreferenceForm(instance=prefs)

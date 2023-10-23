@@ -25,3 +25,9 @@ class PreferenceForm(forms.ModelForm):
     class Meta:
         model = Preference
         fields = ['newsletter', 'infos']
+
+
+class UpdateUserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('username', 'email')

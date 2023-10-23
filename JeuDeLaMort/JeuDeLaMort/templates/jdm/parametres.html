@@ -7,9 +7,19 @@
 
 <div class="fond_pref">
 <h2>Informations personnelles</h2>
-<div>Pseudo: {{ joueur.username }}</div>
-<div>E-mail: {{ joueur.email }}</div>
-<a href="{% url 'parametres' %}"><div>Modifier mon mot de passe</div></a>
+    <form action="{% url 'parametres' %}" method="post" class="parametres">
+
+        {% csrf_token %}
+        <div>
+            <label class="form-label">Pseudo :</label>
+            <input type="text" class="form-control" name="username" value="{{ joueur.username }}"></div>
+
+        <div>
+            <label class="form-label">Adresse e-mail :</label>
+            <input type="text" class="form-control" name="email" aria-describedby="emailHelp" value="{{ joueur.email }}"></div>
+
+        <input type="submit" value="Modifier" class="bouton" name="informations">
+    </form>
 </div>
 
 <div class="fond_pref">
@@ -17,7 +27,7 @@
 <form action="" method="post" novalidate>
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Valider" class="bouton">
+    <input type="submit" value="Valider" class="bouton" name="communication">
 </form>
 </div>
 
