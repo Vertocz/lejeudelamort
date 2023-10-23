@@ -89,7 +89,9 @@ body {
     font-size: 1.5rem;
     color: var(--text);
     padding: 1rem;
+    border: 5px solid rgba(255, 255, 255, 0);
     border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 10px;
     background-color: var(--fond);
     transition: .5s ease;
     margin: 1rem auto;
@@ -218,6 +220,7 @@ h3 {
     width: 200px;
     border-radius: 15px;
     margin: 3rem auto;
+    box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 10px;
 }
 
 #deco a:hover {
