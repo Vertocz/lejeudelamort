@@ -13,6 +13,7 @@
   <input type="submit" value="Connexion" class="bouton">
 
 </form>
+<a href="{% url 'password-reset' %}"><p>Mot de passe oublié ?</p></a>
 
 <p>Pas de compte ? <a href="{% url 'register_user' %}">Inscrivez-vous !!</a></p>
 {% endblock %}

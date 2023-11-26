@@ -18,9 +18,13 @@
             <label class="form-label">Adresse e-mail :</label>
             <input type="text" class="form-control" name="email" aria-describedby="emailHelp" value="{{ joueur.email }}"></div>
 
+        <a href="{% url 'password-reset' %}"><p>Modifier mon mot de passe</p></a>
+
         <input type="submit" value="Modifier" class="bouton" name="informations">
     </form>
 </div>
+
+
 
 <div class="fond_pref">
 <h2>Préférences de communication</h2>

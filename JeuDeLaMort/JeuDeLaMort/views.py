@@ -354,7 +354,7 @@ def maj(request):
             #candidat.mort = True
             candidat.save()
             for pari in paris:
-                if pari.wiki_id == candidat.wiki_id:
+                if pari.candidat == candidat:
                     #pari.mort = True
                     #pari.save()
                     deces.append(candidat)

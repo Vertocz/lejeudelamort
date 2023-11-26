@@ -1,0 +1,26 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: 
+ =?utf-8?q?R=C3=A9initialisation_du_mot_de_passe_sur_127=2E0=2E0=2E1=3A8000?=
+From: webmaster@localhost
+To: jose@gmail.com
+Date: Tue, 24 Oct 2023 15:58:45 -0000
+Message-ID: <169816312585.12320.14104269263497380963@LAPTOP-GGA9Q9CB.home>
+
+
+Vous recevez ce message en réponse à votre demande de réinitialisation du mot de passe de votre compte sur 127.0.0.1:8000.
+
+Veuillez vous rendre sur cette page et choisir un nouveau mot de passe :
+
+http://127.0.0.1:8000/members/password-reset-confirm/MjU/bwl5xx-a02373ee03072ec7b95b858bd9e87401/
+
+Votre nom d’utilisateur, en cas d’oubli : Jose
+
+Merci d’utiliser notre site !
+
+L’équipe 127.0.0.1:8000
+
+
+
+-------------------------------------------------------------------------------
