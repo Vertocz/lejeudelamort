@@ -165,7 +165,45 @@
         {% endif %}
     {% endfor %}
     </div>
+
+<div class="swiper" id="decedes">
+    <div class="swiper-wrapper">
+{% for pari in paris %}
+    {% if pari.joueur == joueur %}
+        {% for candidat in candidats_joueur %}
+
+            {% if candidat == pari.candidat and candidat.DDD %}
+    <div class="swiper-slide"><a href="/candidats/{{ candidat.id }}/">
+        {% if candidat.photo == '' %}
+        <img class="portrait_swiper" src="{% static 'jdm/candidat.png' %}" alt="{{ candidat.nom }}"/>
+        {% else %}
+        <img class="portrait_swiper" src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" alt="{{ candidat.nom }}" class="image" style="filter: sepia(1) saturate(30%);"/>
+        {% endif %}
+
+        <div style="color: var(--text);">
+            <p>{{ candidat.nom }}</p>
+            <p>{{ candidat.calcul_age }} ans</p>
+            <p>{{ candidat.points }} point{{ candidat.points|pluralize }}</p>
+        </div>
+    </a></div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+</div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+</div>
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script src="{% static 'jdm/script.js' %}"></script>
+
 {% endif %}
+
+
 
 {% if joueur != request.user %}
 <h3><a href="{% url 'retirer-ami' joueur.id %}">Retirer {{ joueur.username }} de mon cercle d'amis</a></h3>

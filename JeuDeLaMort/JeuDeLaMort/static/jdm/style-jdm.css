@@ -59,7 +59,7 @@ body {
 }
 
 .navbar:hover {
-    font-size: calc(20px + 0.390625vw);
+    font-size: calc(12px + 0.6vw);
     max-width: 90%;
     background-color: var(--c1);
     #indication_menu {
@@ -174,7 +174,7 @@ h3 {
 .description{
     border-radius:15px;
     backdrop-filter: blur(4px);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(0, 0, 0, 0.8) 1px 5px 15px;
     padding: 1rem;
     max-width: calc(600px + 4vw);
     margin: 1rem auto 1rem;
@@ -326,14 +326,14 @@ a:hover {
 .portfav {
     max-width: 300px;
     width: 20vw;
-    height: 20vw;
+    aspect-ratio: 1;
     object-fit: cover;
 }
 
 .portrait_dcd{
     max-width: 250px;
     width: 20vw;
-    height: 20vw;
+    aspect-ratio: 1;
     object-fit: cover;
     filter: sepia(1) saturate(30%);
 }
@@ -341,7 +341,7 @@ a:hover {
 .sans_portrait_dcd{
     max-width: 250px;
     width: 20vw;
-    height: 20vw;
+    aspect-ratio: 1;
     object-fit: cover;
 }
 
@@ -359,6 +359,7 @@ a:hover {
 }
 
 #deces {
+    max-width: 765px;
     .overlay{
         background-color : rgba(10,10,10, 0.8);
         color: var(--text);
@@ -570,7 +571,7 @@ header {
 @media screen and (max-width: 768px) {
 
     body {
-        font-size: calc(15px + 0.390625vw);
+        font-size: 3.8vw;
         margin: 3rem;
     }
 
@@ -667,11 +668,11 @@ header {
     h1{
         padding: 0;
         margin: 5rem auto 2rem;
-        font-size: calc(23px + 0.390625vw);
+        font-size: 7vw;
     }
 
     h2{
-        font-size: calc(19px + 0.390625vw);
+        font-size: 5vw;
     }
 
     a:link{
