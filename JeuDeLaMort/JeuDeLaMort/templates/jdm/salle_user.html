@@ -8,6 +8,20 @@
 <h1>Ma salle d'attente</h1>
 {% endif %}
 
+{% if saisons|length > 1 %}
+<div style="display: inline-flex;">
+    {% for saison in saisons %}
+        {% if saison == saison_en_cours %}
+        <a href="{% url 'salle-user' joueur.id saison %}"><div class="bouton_annee" style="background-color: var(--c1)">{{ saison }}</div></a>
+        {% else %}
+        <a href="{% url 'salle-user' joueur.id saison %}"><div class="bouton_annee">{{ saison }}</div></a>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endif %}
+
+<div></div>
+
 {% if rap != 10%}
 <div class="resume">
     <div class="bloc"><div class="titre_bloc">Score</div>
@@ -63,6 +77,7 @@
   <script src="{% static 'jdm/script.js' %}"></script>
 
 <div></div>
+
 {% if paris|length > 0 %}
 <div class="candidats">
 {% for pari in paris %}
@@ -122,10 +137,15 @@
   <!-- Initialize Swiper -->
   <script src="{% static 'jdm/script.js' %}"></script>
 
+{% else %}
+
+<div>{{ joueur.username }} n'a nommé aucun.e candidat.e cette saison.</div>
+
 {% endif %}
 
 
-{% if rap > 0 %}
+
+{% if rap > 0 and not terminee %}
     {% if joueur == request.user %}
     <div>Vous pouvez encore nommer {{ rap }} candidat{{ rap|pluralize }}.</div>
     <h2 style="padding: 1rem 0 2rem 0; "><a href="{% url 'candidat-create' %}">Ajouter un candidat</a></h2>

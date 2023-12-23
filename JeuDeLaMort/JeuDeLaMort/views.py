@@ -1,11 +1,12 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 from datetime import datetime, date
-from .models import Candidat, Pari, Cercle, Preference
+from .models import Candidat, Pari, Cercle, Preference, Historique
 from django.contrib.auth.models import User
 from .forms import RechercheCandidatForm, PreferenceForm, UpdateUserForm
 from django.contrib import messages
 import requests
+
 
 candidats = Candidat.objects.all()
 users = User.objects.all()
@@ -18,8 +19,8 @@ def index(request):
     return render(request, "jdm/index.html")
 
 
-def score_max(joueur):
-    paris = Pari.objects.filter(joueur=joueur, mort=False)
+def score_max(joueur, annee):
+    paris = Pari.objects.filter(joueur=joueur, saison=annee, mort=False)
     score = 0
     for pari in paris:
         try:
@@ -31,9 +32,9 @@ def score_max(joueur):
     return score
 
 
-def score_user(paris_user):
+def score_user(paris_user, annee):
     score = 0
-    for pari in paris_user:
+    for pari in paris_user.filter(saison=annee):
         try:
             candidat = pari.candidat
             if candidat.DDD:
@@ -44,8 +45,8 @@ def score_user(paris_user):
     return score
 
 
-def joker(joueur):
-    paris_joueur = Pari.objects.filter(joueur=joueur)
+def joker(joueur, annee):
+    paris_joueur = Pari.objects.filter(joueur=joueur, saison=annee)
     record = date.fromisoformat("1900-01-01")
     if len(paris_joueur) > 0:
         recordman = paris_joueur[0]
@@ -62,8 +63,8 @@ def joker(joueur):
         pass
 
 
-def moyenne_age(joueur):
-    paris_user = Pari.objects.filter(joueur=joueur)
+def moyenne_age(joueur, annee):
+    paris_user = Pari.objects.filter(joueur=joueur, saison=annee)
     total_age = 0
     if len(paris_user) > 0:
         for pari in paris_user:
@@ -78,22 +79,32 @@ def moyenne_age(joueur):
         pass
 
 
-def salle_user(request, id):
+def salle_user(request, id, annee):
+    saison_terminee = True
+    if datetime.now().year == annee:
+        saison_terminee = False
+    saison_en_cours = annee
+
+    saisons = []
+    for pari in paris.filter(joueur=id):
+        if pari.saison not in saisons:
+            saisons.append(pari.saison)
+
     try:
         joueur = User.objects.get(id=id)
         if len(Cercle.objects.filter(joueur=request.user, ami=joueur)) > 0 or request.user == joueur:
-            paris_user = Pari.objects.filter(joueur=joueur)
-            paris_decedes = Pari.objects.filter(joueur=joueur, mort=True)
+            paris_user = Pari.objects.filter(joueur=joueur, saison=annee)
+            paris_decedes = Pari.objects.filter(joueur=joueur, saison=annee, mort=True)
             candidats_joueur = []
-            for pari in paris_user:
+            for pari in paris_user.filter(saison=annee):
                 candidat = candidats.get(wiki_id=pari.candidat.wiki_id)
                 candidats_joueur.append(candidat)
             return render(request,
                           'jdm/salle_user.html',
-                          {'joueur': joueur, 'poker': joker(joueur), 'score_max': score_max(joueur),
-                           'score': score_user(paris_user), 'paris': Pari.objects.filter(joueur=joueur), 'deces': paris_decedes,
+                          {'joueur': joueur, 'poker': joker(joueur, annee), 'score_max': score_max(joueur, annee),
+                           'score': score_user(paris_user, annee), 'paris': Pari.objects.filter(joueur=joueur, saison=annee), 'deces': paris_decedes,
                            'rap': 10 - len(paris_user) + len(paris_decedes), 'candidats_joueur': candidats_joueur,
-                           'moyenne': moyenne_age(joueur)})
+                           'moyenne': moyenne_age(joueur, annee), "terminee": saison_terminee, "saisons": saisons, "saison_en_cours": saison_en_cours})
         else:
             messages.success(request, ("Ce joueur ne fait pas partie de votre cercle"))
             return redirect('classement')
@@ -111,26 +122,31 @@ def recherche_amis(request):
         classement(request)
 
 
-def classement(request):
-    liste = liste_amis(request.user)
-    return render(request, 'jdm/classement.html', {'liste': liste[0], 'en_devenir': liste[1]})
+def classement(request, annee):
+    saison_en_cours = annee
+    liste = liste_amis(request.user, annee)
+    saisons = []
+    for pari in paris:
+        if pari.saison not in saisons:
+            saisons.append(pari.saison)
+    return render(request, 'jdm/classement.html', {'liste': liste[0], 'en_devenir': liste[1], "saisons": saisons, "saison_en_cours": saison_en_cours})
 
 
-def liste_amis(joueur):
+def liste_amis(joueur, saison):
     liste = []
     for user in users:
-        if len(Cercle.objects.filter(joueur=joueur, ami=user)) == 0 and score_user(Pari.objects.filter(joueur=user)) == 0 and user != joueur:
+        if len(Cercle.objects.filter(joueur=joueur, ami=user)) == 0 and score_user(Pari.objects.filter(joueur=user), saison) == 0 and user != joueur:
             pass
         else:
             if len(Cercle.objects.filter(joueur=joueur, ami=user)) != 0:
                 est_un_ami = True
             else:
                 est_un_ami = False
-            paris_user = Pari.objects.filter(joueur=user)
+            paris_user = Pari.objects.filter(joueur=user, saison=saison)
             nominations = len(paris_user)
-            score_user_x = score_user(paris_user)
+            score_user_x = score_user(paris_user, saison)
             succes = 0
-            for pari in Pari.objects.filter(joueur=user):
+            for pari in Pari.objects.filter(joueur=user, saison=saison):
                 if pari.mort:
                     succes += 1
             liste.append((user, est_un_ami, score_user_x, nominations, succes))
@@ -148,7 +164,7 @@ def liste_amis(joueur):
 
 def nouvel_ami(request, id):
     ami = User.objects.get(id=id)
-    liste = liste_amis(request.user.id)[0]
+    liste = liste_amis(request.user.id, datetime.now().year)[0]
     if Cercle.objects.filter(ami=ami, joueur=request.user):
         messages.success(request, (str(User.objects.get(id=id).username) + " est déjà dans votre cercle"))
         return render(request, 'jdm/classement.html', {'liste': liste})
@@ -274,11 +290,11 @@ def candidat_valide(request, qqn):
     joueur = request.user
     candidat = Candidat.objects.get(wiki_id=qqn)
     nb_paris = len(Pari.objects.filter(joueur=joueur, mort=False))
-    if Pari.objects.filter(joueur=joueur, candidat=candidat):
+    if Pari.objects.filter(joueur=joueur, candidat=candidat, saison=int(datetime.now().year)):
         messages.success(request, ("Ce candidat est déjà dans votre liste"))
         return redirect('candidat-create')
     elif nb_paris < 10:
-        Pari(candidat=candidat, joueur=joueur).save()
+        Pari(candidat=candidat, joueur=joueur, saison=int(datetime.now().year)).save()
         candidat = Candidat.objects.get(wiki_id=qqn)
         return render(request, 'jdm/candidat_valide.html', {'candidat': candidat, 'nb_paris': nb_paris})
     else:
@@ -295,7 +311,7 @@ def candidat_detail(request, id):
                 if cercles.filter(joueur=request.user, ami=pari.joueur):
                     paris_amis.append(pari.joueur)
         return render(request, 'jdm/candidat_detail.html',
-                      context={'candidat': candidat, 'paris': paris_amis, 'cercles': cercles})
+                      context={'candidat': candidat, 'paris': paris_amis, 'cercles': cercles, 'annee': datetime.now().year})
     else:
         messages.success(request, ("Cette page candidat n'existe pas/plus."))
         return redirect('jdm-index')
@@ -305,7 +321,7 @@ def favoris(request):
     favoris = []
     for candidat in candidats:
         age_candidat = candidat.calcul_age()
-        nb_paris = len(Pari.objects.filter(candidat=candidat))
+        nb_paris = len(Pari.objects.filter(candidat=candidat, saison=int(datetime.now().year)))
         if nb_paris > 1:
             favoris.append((candidat, nb_paris, age_candidat))
     if len(favoris) > 2:
@@ -319,11 +335,17 @@ def favoris(request):
 def resume(request):
     candidats_decedes = Candidat.objects.filter(DDD__isnull=False)
     liste = []
-    for candidat in candidats_decedes:
-        nb_paris = Pari.objects.filter(candidat=candidat)
-        liste.append((candidat, nb_paris))
-    liste.sort(key=lambda x: x[0].DDN, reverse=True)
-    return render(request, "jdm/dans_nos_coeurs.html", {'candidats_decedes': liste})
+
+    for year in range(2022, datetime.now().year+1):
+        liste_annee = []
+        for candidat in candidats_decedes:
+            if candidat.DDD.year == year:
+                nb_paris = Pari.objects.filter(candidat=candidat, saison=year)
+                liste_annee.append((candidat, nb_paris))
+        liste_annee.sort(key=lambda x: x[0].DDN, reverse=True)
+        liste.append((year, liste_annee))
+
+    return render(request, "jdm/dans_nos_coeurs.html", {'liste': reversed(liste)})
 
 
 def envoyer_mail():
@@ -351,7 +373,6 @@ def maj(request):
                 jsonresponse_recherche["claims"]["P570"][0]["mainsnak"]["datavalue"]["value"]["time"],
                 '+%Y-%m-%dT%H:%M:%SZ').date()
             candidat.DDD = DDD
-            #candidat.mort = True
             candidat.save()
             for pari in paris:
                 if pari.candidat == candidat:
@@ -366,12 +387,23 @@ def maj(request):
 
             gagnants = []
             for candidat in deces:
-                for pari in Pari.objects.filter(candidat=candidat):
+                for pari in Pari.objects.filter(candidat=candidat, saison=int(datetime.now().year)):
                     if User.objects.get(id=pari.user_id) not in gagnants:
                         gagnants.append(pari.joueur)
                 resultats.append([candidat, gagnants])
     envoyer_mail()
     return redirect('resume')
+
+
+def maj_annuelle(request):
+    for user in users:
+        if len(Historique.objects.filter(joueur=user, saison=2023)) == 0:
+            Historique(joueur=user, saison=2023, score=score_user(Pari.objects.filter(joueur=user))).save()
+    saison = int(datetime.now().year-1)
+    for pari in Pari.objects.filter(saison=saison):
+        pari.passe = True
+        pari.save()
+    return redirect('jdm-index')
 
 
 def change_password(request):

@@ -9,8 +9,13 @@
 </style>
 
 <h1 style="color: var(--text)">Dans nos cœurs</h1>
+
+{% for annee, candidats_decedes in liste %}
+
+<h2>{{ annee }}</h2>
+
 {% if candidats_decedes|length == 0 %}
-<div>Aucun.e candidat.e n'a à ce jour été élu.e</div>
+<div>Aucun.e candidat.e n'a été élu.e</div>
 
 {% else %}
 <div class="candidats" id="deces">
@@ -69,4 +74,6 @@
   <script src="{% static 'jdm/script.js' %}"></script>
 
 {% endif %}
+{% endfor %}
+
 {% endblock %}

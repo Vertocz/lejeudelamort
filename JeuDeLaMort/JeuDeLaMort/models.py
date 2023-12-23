@@ -37,6 +37,8 @@ class Pari(models.Model):
     candidat = models.ForeignKey(Candidat, on_delete=models.CASCADE, null=True)
     joueur = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     mort = models.BooleanField(default=False)
+    passe = models.BooleanField(default=False)
+    saison = models.IntegerField(default=2023)
 
 
 class Cercle(models.Model):
@@ -48,3 +50,9 @@ class Preference(models.Model):
     joueur = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     newsletter = models.BooleanField('Etre prévenu.e lorsqu\'un candidat rapporte des points', default=True)
     infos = models.BooleanField('Rester informé.e des évolutions du Jeu de la Mort', default=True)
+
+
+class Historique(models.Model):
+    joueur = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    saison = models.IntegerField(default=2023)
+    score = models.IntegerField(default=0)

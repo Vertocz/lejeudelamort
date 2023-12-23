@@ -5,6 +5,16 @@
 <h1>Classement</h1>
 <p style="padding: 1rem">Ici apparaissent les joueurs qui ont marqué des points ainsi que vos amis</p>
 
+<div style="display: inline-flex;">
+    {% for saison in saisons %}
+        {% if saison == saison_en_cours %}
+        <a href="{% url 'classement' saison %}"><div class="bouton_annee" style="background-color: var(--c1)">{{ saison }}</div></a>
+        {% else %}
+        <a href="{% url 'classement' saison %}"><div class="bouton_annee">{{ saison }}</div></a>
+    {% endif %}
+    {% endfor %}
+</div>
+
 {% if liste|length > 0 %}
 <div>
 <table style="backdrop-filter: blur(15px);">
@@ -21,17 +31,17 @@
 
       {% if est_un_ami %}
       <tr class="classement_ami">
-      <td><a style="color: var(--c2)" href="{% url 'salle-user' user.id %}">{{ user.username }}</a></td>
-      <td><a style="color: var(--c2)" href="{% url 'salle-user' user.id %}">{{ score }}</a></td>
-      <td class="ordi"><a style="color: var(--c2)" href="{% url 'salle-user' user.id %}">{{ succes }}</a></td>
-      <td class="ordi"><a style="color: var(--c2)" href="{% url 'salle-user' user.id %}">{{ nominations }}</a></td></tr>
+      <td><a style="color: var(--c2)" href="{% url 'salle-user' user.id saison_en_cours %}">{{ user.username }}</a></td>
+      <td><a style="color: var(--c2)" href="{% url 'salle-user' user.id saison_en_cours %}">{{ score }}</a></td>
+      <td class="ordi"><a style="color: var(--c2)" href="{% url 'salle-user' user.id saison_en_cours %}">{{ succes }}</a></td>
+      <td class="ordi"><a style="color: var(--c2)" href="{% url 'salle-user' user.id saison_en_cours %}">{{ nominations }}</a></td></tr>
 
       {% elif user == request.user %}
       <tr class="classement_user" style="background-color: var(--c2)">
-      <td><a style="color: black; " href="{% url 'salle-user' user.id %}">{{ user.username }}</a></td>
-      <td><a style="color: black" href="{% url 'salle-user' user.id %}">{{ score }}</a></td>
-      <td class="ordi"><a style="color: black" href="{% url 'salle-user' user.id %}">{{ succes }}</a></td>
-      <td class="ordi"><a style="color: black" href="{% url 'salle-user' user.id %}">{{ nominations }}</a></td></tr>
+      <td><a style="color: black; " href="{% url 'salle-user' user.id saison_en_cours %}">{{ user.username }}</a></td>
+      <td><a style="color: black" href="{% url 'salle-user' user.id saison_en_cours %}">{{ score }}</a></td>
+      <td class="ordi"><a style="color: black" href="{% url 'salle-user' user.id saison_en_cours %}">{{ succes }}</a></td>
+      <td class="ordi"><a style="color: black" href="{% url 'salle-user' user.id saison_en_cours %}">{{ nominations }}</a></td></tr>
 
       {% else %}
           {% if score != 0 %}
