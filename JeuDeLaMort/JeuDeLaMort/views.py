@@ -336,7 +336,7 @@ def resume(request):
     candidats_decedes = Candidat.objects.filter(DDD__isnull=False)
     liste = []
 
-    for year in range(2022, datetime.now().year+1):
+    for year in range(2023, datetime.now().year+1):
         liste_annee = []
         for candidat in candidats_decedes:
             if candidat.DDD.year == year:
