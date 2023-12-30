@@ -83,7 +83,6 @@ def salle_user(request, id, annee):
     saison_terminee = True
     if datetime.now().year == annee:
         saison_terminee = False
-    saison_en_cours = annee
 
     saisons = []
     for pari in paris.filter(joueur=id):
@@ -102,9 +101,9 @@ def salle_user(request, id, annee):
             return render(request,
                           'jdm/salle_user.html',
                           {'joueur': joueur, 'poker': joker(joueur, annee), 'score_max': score_max(joueur, annee),
-                           'score': score_user(paris_user, annee), 'paris': Pari.objects.filter(joueur=joueur, saison=annee), 'deces': paris_decedes,
+                           'score': score_user(paris_user, annee), 'paris': paris_user, 'deces': paris_decedes,
                            'rap': 10 - len(paris_user) + len(paris_decedes), 'candidats_joueur': candidats_joueur,
-                           'moyenne': moyenne_age(joueur, annee), "terminee": saison_terminee, "saisons": saisons, "saison_en_cours": saison_en_cours})
+                           'moyenne': moyenne_age(joueur, annee), "terminee": saison_terminee, "saisons": saisons, "saison_en_cours": annee})
         else:
             messages.success(request, ("Ce joueur ne fait pas partie de votre cercle"))
             return redirect('classement')
@@ -290,13 +289,14 @@ def candidat_valide(request, qqn):
     joueur = request.user
     candidat = Candidat.objects.get(wiki_id=qqn)
     nb_paris = len(Pari.objects.filter(joueur=joueur, mort=False))
+    annee = datetime.now().year
     if Pari.objects.filter(joueur=joueur, candidat=candidat, saison=int(datetime.now().year)):
         messages.success(request, ("Ce candidat est déjà dans votre liste"))
         return redirect('candidat-create')
     elif nb_paris < 10:
         Pari(candidat=candidat, joueur=joueur, saison=int(datetime.now().year)).save()
         candidat = Candidat.objects.get(wiki_id=qqn)
-        return render(request, 'jdm/candidat_valide.html', {'candidat': candidat, 'nb_paris': nb_paris})
+        return render(request, 'jdm/candidat_valide.html', {'candidat': candidat, 'nb_paris': nb_paris, 'annee': annee})
     else:
         return redirect('jdm/classement.html')
 

@@ -24,7 +24,7 @@
         </a>
     </div>
 
-<div style="flex-direction: row; justify-content: center;"><div style="padding: 1rem;"><a href="{% url 'salle-user' request.user.id %}">Retourner dans votre salle d'attente</a></div>
+<div style="flex-direction: row; justify-content: center;"><div style="padding: 1rem;"><a href="{% url 'salle-user' request.user.id annee %}">Retourner dans votre salle d'attente</a></div>
     {% if nb_paris <= 8 %}
     <div style="padding: 1rem;"><a href="{% url 'candidat-create' %}">Nommer un nouveau candidat</a></div>
     {% endif %}

@@ -15,7 +15,7 @@
         <a href="{% url 'salle-user' joueur.id saison %}"><div class="bouton_annee" style="background-color: var(--c1)">{{ saison }}</div></a>
         {% else %}
         <a href="{% url 'salle-user' joueur.id saison %}"><div class="bouton_annee">{{ saison }}</div></a>
-    {% endif %}
+        {% endif %}
     {% endfor %}
 </div>
 {% endif %}
@@ -34,17 +34,16 @@
         <div class="contenu_bloc"><span style="font-size: calc(40px + 0.390625vw)">{{ score_max }}</span><span class="complement_bloc">&nbsp;point{{ score_max|pluralize }}</span></div>
     </div>
     {% endif %}
+
     {% if paris|length > 0 %}
     <a href="/candidats/{{ poker.id }}/" class="bloc" id="joker">
         <div class="titre_bloc">Le coup de poker</div>
         <div style="font-weight: bold;"  class="complement_bloc">{{ poker.nom }}</div>
     </a>
-
     <div class="bloc">
         <div class="titre_bloc">Âge moyen</div>
         <div class="contenu_bloc"><span style="font-size: calc(40px + 0.390625vw)">{{ moyenne }}</span><span class="complement_bloc">&nbsp;ans</span></div>
     </div>
-
     {% endif %}
     </div>
 {% endif %}
@@ -103,7 +102,6 @@
             {% endfor %}
     {% endfor %}
     </div>
-
 
 <div class="swiper" id="candidats">
     <div class="swiper-wrapper">
