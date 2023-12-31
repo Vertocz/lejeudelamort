@@ -162,6 +162,7 @@ def liste_amis(joueur, saison):
 
 
 def nouvel_ami(request, id):
+    annee = datetime.now().year
     ami = User.objects.get(id=id)
     liste = liste_amis(request.user.id, datetime.now().year)[0]
     if Cercle.objects.filter(ami=ami, joueur=request.user):
@@ -172,7 +173,7 @@ def nouvel_ami(request, id):
         return render(request, 'jdm/classement.html', {'liste': liste})
     else:
         Cercle(ami=ami, joueur=request.user).save()
-        return render(request, 'jdm/nouvel_ami.html', {'ami': ami})
+        return render(request, 'jdm/nouvel_ami.html', {'ami': ami, 'annee': annee})
 
 
 def retirer_ami(request, id):

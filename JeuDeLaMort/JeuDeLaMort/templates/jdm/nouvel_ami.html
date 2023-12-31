@@ -6,7 +6,7 @@
 
 <h1>{{ ami.username }} a élargi votre cercle !</h1>
 
-<h2><a href="{% url 'salle-user' ami.id %}">Voir sa salle d'attente</a></h2>
+<h2><a href="{% url 'salle-user' ami.id annee %}">Voir sa salle d'attente</a></h2>
 
 <h2>Nouvelle recherche</h2>
 <form action="{% url 'recherche-amis' %}" method="post">
