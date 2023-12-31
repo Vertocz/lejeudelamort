@@ -177,9 +177,10 @@ def nouvel_ami(request, id):
 
 
 def retirer_ami(request, id):
+    annee = datetime.now().year
     Cercle.objects.get(ami=User.objects.get(id=id), joueur=request.user.id).delete()
     messages.success(request, (str(User.objects.get(id=id).username)+" a été retiré.e de votre cercle"))
-    return redirect('classement')
+    return redirect('classement', annee)
 
 
 def recherche_candidat(nom):
