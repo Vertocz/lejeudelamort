@@ -32,7 +32,7 @@
                 {% endfor %}
                 {% endif %}
             </div>
-            <a href="/joueurs/add/{{ candidat.wiki_id }}/" style="font-size: 2rem">Sélectionner</a>
+            <a href="{% url 'candidat-valide' candidat.wiki_id %}" style="font-size: 2rem">Sélectionner</a>
 
         </div>
         {% endfor %}
