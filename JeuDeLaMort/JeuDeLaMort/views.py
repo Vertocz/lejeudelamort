@@ -300,7 +300,7 @@ def candidat_valide(request, qqn):
         candidat = Candidat.objects.get(wiki_id=qqn)
         return render(request, 'jdm/candidat_valide.html', {'candidat': candidat, 'nb_paris': nb_paris, 'annee': annee})
     else:
-        return redirect('jdm/classement.html')
+        return classement(annee)
 
 
 def candidat_detail(request, id):
