@@ -399,8 +399,8 @@ def maj(request):
 
 def maj_annuelle(request):
     for user in users:
-        if len(Historique.objects.filter(joueur=user, saison=2023)) == 0:
-            Historique(joueur=user, saison=2023, score=score_user(Pari.objects.filter(joueur=user))).save()
+        if len(Historique.objects.filter(joueur=user, saison=int(datetime.now().year)-1)) == 0:
+            Historique(joueur=user, saison=int(datetime.now().year)-1, score=score_user(Pari.objects.filter(joueur=user), int(datetime.now().year)-1), ).save()
     saison = int(datetime.now().year-1)
     for pari in Pari.objects.filter(saison=saison):
         pari.passe = True
