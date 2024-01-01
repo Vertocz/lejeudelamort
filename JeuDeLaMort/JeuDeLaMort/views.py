@@ -271,7 +271,7 @@ def candidat_create(request):
                 paris_amis = []
                 for candidat_potentiel in candidats_potentiels:
                     for pari in paris:
-                        if pari.candidat == candidat_potentiel:
+                        if pari.candidat == candidat_potentiel and pari.saison == datetime.now().year:
                             for ami in amis:
                                 if ami.ami == pari.joueur:
                                     paris_amis.append((candidat_potentiel, ami.ami))
