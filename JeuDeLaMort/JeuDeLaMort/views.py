@@ -304,16 +304,17 @@ def candidat_valide(request, qqn):
 
 
 def candidat_detail(request, id):
+    annee = datetime.now().year
     if len(Candidat.objects.filter(id=id)) != 0:
         candidat = Candidat.objects.get(id=id)
-        paris_candidat = Pari.objects.filter(candidat=candidat)
+        paris_candidat = Pari.objects.filter(candidat=candidat, saison=annee)
         paris_amis = []
         if request.user.is_authenticated:
             for pari in paris_candidat:
                 if cercles.filter(joueur=request.user, ami=pari.joueur):
                     paris_amis.append(pari.joueur)
         return render(request, 'jdm/candidat_detail.html',
-                      context={'candidat': candidat, 'paris': paris_amis, 'cercles': cercles, 'annee': datetime.now().year})
+                      context={'candidat': candidat, 'paris': paris_amis, 'cercles': cercles, 'annee': annee})
     else:
         messages.success(request, ("Cette page candidat n'existe pas/plus."))
         return redirect('jdm-index')
