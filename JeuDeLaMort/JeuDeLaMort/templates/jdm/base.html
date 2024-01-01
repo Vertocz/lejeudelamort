@@ -26,8 +26,8 @@
             <ul>
                 <li><a href="{% url 'jdm-index' %}">Accueil</a></li>
                 {% if user.is_authenticated %}
-                <li><a href="{% url 'salle-user' request.user.id 2023 %}">Ma salle d'attente</a></li>
-                <li><a href="{% url 'classement' 2023 %}">Classement</a></li>
+                <li><a href="{% url 'salle-user' request.user.id 2024 %}">Ma salle d'attente</a></li>
+                <li><a href="{% url 'classement' 2024 %}">Classement</a></li>
                 {% endif %}
                 <div id="indication_menu">MENU</div>
                 <li><a href="{% url 'favoris' %}">Les favoris</a></li>
