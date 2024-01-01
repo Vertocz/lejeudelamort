@@ -12,7 +12,7 @@
 <div style="display: inline-flex;">
     {% for saison in saisons %}
         {% if saison == saison_en_cours %}
-        <a href="{% url 'salle-user' joueur.id saison %}"><div class="bouton_annee" style="background-color: var(--c1)">{{ saison }}</div></a>
+        <a href="{% url 'salle-user' joueur.id saison %}"><div class="bouton_annee" style="background-color: var(--c2)">{{ saison }}</div></a>
         {% else %}
         <a href="{% url 'salle-user' joueur.id saison %}"><div class="bouton_annee">{{ saison }}</div></a>
         {% endif %}
