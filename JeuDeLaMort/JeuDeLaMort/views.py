@@ -290,7 +290,7 @@ def candidat_create(request):
 def candidat_valide(request, qqn):
     joueur = request.user
     candidat = Candidat.objects.get(wiki_id=qqn)
-    nb_paris = len(Pari.objects.filter(joueur=joueur, mort=False))
+    nb_paris = len(Pari.objects.filter(joueur=joueur, mort=False, saison=int(datetime.now().year)))
     annee = datetime.now().year
     if Pari.objects.filter(joueur=joueur, candidat=candidat, saison=int(datetime.now().year)):
         messages.success(request, ("Ce candidat est déjà dans votre liste"))
