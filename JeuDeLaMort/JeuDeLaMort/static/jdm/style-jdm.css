@@ -351,7 +351,7 @@ a:hover {
 }
 
 .portrait_dcd{
-    max-width: 200px;
+    max-width: 180px;
     width: 20vw;
     aspect-ratio: 1;
     object-fit: cover;
@@ -359,7 +359,7 @@ a:hover {
 }
 
 .sans_portrait_dcd{
-    max-width: 200px;
+    max-width: 180px;
     width: 20vw;
     aspect-ratio: 1;
     object-fit: cover;
