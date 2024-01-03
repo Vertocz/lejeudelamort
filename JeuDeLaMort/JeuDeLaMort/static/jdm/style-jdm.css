@@ -114,7 +114,7 @@ body {
     box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 10px;
     background-color: var(--c1);
     transition: .5s ease;
-    margin: 0.5rem 3rem 3rem;
+    margin: 0.5rem 1rem 3rem;
 }
 .bouton_annee:hover{
     background-color: var(--c2)
@@ -621,13 +621,6 @@ header {
         background-color: var(--c2);
     }
 
-    .bouton_annee{
-        background-color: var(--c2);
-    }
-
-    .bouton_annee: hover {
-        background-color: var(--c1);
-    }
 
     #close-menu {
         display: block;

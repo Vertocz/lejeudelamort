@@ -128,6 +128,7 @@ def classement(request, annee):
     for pari in paris:
         if pari.saison not in saisons:
             saisons.append(pari.saison)
+    saisons.sort(key=lambda saison: saison)
     return render(request, 'jdm/classement.html', {'liste': liste[0], 'en_devenir': liste[1], "saisons": saisons, "saison_en_cours": saison_en_cours})
 
 
