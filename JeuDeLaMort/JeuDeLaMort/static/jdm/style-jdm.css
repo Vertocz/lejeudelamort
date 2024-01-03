@@ -40,9 +40,14 @@ body {
 }
 
 #id_nom {
-    padding: 1rem;
+    padding: 0.5rem;
     margin: 1rem auto;
     font-size: 1.5rem;
+}
+
+#your_name {
+    padding: 0.5rem;
+    font-size: 1.2rem;
 }
 
 .navbar {
@@ -413,7 +418,7 @@ a:hover {
 }
 
 .soustexte {
-    font-size: calc(12px + 0.390625vw);
+    font-size: 1rem;
 }
 
 .message {
