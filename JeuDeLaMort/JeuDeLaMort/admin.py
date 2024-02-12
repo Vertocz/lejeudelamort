@@ -7,7 +7,7 @@ class CandidatAdmin(admin.ModelAdmin):
 
 
 class PariAdmin(admin.ModelAdmin):
-    list_display = ('joueur', 'candidat')
+    list_display = ('joueur', 'candidat', 'mort')
 
 
 class RechercheAdmin(admin.ModelAdmin):

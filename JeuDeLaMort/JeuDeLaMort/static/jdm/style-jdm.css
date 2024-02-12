@@ -107,7 +107,7 @@ body {
     margin: 1rem auto;
 }
 .bouton:hover{
-    background-color: var(--c2)
+    background-color: var(--c2);
 }
 
 .bouton_annee{
@@ -122,7 +122,7 @@ body {
     margin: 0.5rem 1rem 3rem;
 }
 .bouton_annee:hover{
-    background-color: var(--c2)
+    background-color: var(--c2);
 }
 
 .compte{

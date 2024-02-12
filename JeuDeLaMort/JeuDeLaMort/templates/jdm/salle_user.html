@@ -82,7 +82,7 @@
 {% for pari in paris %}
         {% for candidat in candidats_joueur %}
             {% if candidat == pari.candidat and candidat.DDD is null %}
-<div class="alignement">
+    <div class="alignement">
         <a href="/candidats/{{ candidat.id }}/">
             {% if candidat.photo == '' %}
             <img class="portrait" src="{% static 'jdm/candidat.png' %}" alt="{{ candidat.nom }}"/>
@@ -98,17 +98,34 @@
                 </div>
         </a>
     </div>
-                {% endif %}
-            {% endfor %}
-    {% endfor %}
+            {% elif candidat == pari.candidat and candidat.DDD.year != saison_en_cours %}
+    <div class="alignement">
+        <a href="/candidats/{{ candidat.id }}/">
+            {% if candidat.photo == '' %}
+            <img class="portrait" src="{% static 'jdm/candidat.png' %}" alt="{{ candidat.nom }}"/>
+            {% else %}
+            <img class="portrait" src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" alt="{{ candidat.nom }}" class="image"/>
+            {% endif %}
+                <div class="overlay">
+                    <div class="text">
+                        <p>{{ candidat.nom }}</p>
+                        <p>{{ candidat.calcul_age }} ans</p>
+                        <p>{{ candidat.points }} point{{ candidat.points|pluralize }}</p>
+                    </div>
+                </div>
+        </a>
     </div>
+            {% endif %}
+        {% endfor %}
+{% endfor %}
+</div>
 
 <div class="swiper" id="candidats">
     <div class="swiper-wrapper">
     {% for pari in paris %}
     {% for candidat in candidats_joueur %}
-    {% if candidat == pari.candidat and candidat.DDD is null %}
-    <div class="swiper-slide"><a href="/candidats/{{ candidat.id }}/">
+        {% if candidat == pari.candidat and candidat.DDD is null %}
+        <div class="swiper-slide"><a href="/candidats/{{ candidat.id }}/">
         {% if candidat.photo == '' %}
         <img class="portrait_swiper" src="{% static 'jdm/candidat.png' %}" alt="{{ candidat.nom }}"/>
         {% else %}
@@ -121,7 +138,21 @@
             <p>{{ candidat.points }} point{{ candidat.points|pluralize }}</p>
         </div>
     </a></div>
-    {% endif %}
+        {% elif candidat == pari.candidat and candidat.DDD.year != saison_en_cours %}
+        <div class="swiper-slide"><a href="/candidats/{{ candidat.id }}/">
+        {% if candidat.photo == '' %}
+        <img class="portrait_swiper" src="{% static 'jdm/candidat.png' %}" alt="{{ candidat.nom }}"/>
+        {% else %}
+        <img class="portrait_swiper" src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/{{ candidat.photo }}&width=300" alt="{{ candidat.nom }}" class="image"/>
+        {% endif %}
+
+        <div style="color: var(--text);">
+            <p>{{ candidat.nom }}</p>
+            <p>{{ candidat.calcul_age }} ans</p>
+            <p>{{ candidat.points }} point{{ candidat.points|pluralize }}</p>
+        </div>
+    </a></div>
+        {% endif %}
     {% endfor %}
     {% endfor %}
 </div>
@@ -160,9 +191,9 @@
 {% for pari in paris %}
     {% if pari.joueur == joueur %}
         {% for candidat in candidats_joueur %}
-
             {% if candidat == pari.candidat and candidat.DDD %}
-    <div class="alignement">
+                {% if candidat.DDD.year == saison_en_cours %}
+                <div class="alignement">
         <a href="/candidats/{{ candidat.id }}/">
             {% if candidat.photo == '' %}
             <img src="{% static 'jdm/candidat.png' %}" alt="{{ candidat.nom }}" class="portrait"/>
@@ -179,9 +210,10 @@
         </a>
     </div>
                 {% endif %}
-            {% endfor %}
-        {% endif %}
-    {% endfor %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endfor %}
     </div>
 
 <div class="swiper" id="decedes">

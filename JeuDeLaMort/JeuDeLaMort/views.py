@@ -34,7 +34,7 @@ def score_max(joueur, annee):
 
 def score_user(paris_user, annee):
     score = 0
-    for pari in paris_user.filter(saison=annee):
+    for pari in paris_user.filter(saison=annee, mort=True):
         try:
             candidat = pari.candidat
             if candidat.DDD:
@@ -95,7 +95,7 @@ def salle_user(request, id, annee):
             paris_user = Pari.objects.filter(joueur=joueur, saison=annee)
             paris_decedes = Pari.objects.filter(joueur=joueur, saison=annee, mort=True)
             candidats_joueur = []
-            for pari in paris_user.filter(saison=annee):
+            for pari in paris_user:
                 candidat = candidats.get(wiki_id=pari.candidat.wiki_id)
                 candidats_joueur.append(candidat)
             return render(request,
