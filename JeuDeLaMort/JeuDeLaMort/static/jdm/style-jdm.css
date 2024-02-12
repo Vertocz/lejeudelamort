@@ -349,7 +349,7 @@ a:hover {
 }
 
 .portfav {
-    max-width: 300px;
+    max-width: 240px;
     width: 20vw;
     aspect-ratio: 1;
     object-fit: cover;
