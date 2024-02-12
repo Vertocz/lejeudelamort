@@ -38,8 +38,9 @@ def score_user(paris_user, annee):
         try:
             candidat = pari.candidat
             if candidat.DDD:
-                points = candidat.points()
-                score += points
+                if candidat.DDD.year == annee:
+                    points = candidat.points()
+                    score += points
         except ObjectDoesNotExist:
             pass
     return score
@@ -148,7 +149,8 @@ def liste_amis(joueur, saison):
             succes = 0
             for pari in Pari.objects.filter(joueur=user, saison=saison):
                 if pari.mort:
-                    succes += 1
+                    if pari.candidat.DDD.year == saison:
+                        succes += 1
             liste.append((user, est_un_ami, score_user_x, nominations, succes))
     liste.sort(key=lambda x: x[3], reverse=True)
     liste.sort(key=lambda x: x[2], reverse=True)
