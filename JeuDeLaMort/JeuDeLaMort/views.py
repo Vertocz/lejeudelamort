@@ -133,19 +133,22 @@ def classement(request, annee):
 def liste_amis(joueur, saison):
     liste = []
     for user in users:
-        if len(Cercle.objects.filter(joueur=joueur, ami=user)) != 0:
-            est_un_ami = True
+        if user.id == 11 and saison != 2023:
+            pass
         else:
-            est_un_ami = False
-        paris_user = Pari.objects.filter(joueur=user, saison=saison)
-        nominations = len(paris_user)
-        score_user_x = score_user(paris_user, saison)
-        succes = 0
-        for pari in Pari.objects.filter(joueur=user, saison=saison):
-            if pari.mort:
-                if pari.candidat.DDD.year == saison:
-                    succes += 1
-        liste.append((user, est_un_ami, score_user_x, nominations, succes))
+            if len(Cercle.objects.filter(joueur=joueur, ami=user)) != 0:
+                est_un_ami = True
+            else:
+                est_un_ami = False
+            paris_user = Pari.objects.filter(joueur=user, saison=saison)
+            nominations = len(paris_user)
+            score_user_x = score_user(paris_user, saison)
+            succes = 0
+            for pari in Pari.objects.filter(joueur=user, saison=saison):
+                if pari.mort:
+                    if pari.candidat.DDD.year == saison:
+                        succes += 1
+            liste.append((user, est_un_ami, score_user_x, nominations, succes))
     liste.sort(key=lambda x: x[3], reverse=True)
     liste.sort(key=lambda x: x[2], reverse=True)
 
