@@ -92,25 +92,22 @@ def salle_user(request, id, annee):
 
     try:
         joueur = User.objects.get(id=id)
-        if len(Cercle.objects.filter(joueur=request.user, ami=joueur)) > 0 or request.user == joueur:
-            paris_user = Pari.objects.filter(joueur=joueur, saison=annee)
-            paris_decedes = Pari.objects.filter(joueur=joueur, saison=annee, mort=True)
-            candidats_joueur = []
-            for pari in paris_user:
-                candidat = candidats.get(wiki_id=pari.candidat.wiki_id)
-                candidats_joueur.append(candidat)
-            return render(request,
-                          'jdm/salle_user.html',
-                          {'joueur': joueur, 'poker': joker(joueur, annee), 'score_max': score_max(joueur, annee),
-                           'score': score_user(paris_user, annee), 'paris': paris_user, 'deces': paris_decedes,
-                           'rap': 10 - len(paris_user) + len(paris_decedes), 'candidats_joueur': candidats_joueur,
-                           'moyenne': moyenne_age(joueur, annee), "terminee": saison_terminee, "saisons": saisons, "saison_en_cours": annee})
-        else:
-            messages.success(request, ("Ce joueur ne fait pas partie de votre cercle"))
-            return redirect('classement')
+        paris_user = Pari.objects.filter(joueur=joueur, saison=annee)
+        paris_decedes = Pari.objects.filter(joueur=joueur, saison=annee, mort=True)
+        candidats_joueur = []
+        for pari in paris_user:
+            candidat = candidats.get(wiki_id=pari.candidat.wiki_id)
+            candidats_joueur.append(candidat)
+        return render(request,
+                      'jdm/salle_user.html',
+                      {'joueur': joueur, 'poker': joker(joueur, annee), 'score_max': score_max(joueur, annee),
+                       'score': score_user(paris_user, annee), 'paris': paris_user, 'deces': paris_decedes,
+                       'rap': 10 - len(paris_user) + len(paris_decedes), 'candidats_joueur': candidats_joueur,
+                       'moyenne': moyenne_age(joueur, annee), "terminee": saison_terminee, "saisons": saisons, "saison_en_cours": annee})
+
     except ObjectDoesNotExist:
-        messages.success(request, ("Ce joueur ne fait pas partie de votre cercle"))
-        return redirect('classement')
+        messages.success(request, ("Ce joueur n'existe pas/plus"))
+        return redirect('classement', 2024)
 
 
 def recherche_amis(request):
@@ -136,22 +133,19 @@ def classement(request, annee):
 def liste_amis(joueur, saison):
     liste = []
     for user in users:
-        if len(Cercle.objects.filter(joueur=joueur, ami=user)) == 0 and score_user(Pari.objects.filter(joueur=user), saison) == 0 and user != joueur:
-            pass
+        if len(Cercle.objects.filter(joueur=joueur, ami=user)) != 0:
+            est_un_ami = True
         else:
-            if len(Cercle.objects.filter(joueur=joueur, ami=user)) != 0:
-                est_un_ami = True
-            else:
-                est_un_ami = False
-            paris_user = Pari.objects.filter(joueur=user, saison=saison)
-            nominations = len(paris_user)
-            score_user_x = score_user(paris_user, saison)
-            succes = 0
-            for pari in Pari.objects.filter(joueur=user, saison=saison):
-                if pari.mort:
-                    if pari.candidat.DDD.year == saison:
-                        succes += 1
-            liste.append((user, est_un_ami, score_user_x, nominations, succes))
+            est_un_ami = False
+        paris_user = Pari.objects.filter(joueur=user, saison=saison)
+        nominations = len(paris_user)
+        score_user_x = score_user(paris_user, saison)
+        succes = 0
+        for pari in Pari.objects.filter(joueur=user, saison=saison):
+            if pari.mort:
+                if pari.candidat.DDD.year == saison:
+                    succes += 1
+        liste.append((user, est_un_ami, score_user_x, nominations, succes))
     liste.sort(key=lambda x: x[3], reverse=True)
     liste.sort(key=lambda x: x[2], reverse=True)
 
