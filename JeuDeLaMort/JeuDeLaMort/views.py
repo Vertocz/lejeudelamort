@@ -397,7 +397,7 @@ def maj(request):
             gagnants = []
             for candidat in deces:
                 for pari in Pari.objects.filter(candidat=candidat, saison=int(datetime.now().year)):
-                    if User.objects.get(id=pari.user_id) not in gagnants:
+                    if User.objects.get(id=pari.joueur.id) not in gagnants:
                         gagnants.append(pari.joueur)
                 resultats.append([candidat, gagnants])
     envoyer_mail()
