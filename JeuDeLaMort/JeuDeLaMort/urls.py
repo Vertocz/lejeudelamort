@@ -1,7 +1,6 @@
 from django.urls import path, include
 from django.contrib import auth, admin
-from .views import index, resume, candidat_create, candidat_detail, candidat_valide, salle_user, \
-    classement, favoris, nouvel_ami, recherche_amis, retirer_ami, change_password, maj, parametres, diapo, maj_annuelle
+from .views import *
 
 urlpatterns = [
     path('', index, name="jdm-index"),
@@ -22,5 +21,8 @@ urlpatterns = [
     path('change_password/', change_password, name='change-password'),
     path('parametres/', parametres, name='parametres'),
     path('diapo/', diapo, name='diapo'),
-    path('maj_annuelle/', maj_annuelle, name='maj-annuelle')
+    path('maj_annuelle/', maj_annuelle, name='maj-annuelle'),
+    path('pet/', pet, name='pet'),
+    path('bingo/', bingo, name='bingo'),
+    #path('bingo/<str:qqn>', bingo_joueur, name='bingo-joueur')
 ]

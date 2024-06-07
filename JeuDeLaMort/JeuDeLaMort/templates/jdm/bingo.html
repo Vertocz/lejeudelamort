@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Bingo PUBG</title>
+    <link rel="stylesheet" href="{% static 'jdm/bingo.css' %}">
+</head>
+<body>
+
+<img src="{% static 'jdm/logo_pubg.png' %}" alt="logo pubg" style="filter: invert(1); height: 200px;"/>
+
+{% if matches|length > 0 %}
+<h1>BINGO {{ joueur }}</h1>
+
+
+<form action="{% url 'bingo' %}" method="post">
+    {% csrf_token %}
+    <label>Taper un nom de joueur</label>
+    {{ form.joueur }}
+    <input type="submit" value="Voir ses bingos">
+</form>
+{% for match in matches %}
+<h2>{{match.1}} - Top {{match.4}}</h2>
+<p>({{match.3|length}} joueurs réels)</p>
+<h3>
+{% for joueur in match.2 %}
+{{joueur}}
+{% endfor %}
+</h3>
+
+<table>
+    <caption>{{joueur}}</caption>
+    <tr>
+        {% if match.5.1 %}
+        <td style="background-color: green">Winner Winner Chicken Dinner</td>
+        {% else %}
+        <td>Winner Winner Chicken Dinner</td>
+        {% endif %}
+
+        {% if match.5.0 %}
+        <td style="background-color: green">Conduire un ULM</td>
+        {% else %}
+        <td>Conduire un ULM</td>
+        {% endif %}
+
+        {% if match.5.2 %}
+        <td style="background-color: green">Prendre un ramassage d'urgence</td>
+        {% else %}
+        <td>Prendre un ramassage d'urgence</td>
+        {% endif %}
+
+        {% if match.5.3 %}
+        <td style="background-color: green">Looter un Drop</td>
+        {% else %}
+        <td>Looter un Drop</td>
+        {% endif %}
+    </tr>
+    <tr>
+        {% if match.5.4 %}
+        <td style="background-color: green">Kill de plus de 100m</td>
+        {% else %}
+        <td>Kill de plus de 100m</td>
+        {% endif %}
+
+        {% if match.5.5 %}
+        <td style="background-color: green">Parcourir 3km sur la route</td>
+        {% else %}
+        <td>Parcourir 3km sur la route</td>
+        {% endif %}
+
+        {% if match.5.6 %}
+        <td style="background-color: green">Kill un vrai joueur</td>
+        {% else %}
+        <td>Kill un vrai joueur</td>
+        {% endif %}
+
+        {% if match.5.9 %}
+        <td style="background-color: green">KOBE !!</td>
+        {% else %}
+        <td>KOBE !!</td>
+        {% endif %}
+    </tr>
+    <tr>
+        {% if match.5.7 %}
+        <td style="background-color: green">Kill au pistolet</td>
+        {% else %}
+        <td>Kill au pistolet</td>
+        {% endif %}
+
+        {% if match.5.10 %}
+        <td style="background-color: green">Kill en écrasant</td>
+        {% else %}
+        <td>Kill en écrasant</td>
+        {% endif %}
+
+        {% if match.5.15 %}
+        <td style="background-color: green">Drive-by kill</td>
+        {% else %}
+        <td>Drive-by kill</td>
+        {% endif %}
+
+        {% if match.5.12 %}
+        <td style="background-color: green">Tuer 3 bots</td>
+        {% else %}
+        <td>Tuer 3 bots</td>
+        {% endif %}
+    </tr>
+    <tr>
+        {% if match.5.8 %}
+        <td style="background-color: green">Atterrir à Stalber</td>
+        {% else %}
+        <td>Atterrir à Stalber</td>
+        {% endif %}
+
+        {% if match.5.13 %}
+        <td style="background-color: green">Poser un piège à pointes<br />(et qu'il fonctionne)</td>
+        {% else %}
+        <td>Poser un piège à pointes<br />(et qu'il fonctionne)</td>
+        {% endif %}
+
+        {% if match.5.14 %}
+        <td style="background-color: green">Utiliser 3 flashes</td>
+        {% else %}
+        <td>Utiliser 3 flashes</td>
+        {% endif %}
+
+        {% if match.5.11 %}
+        <td style="background-color: green">Kill en zone bleue</td>
+        {% else %}
+        <td>Kill en zone bleue</td>
+        {% endif %}
+    </tr>
+</table>
+{% endfor %}
+
+{% else %}
+<h1>BINGO</h1>
+
+<form action="{% url 'bingo' %}" method="post">
+    {% csrf_token %}
+    <label>Taper un nom de joueur</label>
+    {{ form.joueur }}
+    <input type="submit" value="Voir ses bingos">
+</form>
+
+<table>
+    <tr>
+        <td>Winner Winner Chicken Dinner</td>
+        <td>Conduire un ULM</td>
+        <td>Prendre un ramassage d'urgence</td>
+        <td>Looter un Drop</td>
+    </tr>
+    <tr>
+        <td>Kill de plus de 100m</td>
+        <td>Parcourir 3km sur la route</td>
+        <td>Kill un vrai joueur</td>
+        <td>KOBE !!</td>
+    </tr>
+    <tr>
+        <td>Kill au pistolet</td>
+        <td>Kill en écrasant</td>
+        <td>Drive-by kill</td>
+        <td>Tuer 3 bots</td>
+    </tr>
+    <tr>
+        <td>Atterrir à Stalber</td>
+        <td>Poser un piège à pointes<br />(et qu'il fonctionne)</td>
+        <td>Utiliser 3 flashes</td>
+        <td>Kill en zone bleue</td>
+    </tr>
+</table>
+{% endif %}
+
+</body>
+</html>

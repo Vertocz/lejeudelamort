@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Candidat, Pari, Cercle, Preference, Historique
+from .models import *
 
 
 class CandidatAdmin(admin.ModelAdmin):
@@ -26,8 +26,13 @@ class HistoriqueAdmin(admin.ModelAdmin):
     list_display = ('joueur', 'saison', 'score')
 
 
+class ProutAdmin(admin.ModelAdmin):
+    list_display = ('auteur', 'performance')
+
+
 admin.site.register(Candidat, CandidatAdmin)
 admin.site.register(Pari, PariAdmin)
 admin.site.register(Cercle, CercleAdmin)
 admin.site.register(Preference, PreferenceAdmin)
 admin.site.register(Historique, HistoriqueAdmin)
+admin.site.register(Prout, ProutAdmin)

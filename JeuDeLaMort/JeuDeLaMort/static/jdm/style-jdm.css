@@ -110,6 +110,14 @@ body {
     background-color: var(--c2);
 }
 
+#pet{
+    background-color: var(--c1);
+}
+
+#pet:hover {
+    background-color: var(--c2);
+}
+
 .bouton_annee{
     font-size: 1.5rem;
     color: var(--text);
@@ -587,6 +595,11 @@ header {
     background-color: var(--c1);
     --swiper-navigation-sides-offset: 3px;
     padding: 1rem;
+}
+
+.tenor-gif-embed{
+    display: none;
+    justify-content: center;
 }
 
 @media screen and (min-width: 769px) {

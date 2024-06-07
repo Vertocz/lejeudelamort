@@ -1,0 +1,42 @@
+{% extends 'jdm/base.html' %}
+
+{% block content %}
+{% load static %}
+
+<h1>C'est qui qu'a pété ?</h1>
+
+{% if musiciens|length > 0 %}
+<h2>Les donateurs</h2>
+{% for musicien in musiciens %}
+<div>{{ musicien.username }}</div>
+{% endfor %}
+{% endif %}
+
+{% if prouts|length > 0 %}
+<h2>Les prouts</h2>
+{% for prout in prouts %}
+<div class="bouton" style="max-width: 500px; margin: 2rem auto">
+  <figure>
+    <audio controls src="{{ prout.performance }}"></audio>
+    </figure>
+  <select name="auteur" id="auteur-select">
+    <option value="">--C'est qui qu'a pété ?--</option>
+    {% for prout in prouts %}
+    <option value="prout.auteur">{{ prout.auteur }}</option>
+    {% endfor %}
+    </select>
+</div>
+{% endfor %}
+{% endif %}
+
+<h2>Faire un don</h2>
+<div style="padding: 0 0 2rem;">(en format mp3, m4a ou ogg)</div>
+{% if user.is_authenticated %}
+<form style="display: flex; flex-direction: column; align-items: center;" enctype="multipart/form-data" action="" method="post" novalidate>
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input class="bouton" type="submit" value="Laisser une petite trace de {{ user.username }}">
+</form>
+{% endif %}
+
+{% endblock %}

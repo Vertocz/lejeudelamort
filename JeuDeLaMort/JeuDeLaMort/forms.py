@@ -1,5 +1,5 @@
 from django import forms
-from .models import Candidat, Preference
+from .models import Candidat, Preference, Prout
 from django.contrib.auth.models import User
 
 
@@ -31,3 +31,10 @@ class UpdateUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'email')
+
+
+class ProutForm(forms.ModelForm):
+    class Meta:
+        model = Prout
+        fields = '__all__'
+

@@ -1,10 +1,16 @@
+import gzip
+import json
+import urllib
+
 from django.core.exceptions import ObjectDoesNotExist
+from django import forms
 from django.shortcuts import render, redirect
 from datetime import datetime, date
-from .models import Candidat, Pari, Cercle, Preference, Historique
+from .models import Candidat, Pari, Cercle, Preference, Historique, Prout
 from django.contrib.auth.models import User
-from .forms import RechercheCandidatForm, PreferenceForm, UpdateUserForm
+from .forms import RechercheCandidatForm, PreferenceForm, UpdateUserForm, ProutForm
 from django.contrib import messages
+
 import requests
 
 
@@ -442,3 +448,216 @@ def parametres(request):
 def diapo(request):
     return render(request, 'jdm/diapo.html', {'candidats': candidats})
 
+
+def pet(request):
+    musiciens = []
+    prouts = Prout.objects.all()
+    for prout in prouts:
+        if prout.auteur not in musiciens:
+            musiciens.append(prout.auteur)
+    if request.method == 'POST':
+        form = ProutForm(request.POST, request.FILES)
+        if form.is_valid():
+            if str(form.cleaned_data.get('performance')).lower().endswith(('.mp3', '.m4a', '.ogg')):
+                Prout(auteur=request.user, performance=form.cleaned_data.get('performance')).save()
+                messages.success(request, 'Le prout a bien été ajouté')
+                prouts = Prout.objects.all()
+                for prout in prouts:
+                    if prout.auteur not in musiciens:
+                        musiciens.append(prout.auteur)
+                return render(request, 'jdm/akikileprout.html', {"form": form, 'musiciens': musiciens, 'prouts': prouts})
+            else:
+                messages.error(request, 'Ce format de fichier n\'est pas pris en charge')
+                form = ProutForm(initial={'auteur': request.user})
+                return render(request, 'jdm/akikileprout.html', {'form': form, 'musiciens': musiciens, 'prouts': prouts})
+        else:
+            messages.error(request, 'Quelque chose ne s\'est pas passé correctement')
+            form = ProutForm(initial={'auteur': request.user})
+            return render(request, 'jdm/akikileprout.html', {'form': form, 'musiciens': musiciens, 'prouts': prouts})
+
+    else:
+        print('else', request.method)
+        form = ProutForm(initial={'auteur': request.user})
+        return render(request, 'jdm/akikileprout.html', {'form': form, 'musiciens': musiciens, 'prouts': prouts})
+
+
+def bingo(request):
+    class JoueurForm(forms.Form):
+        joueur = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'WackyJacky101'}))
+
+    if request.method == 'POST':
+        form = JoueurForm(request.POST)
+        if form.is_valid():
+            joueur = form.data['joueur']
+            print(joueur)
+            print(bingo_joueur(joueur))
+            return render(request, 'jdm/bingo.html', {'form': form, 'matches': bingo_joueur(joueur), 'joueur': joueur})
+    else:
+        form = JoueurForm()
+        return render(request, 'jdm/bingo.html', {'form': form})
+
+
+def bingo_joueur(joueur):
+    pistols = ["WeapSawnoff_C", "WeapRhino_C", "WeapNagantM1895_C", "WeapM9_C", "WeapM1911_C", "WeapG18_C", "WeapDesertEagle_C"]
+    key = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2MjE2MWUwMC0wNDk1LTAxM2QtYmMzYS0zZTk5NDk5ZjNlY2UiLCJpc3MiOiJnYW1lbG9ja2VyIiwiaWF0IjoxNzE3NTAxMzIyLCJwdWIiOiJibHVlaG9sZSIsInRpdGxlIjoicHViZyIsImFwcCI6ImJpbmdvLXB1YmcifQ.Fm-PsL47ALnAjzAU78ER7LZmPRdl8Ye2nrl_J3R45j4"
+    URL = "https://api.pubg.com/shards/steam/"
+    header = {
+        "Authorization": "Bearer "+key,
+        "Accept": "application/vnd.api+json",
+    }
+
+    player_stat_url = "players?filter[playerNames]=" + joueur
+    match_url = "matches/"
+
+    r = requests.get(URL + player_stat_url, headers=header)
+    jsonresponse = r.json()
+
+    matches = []
+    # récupération des données des 6 derniers matches pour chaque match du joueur
+    limite = 10
+    if len(jsonresponse['data'][0]['relationships']['matches']['data']) < 10:
+        limite = len(jsonresponse['data'][0]['relationships']['matches']['data'])
+    for i in range(0, limite):
+        match_id = jsonresponse['data'][0]['relationships']['matches']['data'][i]['id']
+        r = requests.get(URL + match_url + match_id, headers=header)
+        jsonresponse_match = r.json()
+        # récupération de la date
+        date = datetime.strptime(jsonresponse_match['data']['attributes']['createdAt'], '%Y-%m-%dT%H:%M:%SZ').date()
+        gamers = []
+        gamers_du_clan = []
+        classement = 0
+        for dict in jsonresponse_match["included"]:
+            if dict['type'] == 'participant' and 'account' in dict["attributes"]["stats"]["playerId"]:
+                gamer = dict["attributes"]['stats']['name']
+                # on récupère le classement
+                if joueur == gamer and gamer not in gamers_du_clan:
+                    gamers_du_clan.append(gamer)
+                    classement = dict["attributes"]['stats']['winPlace']
+
+                # on établit la liste des joueurs réels
+                if gamer not in gamers:
+                    gamers.append(gamer)
+
+        telemetry = jsonresponse_match['data']['relationships']['assets']['data'][0]['id']
+        for dict in jsonresponse_match["included"]:
+            if dict['id'] == telemetry:
+                telemetry_url = dict["attributes"]["URL"]
+                with urllib.request.urlopen(telemetry_url) as url:
+                    with gzip.open(url, 'r') as fin:
+                        data = json.loads(fin.read().decode('utf-8'))
+
+        # 1 Prendre un ramassage d'urgence
+        EmPickup = False
+        # 2 conduire un ULM
+        ulm = False
+        # 3 faire top 1
+        top1 = False
+        # 4 looter un drop
+        crate = False
+        # 5 +100m kill
+        kill_100m = False
+        # 6 parcourir 3km sur la route
+        ride_distance = False
+        # 7 tuer un vrai joueur
+        real_kill = False
+        # 8 kill au pistolet
+        pistol_kill = False
+        # 9 atterrir à Stalber
+        stalber = False
+        # 10 KOBE
+        kobe = False
+        # 11 écraser quelqu'un
+        smash = False
+        # 12 kill en zone bleue
+        bz_kill = False
+        # 13 spike strip un véhicule
+        spiked = False
+        # 14 tuer 3 bots
+        bots_killer = False
+        bots_killed = 0
+        # 15 utiliser 5 flashes
+        flasher = False
+        used_flashes = 0
+        # 16 drive-by kill
+        driveby = False
+
+        for donnee in data:
+            try:
+                if donnee['character']['name'] == joueur and donnee['_T'] == 'LogVehicleRide' and donnee['vehicle']['vehicleId'] == 'BP_Motorglider_C' or "BP_Motorglider_Green_C" and donnee['vehicle']['velocity'] > 0 and donnee['vehicle']['seatIndex'] == 1:
+                    ulm = True
+
+                if donnee['_T'] == "LogEmPickupLiftOff":
+                    for ligne in donnee['riders']:
+                        if ligne['name'] == joueur:
+                            EmPickup = True
+
+                if donnee['_T'] == 'LogItemPickupFromCarepackage' and donnee['character']['name'] == joueur:
+                    crate = True
+
+                if donnee['_T'] == 'LogPlayerKillV2' and donnee['killer'] == joueur and donnee['victim']['type'] == 'user':
+                    real_kill = True
+
+                if donnee['_T'] == 'LogPlayerKillV2' and donnee['killer'] == joueur and donnee['killerDamageInfo']['damageCauserName'] in pistols:
+                    pistol_kill = True
+
+                if donnee['_T'] == 'LogParachuteLanding' and donnee['character']['name'] == joueur and donnee['character']['zone'] == 'stalber':
+                    stalber = True
+
+                if donnee['_T'] == 'LogPlayerKillV2' and donnee['killer'] == joueur and donnee['killerDamageInfo']['damageCauserName'] == "ProjGrenade_C":
+                    kobe = True
+
+                if donnee['_T'] == 'LogPlayerKillV2' and donnee['killer'] == joueur and donnee['killerDamageInfo']['damageCauserName'] == "Damage_VehicleHit":
+                    smash = True
+
+                if donnee['_T'] == 'LogPlayerKillV2' and donnee['killer'] == joueur and donnee['victim']['bz_kill'] == True:
+                    bz_kill = True
+
+                if donnee['_T'] == 'LogPlayerKillV2' and donnee['killer'] == joueur and donnee['victim']['type'] == 'user_ai':
+                    bots_killed += 1
+
+                if donnee['_T'] == 'LogVehicleDamage' and donnee['attacker']['name'] == joueur and donnee['damageCauserName'] == "Item_Weapon_SpikeTrap_C":
+                    spiked = True
+
+                if donnee['_T'] == 'LogItemUse' and donnee['character']['name'] == joueur and donnee['item']['itemId'] == "Item_Weapon_FlashBang_C":
+                    used_flashes += 1
+
+                if donnee['_T'] == 'LogPlayerKillV2' and donnee['killer'] == joueur and donnee['killerDamageInfo']['damageCauserName'] == "Damage_VehicleHit":
+                    driveby = True
+
+            except KeyError:
+                pass
+
+            except TypeError:
+                pass
+
+        if bots_killed >= 3:
+            bots_killer = True
+
+        if used_flashes >= 1:
+            flasher = True
+
+        for dict in jsonresponse_match["included"]:
+            if dict['type'] == 'participant' and joueur == dict["attributes"]['stats']['name']:
+                longestKill = dict["attributes"]['stats']['longestKill']
+                if longestKill > 100:
+                    kill_100m = True
+                if dict["attributes"]['stats']['rideDistance'] > 3000:
+                    ride_distance = True
+
+        if classement == 1:
+            top1 = True
+
+        # 18
+        # 19
+        # 20
+        # 21
+        # 22
+        # 23
+        # 24
+        # 25
+        bingo = [ulm, top1, EmPickup, crate, kill_100m, ride_distance, real_kill, pistol_kill, stalber, kobe, smash, bz_kill, bots_killer, spiked, flasher, driveby]
+        matches.append([match_id, date, gamers_du_clan, gamers, classement, bingo])
+
+    matches.sort(key=lambda x: x[1], reverse=True)
+
+    return matches

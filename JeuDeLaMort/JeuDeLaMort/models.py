@@ -56,3 +56,8 @@ class Historique(models.Model):
     joueur = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     saison = models.IntegerField(default=2023)
     score = models.IntegerField(default=0)
+
+
+class Prout(models.Model):
+    auteur = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    performance = models.FileField(upload_to="static/prouts")
