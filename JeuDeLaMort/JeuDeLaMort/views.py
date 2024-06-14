@@ -40,11 +40,9 @@ def score_max(joueur, annee):
 def score_user(paris_user, annee):
     score = 0
     for pari in paris_user.filter(saison=annee, mort=True):
-        print(pari.candidat, pari.candidat.points())
         try:
             candidat = pari.candidat
             if candidat.DDD:
-                print(candidat.DDD.year)
                 if candidat.DDD.year == annee:
                     points = candidat.points()
                     score += points
@@ -485,7 +483,6 @@ def pet(request):
             return render(request, 'jdm/akikileprout.html', {'form': form, 'musiciens': musiciens, 'prouts': prouts})
 
     else:
-        print('else', request.method)
         form = ProutForm(initial={'auteur': request.user})
         return render(request, 'jdm/akikileprout.html', {'form': form, 'musiciens': musiciens, 'prouts': prouts})
 
