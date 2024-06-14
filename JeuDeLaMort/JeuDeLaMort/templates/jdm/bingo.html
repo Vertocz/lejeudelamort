@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<img src="{% static 'jdm/logo_pubg.png' %}" alt="logo pubg" style="filter: invert(1); height: 200px;"/>
+<img src="{% static 'jdm/logo_pubg.png' %}" alt="logo pubg" style="height: 200px;"/>
 
 {% if matches|length > 0 %}
 <h1>BINGO {{ joueur }}</h1>
@@ -22,154 +22,142 @@
 </form>
 {% for match in matches %}
 <h2>{{match.1}} - Top {{match.4}}</h2>
-<p>({{match.3|length}} joueurs réels)</p>
+<p>{{match.6}} / {{match.3|length}} joueurs réels</p>
 <h3>
 {% for joueur in match.2 %}
 {{joueur}}
 {% endfor %}
 </h3>
 
-<table>
-    <caption>{{joueur}}</caption>
-    <tr>
+
+ <div class="bingo">
         {% if match.5.1 %}
-        <td style="background-color: green">Winner Winner Chicken Dinner</td>
+        <div class="case-verte">Winner Winner Chicken Dinner</div>
         {% else %}
-        <td>Winner Winner Chicken Dinner</td>
+        <div class="case">Winner Winner Chicken Dinner</div>
         {% endif %}
 
         {% if match.5.0 %}
-        <td style="background-color: green">Conduire un ULM</td>
+        <div class="case-verte">Monter en ULM</div>
         {% else %}
-        <td>Conduire un ULM</td>
+        <div class="case">Monter en ULM</div>
         {% endif %}
 
         {% if match.5.2 %}
-        <td style="background-color: green">Prendre un ramassage d'urgence</td>
+        <div class="case-verte">Prendre un ramassage d'urgence</div>
         {% else %}
-        <td>Prendre un ramassage d'urgence</td>
+        <div class="case">Prendre un ramassage d'urgence</div>
         {% endif %}
 
         {% if match.5.3 %}
-        <td style="background-color: green">Looter un Drop</td>
+        <div class="case-verte">Looter un Drop</div>
         {% else %}
-        <td>Looter un Drop</td>
+        <div class="case">Looter un Drop</div>
         {% endif %}
-    </tr>
-    <tr>
+
         {% if match.5.4 %}
-        <td style="background-color: green">Kill de plus de 100m</td>
+        <div class="case-verte">Kill de plus de 100m</div>
         {% else %}
-        <td>Kill de plus de 100m</td>
+        <div class="case">Kill de plus de 100m</div>
         {% endif %}
 
         {% if match.5.5 %}
-        <td style="background-color: green">Parcourir 3km sur la route</td>
+        <div class="case-verte">Parcourir 3km sur la route</div>
         {% else %}
-        <td>Parcourir 3km sur la route</td>
+        <div class="case">Parcourir 3km sur la route</div>
         {% endif %}
 
         {% if match.5.6 %}
-        <td style="background-color: green">Kill un vrai joueur</td>
+        <div class="case-verte">Kill un vrai joueur</div>
         {% else %}
-        <td>Kill un vrai joueur</td>
+        <div class="case">Kill un vrai joueur</div>
         {% endif %}
 
         {% if match.5.9 %}
-        <td style="background-color: green">KOBE !!</td>
+        <div class="case-verte">KOBE !!</div>
         {% else %}
-        <td>KOBE !!</td>
+        <div class="case">KOBE !!</div>
         {% endif %}
-    </tr>
-    <tr>
+
         {% if match.5.7 %}
-        <td style="background-color: green">Kill au pistolet</td>
+        <div class="case-verte">Kill au pistolet</div>
         {% else %}
-        <td>Kill au pistolet</td>
+        <div class="case">Kill au pistolet</div>
         {% endif %}
 
-        {% if match.5.10 %}
-        <td style="background-color: green">Kill en écrasant</td>
+        {% if match.5.17 %}
+        <div class="case-verte">Réanimer 2 fois</div>
         {% else %}
-        <td>Kill en écrasant</td>
-        {% endif %}
-
-        {% if match.5.15 %}
-        <td style="background-color: green">Drive-by kill</td>
-        {% else %}
-        <td>Drive-by kill</td>
-        {% endif %}
-
-        {% if match.5.12 %}
-        <td style="background-color: green">Tuer 3 bots</td>
-        {% else %}
-        <td>Tuer 3 bots</td>
-        {% endif %}
-    </tr>
-    <tr>
-        {% if match.5.8 %}
-        <td style="background-color: green">Atterrir à Stalber</td>
-        {% else %}
-        <td>Atterrir à Stalber</td>
-        {% endif %}
-
-        {% if match.5.13 %}
-        <td style="background-color: green">Poser un piège à pointes<br />(et qu'il fonctionne)</td>
-        {% else %}
-        <td>Poser un piège à pointes<br />(et qu'il fonctionne)</td>
+        <div class="case">Réanimer 2 fois</div>
         {% endif %}
 
         {% if match.5.14 %}
-        <td style="background-color: green">Utiliser 3 flashes</td>
+        <div class="case-verte">Utiliser 3 flashes</div>
         {% else %}
-        <td>Utiliser 3 flashes</td>
+        <div class="case">Utiliser 3 flashes</div>
+        {% endif %}
+
+        {% if match.5.12 %}
+        <div class="case-verte">Tuer 3 bots</div>
+        {% else %}
+        <div class="case">Tuer 3 bots</div>
+        {% endif %}
+
+        {% if match.5.8 %}
+        <div class="case-verte">Atterrir à la Reynerie</div>
+        {% else %}
+        <div class="case">Atterrir à la Reynerie</div>
+        {% endif %}
+
+        {% if match.5.16 %}
+        <div class="case-verte">Survivre 10 min</div>
+        {% else %}
+        <div class="case">Survivre 10 min</div>
+        {% endif %}
+
+
+        {% if match.5.15 %}
+        <div class="case-verte">Drive-by kill</div>
+        {% else %}
+        <div class="case">Drive-by kill</div>
         {% endif %}
 
         {% if match.5.11 %}
-        <td style="background-color: green">Kill en zone bleue</td>
+        <div class="case-verte">Kill en zone bleue</div>
         {% else %}
-        <td>Kill en zone bleue</td>
+        <div class="case">Kill en zone bleue</div>
         {% endif %}
-    </tr>
-</table>
+    </div>
 {% endfor %}
 
 {% else %}
 <h1>BINGO</h1>
 
-<form action="{% url 'bingo' %}" method="post">
+<form action="{% url 'bingo' %}" style="padding: 0 0 1rem 0;" method="post">
     {% csrf_token %}
     <label>Taper un nom de joueur</label>
     {{ form.joueur }}
     <input type="submit" value="Voir ses bingos">
 </form>
 
-<table>
-    <tr>
-        <td>Winner Winner Chicken Dinner</td>
-        <td>Conduire un ULM</td>
-        <td>Prendre un ramassage d'urgence</td>
-        <td>Looter un Drop</td>
-    </tr>
-    <tr>
-        <td>Kill de plus de 100m</td>
-        <td>Parcourir 3km sur la route</td>
-        <td>Kill un vrai joueur</td>
-        <td>KOBE !!</td>
-    </tr>
-    <tr>
-        <td>Kill au pistolet</td>
-        <td>Kill en écrasant</td>
-        <td>Drive-by kill</td>
-        <td>Tuer 3 bots</td>
-    </tr>
-    <tr>
-        <td>Atterrir à Stalber</td>
-        <td>Poser un piège à pointes<br />(et qu'il fonctionne)</td>
-        <td>Utiliser 3 flashes</td>
-        <td>Kill en zone bleue</td>
-    </tr>
-</table>
+ <div class="bingo">
+     <div class="case">Winner Winner Chicken Dinner</div>
+     <div class="case">Monter en ULM</div>
+     <div class="case">Prendre un ramassage d'urgence</div>
+     <div class="case">Looter un Drop</div>
+     <div class="case">Kill de plus de 100m</div>
+     <div class="case">Parcourir 3km sur la route</div>
+     <div class="case">Kill un vrai joueur</div>
+     <div class="case">KOBE !!</div>
+     <div class="case">Kill au pistolet</div>
+     <div class="case">Réanimer 2 fois</div>
+     <div class="case">Utiliser 3 flashes</div>
+     <div class="case">Tuer 3 bots</div>
+     <div class="case">Atterrir à la Reynerie</div>
+     <div class="case">Survivre 10 min</div>
+     <div class="case">Drive-by kill</div>
+     <div class="case">Kill en zone bleue</div>
+    </div>
 {% endif %}
 
 </body>

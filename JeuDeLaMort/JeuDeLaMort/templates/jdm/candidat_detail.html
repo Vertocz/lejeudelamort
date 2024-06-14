@@ -53,14 +53,12 @@
 </div>
 
 
-<div class="fond_pref">
+<div class="description">
 <h2>Qui a désigné ce.tte candidat.e ?</h2>
-<div>
-        {% for pari in paris %}
-    <a href="{% url 'salle-user' pari.id annee %}" class="designeurs">{{ pari.username }}</a>
-        {% endfor %}
-    </div>
-    </div>
+    {% for pari in paris %}
+    <a href="{% url 'salle-user' pari.id annee %}">{{ pari.username }}</a>
+    {% endfor %}
+</div>
     {% endif %}
 
 
