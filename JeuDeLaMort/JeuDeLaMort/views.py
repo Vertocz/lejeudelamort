@@ -575,15 +575,10 @@ def bingo_joueur(joueur):
         telemetry = jsonresponse_match['data']['relationships']['assets']['data'][0]['id']
 
         game_mode = jsonresponse_match['data']['attributes']['gameMode']
-        team = jsonresponse_match['data']['attributes']['gameMode']
 
         for dict in jsonresponse_match["included"]:
             if dict['type'] == 'participant':
                 if 'account' in dict["attributes"]["stats"]["playerId"]:
-                    # on récupère le classement
-                    if joueur == dict["attributes"]['stats']['name']:
-                        classement = dict["attributes"]['stats']['winPlace']
-
                     # on établit la liste des joueurs réels
                     if dict["attributes"]['stats']['name'] not in gamers:
                         gamers.append(dict["attributes"]['stats']['name'])
@@ -600,6 +595,7 @@ def bingo_joueur(joueur):
                         survivor = True
                     if dict["attributes"]['stats']['revives'] > 1:
                         camille = True
+                    degats = dict["attributes"]['stats']['damageDealt']
 
             # récupération du json des événements du match
             if dict['id'] == telemetry:
@@ -607,7 +603,7 @@ def bingo_joueur(joueur):
                 with urllib.request.urlopen(telemetry_url) as url:
                     with gzip.open(url, 'r') as fin:
                         data = json.loads(fin.read().decode('utf-8'))
-
+        balles = 0
         for donnee in data:
             try:
                 if donnee['_T'] == 'LogVehicleDamage':
@@ -652,6 +648,17 @@ def bingo_joueur(joueur):
                     if donnee['item']['itemId'] == "Item_Heal_FirstAid_C" and donnee['character']['name'] == joueur:
                         used_flashes += 1
 
+                if donnee['_T'] == "LogPlayerAttack" and donnee['attacker']['name'] == joueur:
+                    if donnee['weapon']['stackCount'] > 1 or donnee['weapon']['stackCount'] < 1:
+                        pass
+                    else:
+                        try:
+                            balles += donnee['weapon']['stackCount']
+                        except KeyError:
+                            pass
+                        except TypeError:
+                            pass
+
             except KeyError:
                 pass
             except TypeError:
@@ -660,18 +667,13 @@ def bingo_joueur(joueur):
         if bots_killed >= 3:
             bots_killer = True
 
-        if used_flashes >= 1:
+        if used_flashes >= 3:
             flasher = True
 
-        if len(positions) < 7:
-            limite = len(positions) - 1
-        else:
-            limite = 6
         for position in positions:
+
             try:
-                # if position['character']['zone'][0] == "school":
-                #     stalber = True
-                if 435000 < position['character']['location']['x'] < 450000 and 326000.0 < position['character']['location']['y'] < 341000 and position['elapsedTime'] < 200:
+                if 433300 < position['character']['location']['x'] < 450000 and 325500 < position['character']['location']['y'] < 341000 and position['elapsedTime'] < 200:
                     reynerie = True
             except IndexError:
                 pass
@@ -679,8 +681,12 @@ def bingo_joueur(joueur):
         if classement == 1:
             top1 = True
 
+        if balles > 0:
+            dpb = round(degats/balles, 2)
+        elif balles == 0:
+            dpb = 0
         bingo = [ulm, top1, EmPickup, crate, kill_100m, ride_distance, real_kill, pistol_kill, reynerie, kobe, smash,
-                 bz_kill, bots_killer, spiked, flasher, driveby, survivor, camille]
+                 bz_kill, bots_killer, spiked, flasher, driveby, survivor, camille, balles, dpb]
         matches.append([match_id, date, equipe, gamers, classement, bingo, game_mode])
 
     matches.sort(key=lambda x: x[1], reverse=True)

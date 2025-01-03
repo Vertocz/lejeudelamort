@@ -23,6 +23,7 @@
 {% for match in matches %}
 <h2>{{match.1}} - Top {{match.4}}</h2>
 <p>{{match.6}} / {{match.3|length}} joueurs réels</p>
+<p>{{match.5.18}} balles tirées, soit {{match.5.19}} points de dégâts par balle utilisée</p>
 <h3>
 {% for joueur in match.2 %}
 {{joueur}}
