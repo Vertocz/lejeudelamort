@@ -19,9 +19,11 @@ paris = Pari.objects.all()
 cercles = Cercle.objects.all()
 URL = "https://www.wikidata.org/w/api.php"
 
+ajd = int(datetime.now().year)
+
 
 def index(request):
-    return render(request, "jdm/index.html")
+    return render(request, "jdm/index.html", {'annee': ajd})
 
 
 def score_max(joueur, annee):
@@ -375,7 +377,19 @@ def maj(request):
         # Y a-t-il eu des décès ?
         deces = []
         PARAMS_recherche = {"action": "wbgetclaims", "entity": candidat.wiki_id, "format": "json"}
-        jsonresponse_recherche = requests.get(URL, PARAMS_recherche).json()
+
+        jsonresponse_recherche = requests.get(URL, params=PARAMS_recherche)
+
+        # Vérifiez d'abord si la réponse est correcte
+        if jsonresponse_recherche.status_code == 200:
+            try:
+                jsonresponse_recherche = jsonresponse_recherche.json()
+            except ValueError:
+                # Cas où la réponse n'est pas du JSON valide
+                jsonresponse_recherche = {}
+        else:
+            jsonresponse_recherche = {}
+
         if candidat.DDD:
             pass
         elif "P570" in jsonresponse_recherche["claims"] and not candidat.DDD:
